@@ -1,0 +1,94 @@
+commit 931c6df3b449367dc5dfb1a11b87cff3ecd3ec52
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 16:05:44 2020 +0200
+
+    Kaikenlaisia muutoksia file1 ja file22
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 3d55c35df9374dec64ca6e7ed9853e0c01833f8e
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:58:04 2020 +0200
+
+    lisattiin tiedostoja
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 71cdef8b3a518bd9bd3db020152ed04429488ace
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:47:37 2020 +0200
+
+    muutettu eka ja kolmas
+
+ eka.txt    | 3 ++-
+ kolmas.txt | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit 0e08092e0ba46139bf3ccdd62c1e2f5d5087245f
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:45:07 2020 +0200
+
+    change name to eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2686dca8c30e52fa9914b53bd2503032360a2ca1
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:42:51 2020 +0200
+
+    Remove toinen.txt
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 3c19126a1af9c4d9ea6367adfe82fa65bc6d7936
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:38:44 2020 +0200
+
+    Add and remove test in tiedosto.txt
+
+ tiedosto.txt | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit c7fb9fdda050c6a218c1161263a290dbc3b482ec
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:36:52 2020 +0200
+
+    Add text to tiedosto.txt
+
+ tiedosto.txt | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+commit 34c7bf2ab6f5c9b2f187da7b9161b0113b41178d
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:28:25 2020 +0200
+
+    Add kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit bbe35e369f2fd2873486351de4da127ab9a4cacf
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:26:27 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 28b5401686d3694d100df977f66fbd413a6652de
+Author: Andström Laura <andlaura@cubbli20-gold.local>
+Date:   Tue Nov 3 15:22:16 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
