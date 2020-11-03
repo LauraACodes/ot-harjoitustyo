@@ -6,6 +6,6 @@ Hinku oppia koodaamaan nätisti on *todella* **ISO**!!
 ### Tehtävät
 
 #### Viikko 1
-[gitlog.txt](https://github.com/LauraACodes/ot-harjoitustyo/master/laskarit/viikko1/gitlog.txt)
+[gitlog.txt](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko1/gitlog.txt)
 
-[komentorivi.txt](https://github.com/LauraACodes/ot-harjoitustyo/master/laskarit/viikko1/komentorivi.txt)
+[komentorivi.txt](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko1/komentorivi.txt)
