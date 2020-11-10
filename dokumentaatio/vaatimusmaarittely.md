@@ -9,7 +9,7 @@ Pelissä on vain yhdentasoisia käyttäjiä - pelaajia.
 ## Käyttöliittymä
 Sovelluksen käyttöliittymässä on kolme sivua: Pelaajan valinta, varsinainen pelisivu ja tulossivu.
 
-<img src="https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/kuvat/kayttoliittyma1.png" width="500">
+<img src="https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/kuvat/kayttoliittyma1.jpg" width="500">
 
 ## Perusversion toiminnallisuus
 * Pelaaja luo itselle uuden pelinimen.
