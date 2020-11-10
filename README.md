@@ -19,3 +19,7 @@ Miksi, oi miksi en tajunnut käydä tätä kurssia jo *paljon* aiemmin!
 [Unicafe](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko2/Unicafe)
 
 [Testikattavuus.png](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko2/Testikattavuus.png)
+
+### Tetris-projekti
+[Vaatimusmäärittely](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/vaatimusmaarittely.md)
+
