@@ -23,3 +23,5 @@ Miksi, oi miksi en tajunnut käydä tätä kurssia jo *paljon* aiemmin!
 ### Tetris-projekti
 [Vaatimusmäärittely](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/vaatimusmaarittely.md)
 
+[Tuntikirjanpito](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/tuntikirjanpito.md)
+
