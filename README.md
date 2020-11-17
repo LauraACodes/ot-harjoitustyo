@@ -1,27 +1,14 @@
-## Lauran ensimmäinen *toivottavasti* oikeinmuotoiltu README-filu eli OT:n harjoitustyö
+## Lauran README-filu eli OT:n harjoitustyö
 
-Olen tästä kurssistä **täysin** täpinöissäni!
+Tällä viikolla kohdattu suuria ongelmia, en saanut ohjelmaani käynnistymään mitenkään. 
+En saanut koneellani käynnistymään mitään JavaFX:n viittaavaakaan.
+Suurkiitos tiistain pajan vetäjälle, joka yritti auttaa mutta ratkaisua ei löytynyt suurista ponnisteluista huolimatta.
+Ongelma lienee edelleen pomissa. 
 
-Hinku oppia koodaamaan nätisti on *todella* **ISO**!!
-
-Miksi, oi miksi en tajunnut käydä tätä kurssia jo *paljon* aiemmin!
-
-### Tehtävät
-
-#### Viikko 1
-[gitlog.txt](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko1/komentorivi.txt)
-
-### Viikko 2
-[Maksukortti](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko2/Maksukortti)
-
-[Unicafe](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko2/Unicafe)
-
-[Testikattavuus.png](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/laskarit/viikko2/Testikattavuus.png)
-
-### Tetris-projekti
+### Tetris-projekti - upgreidattu SuperTetrikseksi
 [Vaatimusmäärittely](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/vaatimusmaarittely.md)
+
+[Supertetris](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/LaurasSuperTetris)
 
 [Tuntikirjanpito](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/tuntikirjanpito.md)
 
