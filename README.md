@@ -1,11 +1,8 @@
 ## Lauran README-filu eli OT:n harjoitustyö
 
-Tällä viikolla kohdattu suuria ongelmia, en saanut ohjelmaani käynnistymään mitenkään. 
-En saanut koneellani käynnistymään mitään JavaFX:n viittaavaakaan.
-Suurkiitos tiistain pajan vetäjälle, joka yritti auttaa mutta ratkaisua ei löytynyt suurista ponnisteluista huolimatta.
-Ongelma lienee edelleen pomissa. 
+Tällä viikolla suuria onnistumisen tunteita - ohjelma saatu pyörimään ja luomaan sekä tiputtamaan yhdenlaisen palikan! Jee!
 
-### Tetris-projekti - upgreidattu SuperTetrikseksi
+### LauranSuperTetris
 [Vaatimusmäärittely](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Supertetris](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/LaurasSuperTetris)

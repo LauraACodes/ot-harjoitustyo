@@ -5,3 +5,5 @@
 | 10.11 | 4 | määrittelydokumentti, matskun luku jne. |
 | 16.11 | 2 | Tetris-koodausvideoiden katselu, fxtutorialeiden katselu |
 | 17.11 | 10 | JavaFX:n opettelua ja ongelmanratkaisua, menestyksetöntä sellaista |
+| 20.11.| 3 | Tetriksen koodausta
+| 23.11.| 6 | Videoiden katselua aiheesta Node, FX, Timer ... ja ensimmäinen toimiva palikan luonti & pudotus! Jee! 
