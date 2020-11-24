@@ -31,10 +31,15 @@ public class Tetris extends Application {
     public static Block nextBlock;
     public static BorderPane layout;
     public static Scene gameScene;
+    
+    // Controlleri
+    public static Controller controller;
 
     @Override
     public void start(Stage stage) throws Exception {
 
+
+        
         // taytetaan lauta nollilla
         for (int[] row : board) {
             Arrays.fill(row, 0);
@@ -43,19 +48,12 @@ public class Tetris extends Application {
         // tehdään ensimmäinen palikka, laitetaan se layoutiin ja sceneen.
         nextBlock = new Block();
         Block startBlock = nextBlock;
-
-        //
         layout = new BorderPane();
         layout.getChildren().addAll(startBlock.a, startBlock.b, startBlock.c, startBlock.d);
         gameScene = new Scene(layout, boardWidth, boardHeight);
-        /*
-        Button start = new Button("Start");
-        BorderPane layout = new BorderPane();
-        layout.setCenter(start);
-              
-        Scene scene = new Scene(layout, 100, 300);
-         */
 
+        controller = new Controller(board, sqSize, move, boardWidth, boardHeight, layout, block, nextBlock);
+        
         moveOnKeyPress(startBlock);
         block = startBlock;
         nextBlock = new Block();
@@ -74,11 +72,11 @@ public class Tetris extends Application {
                 System.out.println(event.getCode());
                 switch (event.getCode()) {
                     case RIGHT:
-                        moveRight(bl);
+                        controller.moveRight(bl);
                         break;
                     case DOWN:
-                        if (downOk(bl)) {
-                            removeRows(layout);
+                        if (controller.downOk(bl)) {
+                            controller.removeRows(layout);
                             //tehdään uusi blockki ja lisätään se sceneen
                             Block next = nextBlock;
                             nextBlock = new Block();
@@ -87,12 +85,11 @@ public class Tetris extends Application {
                             moveOnKeyPress(next);
                         } else {
                             //Miksi tässä muka tarttis olla ehtoa..??
-                            moveDown(bl);
+                            controller.moveDown(bl);
                         }
-
                         break;
                     case LEFT:
-                        moveLeft(bl);
+                        controller.moveLeft(bl);
                         break;
                     case UP:
                         moveTurn(bl);
@@ -124,18 +121,17 @@ public class Tetris extends Application {
                             System.exit(0);
                         }
                         if (game) {
-                            if (downOk(block)) {
-                                removeRows(layout);
+                            if (controller.downOk(block)) {
+                                controller.removeRows(layout);
                                 //tehdään uusi blockki ja lisätään se sceneen
                                 Block next = nextBlock;
                                 nextBlock = new Block();
                                 block = next;
-                                //layout.getChildren().addAll(next.a, next.b, next.c, next.d);
                                 layout.getChildren().addAll(next.a, next.b, next.c, next.d);
                                 moveOnKeyPress(next);
                             } else {
                                 //Miksi tässä muka tarttis olla ehtoa..??
-                                moveDown(block);
+                                controller.moveDown(block);
                             }
                         }
                     }
@@ -145,7 +141,7 @@ public class Tetris extends Application {
         timer.schedule(task, 0, 300);
         return timer;
     }
-
+/*
     public static boolean downOk(Block bl) {
         boolean downOk = false;
         // tämä if katsoo, estääkö joku blockin pudottamisen alaspäin, 
@@ -179,10 +175,10 @@ public class Tetris extends Application {
                 && board[((int) block.d.getX() / sqSize) + 1][(int) block.d.getY() / sqSize] == 0) {
 
             // jos on tilaa, kaikki osat siirtyy yhden oikealle
-            block.a.setX(block.a.getX() + move);
-            block.b.setX(block.b.getX() + move);
-            block.c.setX(block.c.getX() + move);
-            block.d.setX(block.d.getX() + move);
+            partRight(block.a);
+            partRight(block.b);
+            partRight(block.c);
+            partRight(block.d);
         }
         // ja jos ei ole tilaa, niin ei tee mitään
     }
@@ -204,11 +200,11 @@ public class Tetris extends Application {
         }
         // ja jos ei ole tilaa, niin ei tee mitään        
     }
-
+*/
     public static void moveTurn(Block block) {
 
     }
-
+/*
     //seuraavat palauttaa true jos tarkasteltavan blockin osan alla on täyttä
     public static boolean fullA(Block block) {
         return (board[(int) block.a.getX() / sqSize][(int) block.a.getY() / sqSize + 1] == 1);
@@ -234,7 +230,7 @@ public class Tetris extends Application {
     }
 
     public static void partRight(Rectangle part) {
-        if (part.getX() + move < boardWidth - sqSize) {
+        if (part.getX() + move <= boardWidth - sqSize) {
             part.setX(part.getX() + move);
         }
     }
@@ -244,7 +240,8 @@ public class Tetris extends Application {
             part.setX(part.getX() - move);
         }
     }
-
+*/
+/*
     public static void removeRows(BorderPane pane) {
         ArrayList<Node> parts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -308,7 +305,7 @@ public class Tetris extends Application {
         } while (lines.size() >0);
         
     }
-
+*/
     public static void main(String[] args) {
         launch(Tetris.class);
     }
