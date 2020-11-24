@@ -10,29 +10,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tetris.laurassupertetris.Block;
-import tetris.laurassupertetris.Tetris;
+import laurassupertetris.controller.Block;
 
 public class TetrisTest {
     
-    int[][] board;
-    Block block;
-    
     public TetrisTest() {
-        board = new int[12][24];
-        block = new Block();
     }
 
-    @Test
-    public void downOkReturnFalseWhenBoardIsEmpty() {
-        assertEquals(false, Tetris.downOk(block));
-    }
-    //kun palikka on neliö
-    @Test
-    public void moveDownMovesSquareADown() {
-        Tetris.moveDown(block);
-        assertEquals(31, (int) block.getA().getY());
-    }
     /*
     @BeforeClass
     public static void setUpClass() {

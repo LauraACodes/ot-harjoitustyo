@@ -1,14 +1,15 @@
 
-package tetris.laurassupertetris;
+package laurassupertetris.controller;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import laurassupertetris.ui.Tetris;
 
 public class Block {
-    Rectangle a;
-    Rectangle b;
-    Rectangle c;
-    Rectangle d;
+    public Rectangle a;
+    public Rectangle b;
+    public Rectangle c;
+    public Rectangle d;
     Color color;
     private String name;
 
@@ -16,19 +17,19 @@ public class Block {
     public static int boardWidth = Tetris.boardWidth;
     public static int boardHeigth = Tetris.boardHeight;
     
-    public Block(){
+    public Block() {
         //luo palikan osat
-        a = new Rectangle(sqSize-1, sqSize-1);
-        b = new Rectangle(sqSize-1, sqSize-1);
-        c = new Rectangle(sqSize-1, sqSize-1);
-        d = new Rectangle(sqSize-1, sqSize-1);
+        a = new Rectangle(sqSize - 1, sqSize - 1);
+        b = new Rectangle(sqSize - 1, sqSize - 1);
+        c = new Rectangle(sqSize - 1, sqSize - 1);
+        d = new Rectangle(sqSize - 1, sqSize - 1);
 
         //NELIO - laittaa palikat paikoilleen koordinaatistossa
-        a.setX(boardWidth/2-sqSize);
-        b.setX(boardWidth/2);
-        c.setX(boardWidth/2-sqSize);
+        a.setX(boardWidth / 2 - sqSize);
+        b.setX(boardWidth / 2);
+        c.setX(boardWidth / 2 - sqSize);
         c.setY(sqSize);
-        d.setX(boardWidth/2);        
+        d.setX(boardWidth / 2);        
         d.setY(sqSize);
         name = "square";
         color = Color.BLUE;
@@ -49,4 +50,14 @@ public class Block {
     public Rectangle getA() {
         return this.a;
     }
+    public Rectangle getB() {
+        return this.b;
+    }    
+    public Rectangle getC() {
+        return this.c;
+    }
+    public Rectangle getD() {
+        return this.d;
+    }
+    
 }

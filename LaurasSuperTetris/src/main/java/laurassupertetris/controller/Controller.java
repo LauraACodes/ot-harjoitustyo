@@ -1,6 +1,7 @@
-package tetris.laurassupertetris;
+package laurassupertetris.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
@@ -16,15 +17,21 @@ public class Controller {
     Block block;
     Block nextBlock;
     
-    public Controller(int[][] board, int sqSize, int move, int boardWidth, int boardHeight, BorderPane layout, Block block, Block nextBlock) {
-        this.board = board;
+    //public Controller(int[][] board, , int move, int boardWidth, int boardHeight, BorderPane layout, Block block, Block nextBlock) {
+    
+    public Controller(int sqSize, int boardWidth, int boardHeight, BorderPane layout, Block block, Block nextBlock) {
+        this.board = new int[12][24];
         this.sqSize = sqSize;
-        this.move = move;
+        this.move = 31;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.layout = layout;
         this.block = block;
         this.nextBlock = nextBlock;
+        
+        for (int[] row : board) {
+            Arrays.fill(row, 0);
+        }
     }
     
     public void moveRight(Block block) {
@@ -62,7 +69,31 @@ public class Controller {
         }
         // ja jos ei ole tilaa, niin ei tee mitään        
     }
+
+    public void moveDown(Block bl) {
+        bl.a.setY(bl.a.getY() + move);
+        bl.b.setY(bl.b.getY() + move);
+        bl.c.setY(bl.c.getY() + move);
+        bl.d.setY(bl.d.getY() + move);
+    }
     
+    public boolean downOk(Block bl) {
+        boolean downOk = false;
+        // tämä if katsoo, estääkö joku blockin pudottamisen alaspäin, 
+        // ja jos estää, palikka asetetaan boardille ja palautetaan true
+        if (bl.a.getY() == boardHeight - sqSize || bl.b.getY() == boardHeight - sqSize
+                || bl.c.getY() == boardHeight - sqSize || bl.d.getY() == boardHeight - sqSize
+                || fullA(bl) || fullB(bl) || fullC(bl) || fullD(bl)) {
+            board[(int) bl.a.getX() / sqSize][(int) bl.a.getY() / sqSize] = 1;
+            board[(int) bl.b.getX() / sqSize][(int) bl.b.getY() / sqSize] = 1;
+            board[(int) bl.c.getX() / sqSize][(int) bl.c.getY() / sqSize] = 1;
+            board[(int) bl.d.getX() / sqSize][(int) bl.d.getY() / sqSize] = 1;
+            downOk = true;
+        }
+        return downOk;
+    }
+    
+        
     //seuraavissa liikutetaan yhtä osasta jos laudan rajat ei tule vastaan
     public void partDown(Rectangle part) {
         if (part.getY() + move < boardHeight) {
@@ -82,38 +113,6 @@ public class Controller {
         }
     }
     
-    public void moveDown(Block bl) {
-        if (downOk(bl)) {
-            removeRows(layout);
-            //tehdään uusi blockki ja lisätään se sceneen
-            Block next = nextBlock;
-            nextBlock = new Block();
-            block = next;
-            layout.getChildren().addAll(next.a, next.b, next.c, next.d);
-            Tetris.moveOnKeyPress(next);
-        } else {              
-            bl.a.setY(bl.a.getY() + move);
-            bl.b.setY(bl.b.getY() + move);
-            bl.c.setY(bl.c.getY() + move);
-            bl.d.setY(bl.d.getY() + move);
-        }
-    }
-    
-    public boolean downOk(Block bl) {
-        boolean downOk = false;
-        // tämä if katsoo, estääkö joku blockin pudottamisen alaspäin, 
-        // ja jos estää, palikka asetetaan boardille ja palautetaan true
-        if (bl.a.getY() == boardHeight - sqSize || bl.b.getY() == boardHeight - sqSize
-                || bl.c.getY() == boardHeight - sqSize || bl.d.getY() == boardHeight - sqSize
-                || fullA(bl) || fullB(bl) || fullC(bl) || fullD(bl)) {
-            board[(int) bl.a.getX() / sqSize][(int) bl.a.getY() / sqSize] = 1;
-            board[(int) bl.b.getX() / sqSize][(int) bl.b.getY() / sqSize] = 1;
-            board[(int) bl.c.getX() / sqSize][(int) bl.c.getY() / sqSize] = 1;
-            board[(int) bl.d.getX() / sqSize][(int) bl.d.getY() / sqSize] = 1;
-            downOk = true;
-        }
-        return downOk;
-    }
     //seuraavat palauttaa true jos tarkasteltavan blockin osan alla on täyttä
     public boolean fullA(Block block) {
         return (board[(int) block.a.getX() / sqSize][(int) block.a.getY() / sqSize + 1] == 1);
@@ -131,6 +130,19 @@ public class Controller {
         return (board[(int) block.d.getX() / sqSize][(int) block.d.getY() / sqSize + 1] == 1);
     }
 
+    public static void moveTurn(Block block) {
+        String name = block.getName();
+        Rectangle a = block.a;
+        Rectangle b = block.b;
+        Rectangle c = block.c;
+        Rectangle d = block.d;
+        
+        switch (name) {
+            case "square":
+                break;
+        }
+    }
+    
     public void removeRows(BorderPane pane) {
         ArrayList<Node> parts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -150,7 +162,7 @@ public class Controller {
             full = 0;
         }
         //Tuhotaan se rivi;
-        if (lines.size() > 0 ) 
+        if (lines.size() > 0) {
             do {
                 for (Node node : layout.getChildren()) {
                     if (node instanceof Rectangle) {
@@ -191,7 +203,8 @@ public class Controller {
                     }
                 }
                 parts.clear();
-        } while (lines.size() >0);
-        
+            }   while (lines.size() > 0);
+        }
     }
+    
 }
