@@ -14,15 +14,15 @@ Sovelluksen käyttöliittymässä on kolme sivua: Pelaajan valinta, varsinainen 
 ## Perusversion toiminnallisuus
 * Pelaaja luo itselle uuden pelinimen.
 * Pelaaja valitseen tallennetuista pelaajanimistä omansa.
-* Peli alkaa tyhjältä pelilaudalta.
-* Erilaiset palikat (ainakin 6 perusmallia) tippuvat ylhäältä tasaiseen tahtiin.
-* Tippuvia palikoita pystyy siirtämään vaakatasossa nuolinäppäimillä.
-* Tippuvia palikoita pysty pyörittämään nuolinäppäimillä.
-* Tippuva palikka "kiinnittyy" pohjalle ja jos rivi on täysi, rivi katoaa.
+* **TEHTY** - Peli alkaa tyhjältä pelilaudalta.
+* **TEHTY OSIN** (yksi palikkatyyppi tehty) -Erilaiset palikat (ainakin 6 perusmallia) tippuvat ylhäältä tasaiseen tahtiin.
+* **TEHTY** - Tippuvia palikoita pystyy siirtämään vaakatasossa nuolinäppäimillä.
+* **TEHTY OSIN** - Tippuvia palikoita pysty pyörittämään nuolinäppäimillä.
+* **TEHTY** - Tippuva palikka "kiinnittyy" pohjalle ja jos rivi on täysi, rivi katoaa.
 * Palikan kiinnittyessä pistelaskuun lisätään palikasta saatu pistemäärä.
 * Jos pitkällä palikalla saa pois neljä riviä, ruutuun ilmestyy teksti "Tetris"
 * Tietyn palikkamäärän (?) jälkeen palikoiden tippumisvaihe kiihtyy.
-* Kun palikat täyttävät koko ruudun eikä uusia palikoita enää mahdu, peli loppuu.
+* **TEHTY** - Kun palikat täyttävät koko ruudun eikä uusia palikoita enää mahdu, peli loppuu.
 * Pelin loppuessa sovellus tallentaa kertyneen pistemäärän tilastotauluun, tarkistaa mille sijalle kertynyt pistemäärä riittää.
 * Sovellus näyttää pelaajan pistemäärän sekä sijoituksen ranking-listalla.
 
