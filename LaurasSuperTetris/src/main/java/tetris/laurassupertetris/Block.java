@@ -30,7 +30,7 @@ public class Block {
         c.setY(sqSize);
         d.setX(boardWidth/2);        
         d.setY(sqSize);
-        
+        name = "square";
         color = Color.BLUE;
         
         // Varjataan palikan osat valitulla varilla
@@ -39,5 +39,14 @@ public class Block {
         c.setFill(color);
         d.setFill(color);
 
+    }
+    
+    public String getName() {
+        return this.name;
+    }
+    
+    //Testiä varten
+    public Rectangle getA() {
+        return this.a;
     }
 }

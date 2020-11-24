@@ -7,3 +7,4 @@
 | 17.11 | 10 | JavaFX:n opettelua ja ongelmanratkaisua, menestyksetöntä sellaista |
 | 20.11.| 3 | Tetriksen koodausta
 | 23.11.| 6 | Videoiden katselua aiheesta Node, FX, Timer ... ja ensimmäinen toimiva palikan luonti & pudotus! Jee! 
+| 24.11.| 2 | Ensimmäiset yksikkötestit ja jacocon luonti. Toimii!

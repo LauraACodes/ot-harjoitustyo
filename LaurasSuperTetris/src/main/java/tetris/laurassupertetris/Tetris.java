@@ -145,7 +145,8 @@ public class Tetris extends Application {
         timer.schedule(task, 0, 300);
         return timer;
     }
-        static boolean downOk(Block bl) {
+    
+    public static boolean downOk(Block bl) {
         boolean downOk = false;
         // tämä if katsoo, estääkö joku blockin pudottamisen alaspäin, 
         // ja jos estää, palikka asetetaan boardille ja palautetaan true
@@ -161,8 +162,6 @@ public class Tetris extends Application {
         return downOk;
     }
 
-
-    
     public static void moveDown(Block bl) {
         bl.a.setY(bl.a.getY() + move);
         bl.b.setY(bl.b.getY() + move);
