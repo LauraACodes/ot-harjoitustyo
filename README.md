@@ -1,10 +1,6 @@
 ## Lauran README-filu eli OT:n harjoitustyö
 
-*Tällä viikolla **suuria onnistumisen tunteita** - ohjelma saatu pyörimään ja luomaan sekä tiputtamaan yhdenlaisen palikan! Jee!
-*Käyttöliittymänkin eriyttäminen sujui suht hyvin ja sovellus toimi vielä uusien pakkaustenkin päivittämisen jälkeen.
-*Testeja tehty ja katsottu, että pystyy luomaan jacocon ilman uita - myös jee!
-*Checkstyle käytössä ensimmäistä kertaa, vain 1 Error jäi.
-*Simppeli pakkauskuva lisätty. 
+*Tälläkin viikolla **suuria onnistumisen tunteita** - sain erityyppiset palikat luotua ja kaikki palikkatyypit kääntymään! Jee!
 
 ### LauranSuperTetris
 [Vaatimusmäärittely](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/vaatimusmaarittely.md)
