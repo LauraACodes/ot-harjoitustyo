@@ -11,4 +11,6 @@
 | 24.11.| 7 | Lisää testejä, käytötliittymän eriyttäminen, checkstyle ...|
 | 25.11.| 3 | Erilaisten palikoiden luonti |
 | 1.12.| 4 | Palikoiden kääntäminen |
-**YHTEENSÄ 41 TUNTIA**
+| 2.12.| 5 | Turnin refaktorointi, virheiden korjaus, testejä |
+
+**YHTEENSÄ 46 TUNTIA**

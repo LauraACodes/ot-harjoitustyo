@@ -142,7 +142,6 @@ public class Controller {
 
     public void moveTurn(Block block) {
         String name = block.getName();
-
         if (name.equals("line")) {
             this.turns.turnLine(block);
         }
