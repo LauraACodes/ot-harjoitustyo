@@ -142,29 +142,24 @@ public class Controller {
         if (name.equals("line")) {
             turnLine(block);
         }
-
         if (name.equals("ess")) {
             turnEss(block);
-        }
-        
+        } 
         if (name.equals("enn")) {
             turnEnn(block);
-        }
-        
+        }        
         if (name.equals("dude")) {
             turnDude(block);
-        }
-        
+        }        
         if (name.equals("jei")) {
             turnJei(block);
         }
-
         if (name.equals("ell")) {
             turnEll(block);
         }    
     }
     
-    /*Tästä eteenpäin metodit kääntää kutakin palikktyyppiä.
+    /*Tästä eteenpäin metodit kääntää kutakin palikkatyyppiä.
     Näiden iffeissä tsekataan vain ne mitä muuttuu, ei niitä ruutuja, joissa on jo jokin kyseisen palikan osa!
     Jokaisen iffin ensimmäinen ehto kertoo missä asennossa palikka on ja katsoo loput ehdot sen mukaan,
     miten mikäkin palikan osan pitäisi liikkua.*/
@@ -174,7 +169,7 @@ public class Controller {
         Rectangle b = block.b;
         Rectangle c = block.c;
         Rectangle d = block.d;    
-        //starttiasennosta ensimmäiseen pystyyn
+
         if (a.getX() < b.getX() && isTurnOk((int) a.getX() + 2 * sqSize, (int) a.getY() - 2 * sqSize)
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() + 1 * sqSize)) {
@@ -186,8 +181,7 @@ public class Controller {
             partRight(b);
             partLeft(d);
             partDown(d);
-        } //asento2 - ensimmaisestä pystystä toiseen vaakaan
-        else if (a.getY() < b.getY() && isTurnOk((int) a.getX() + 2 * sqSize, (int) a.getY() + 2 * sqSize)
+        } else if (a.getY() < b.getY() && isTurnOk((int) a.getX() + 2 * sqSize, (int) a.getY() + 2 * sqSize)
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
             partRight(a);
@@ -198,8 +192,7 @@ public class Controller {
             partDown(b);
             partLeft(d);
             partUp(d);
-        } //asento3 - toisesta vaa'asta toiseen pystyyn
-        else if (a.getX() > b.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
+        } else if (a.getX() > b.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) c.getX() + 1 * sqSize, (int) c.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY() - 2 * sqSize)) {
             partLeft(a);
@@ -210,8 +203,7 @@ public class Controller {
             partRight(d);
             partUp(d);
             partUp(d);
-        } //asento4 - toista pystystä alkuasentoon
-        else if (a.getY() > b.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (a.getY() > b.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) c.getX() + 1 * sqSize, (int) c.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY() + 2 * sqSize)) {
             partLeft(a);
@@ -230,44 +222,37 @@ public class Controller {
         Rectangle b = block.b;
         Rectangle c = block.c;
         Rectangle d = block.d;    
-        //starttiasennosta ensimmäiseen pystyyn
+
         if (b.getX() < c.getX() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX(), (int) d.getY() - 2 * sqSize)) {
-            System.out.println("ensimmainen starttas");
             partRight(a);
             partDown(a);
             partRight(b);
             partUp(b);
             partUp(d);
             partUp(d);
-        } //asento2 - ensimmaisestä pystystä toiseen vaakaan
-        else if (b.getY() < c.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
+        } else if (b.getY() < c.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY())) {
-            System.out.println("toinen starttas");
             partLeft(a);
             partDown(a);
             partRight(b);
             partDown(b);
             partRight(d);
             partRight(d);
-        } //asento3 - toisesta vaa'asta toiseen pystyyn
-        else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) b.getX() - 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX(), (int) d.getY() + 2 * sqSize)) {
-            System.out.println("kolmas starttas");
             partLeft(a);
             partUp(a);
             partLeft(b);
             partDown(b);
             partDown(d);
             partDown(d);
-        } //asento4 - toista pystystä alkuasentoon
-        else if (b.getY() > c.getY() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (b.getY() > c.getY() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) b.getX() - 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() - 2 * sqSize, (int) d.getY())) {
-            System.out.println("neljäs starttas");
             partRight(a);
             partUp(a);
             partLeft(b);
@@ -282,44 +267,37 @@ public class Controller {
         Rectangle b = block.b;
         Rectangle c = block.c;
         Rectangle d = block.d;    
-        //starttiasennosta ensimmäiseen pystyyn
+        
         if (b.getX() < c.getX() && isTurnOk((int) a.getX() + 2 * sqSize, (int) a.getY())
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
-            System.out.println("ensimmainen starttas");
             partRight(a);
             partRight(a);
             partRight(b);
             partUp(b);
             partLeft(d);
             partUp(d);
-        } //asento2 - ensimmaisestä pystystä toiseen vaakaan
-        else if (b.getY() < c.getY() && isTurnOk((int) a.getX(), (int) a.getY() + 2 * sqSize)
+        } else if (b.getY() < c.getY() && isTurnOk((int) a.getX(), (int) a.getY() + 2 * sqSize)
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() + 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
-            System.out.println("toinen starttas");
             partDown(a);
             partDown(a);
             partRight(b);
             partDown(b);
             partRight(d);
             partUp(d);
-        } //asento3 - toisesta vaa'asta toiseen pystyyn
-        else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 2 * sqSize, (int) a.getY())
+        } else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 2 * sqSize, (int) a.getY())
                 && isTurnOk((int) b.getX() - 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() + 1 * sqSize, (int) d.getY() + 1 * sqSize)) {
-            System.out.println("kolmas starttas");
             partLeft(a);
             partLeft(a);
             partLeft(b);
             partDown(b);
             partRight(d);
             partDown(d);
-        } //asento4 - toista pystystä alkuasentoon
-        else if (b.getY() > c.getY() && isTurnOk((int) a.getX(), (int) a.getY() - 2 * sqSize)
+        } else if (b.getY() > c.getY() && isTurnOk((int) a.getX(), (int) a.getY() - 2 * sqSize)
                 && isTurnOk((int) b.getX() - 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() + 1 * sqSize)) {
-            System.out.println("neljäs starttas");
             partUp(a);
             partUp(a);
             partLeft(b);
@@ -334,44 +312,37 @@ public class Controller {
         Rectangle b = block.b;
         Rectangle c = block.c;
         Rectangle d = block.d;    
-        //starttiasennosta ensimmäiseen pystyyn
+        
         if (b.getY() < d.getY() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) c.getX(), (int) c.getY() - 2 * sqSize)
                 && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
-            System.out.println("ensimmainen starttas");
             partRight(a);
             partDown(a);
             partUp(c);
             partUp(c);
             partLeft(d);
             partUp(d);
-        } //asento2 - ensimmaisestä pystystä toiseen vaakaan
-        else if (b.getX() > d.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
+        } else if (b.getX() > d.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) c.getX() + 2 * sqSize, (int) c.getY())
                 && isTurnOk((int) d.getX() + 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
-            System.out.println("toinen starttas");
             partLeft(a);
             partDown(a);
             partRight(c);
             partRight(c);
             partRight(d);
             partUp(d);
-        } //asento3 - toisesta vaa'asta toiseen pystyyn
-        else if (b.getY() > d.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (b.getY() > d.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) c.getX(), (int) c.getY() + 2 * sqSize)
                 && isTurnOk((int) d.getX() + 1 * sqSize, (int) d.getY() + 1 * sqSize)) {
-            System.out.println("kolmas starttas");
             partLeft(a);
             partUp(a);
             partDown(c);
             partDown(c);
             partRight(d);
             partDown(d);
-        } //asento4 - toista pystystä alkuasentoon
-        else if (b.getX() < d.getX() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (b.getX() < d.getX() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) c.getX() - 2 * sqSize, (int) c.getY())
                 && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() + 1 * sqSize)) {
-            System.out.println("neljäs starttas");
             partRight(a);
             partUp(a);
             partLeft(c);
@@ -386,44 +357,37 @@ public class Controller {
         Rectangle b = block.b;
         Rectangle c = block.c;
         Rectangle d = block.d;    
-        //starttiasennosta ensimmäiseen pystyyn
+        
         if (b.getY() < c.getY() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) c.getX() - 1 * sqSize, (int) c.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() - 2 * sqSize, (int) d.getY())) {
-            System.out.println("ensimmainen starttas");
             partRight(a);
             partDown(a);
             partLeft(c);
             partUp(c);
             partLeft(d);
             partLeft(d);
-        } //asento2 - ensimmaisestä pystystä toiseen vaakaan
-        else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
+        } else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() + 1 * sqSize)
                 && isTurnOk((int) c.getX() + 1 * sqSize, (int) c.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX(), (int) d.getY() - 2 * sqSize)) {
-            System.out.println("toinen starttas");
             partLeft(a);
             partDown(a);
             partRight(c);
             partUp(c);
             partUp(d);
             partUp(d);
-        } //asento3 - toisesta vaa'asta toiseen pystyyn
-        else if (b.getY() > c.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (b.getY() > c.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) c.getX() + 1 * sqSize, (int) c.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY())) {
-            System.out.println("kolmas starttas");
             partLeft(a);
             partUp(a);
             partRight(c);
             partDown(c);
             partRight(d);
             partRight(d);
-        } //asento4 - toista pystystä alkuasentoon
-        else if (b.getX() < c.getX() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() - 1 * sqSize)
+        } else if (b.getX() < c.getX() && isTurnOk((int) a.getX() + 1 * sqSize, (int) a.getY() - 1 * sqSize)
                 && isTurnOk((int) c.getX() - 1 * sqSize, (int) c.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX(), (int) d.getY() + 2 * sqSize)) {
-            System.out.println("neljäs starttas");
             partRight(a);
             partUp(a);
             partLeft(c);
@@ -438,44 +402,37 @@ public class Controller {
         Rectangle b = block.b;
         Rectangle c = block.c;
         Rectangle d = block.d;    
-        //starttiasennosta ensimmäiseen pystyyn
+        
         if (b.getX() < c.getX() && isTurnOk((int) a.getX() + 2 * sqSize, (int) a.getY())
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX(), (int) d.getY() - 2 * sqSize)) {
-            System.out.println("ensimmainen starttas");
             partRight(a);
             partRight(a);
             partRight(b);
             partUp(b);
             partUp(d);
             partUp(d);
-        } //asento2 - ensimmaisestä pystystä toiseen vaakaan
-        else if (b.getY() < c.getY() && isTurnOk((int) a.getX(), (int) a.getY() + 2 * sqSize)
+        } else if (b.getY() < c.getY() && isTurnOk((int) a.getX(), (int) a.getY() + 2 * sqSize)
                 && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY())) {
-            System.out.println("toinen starttas");
             partDown(a);
             partDown(a);
             partRight(b);
             partDown(b);
             partRight(d);
             partRight(d);
-        } //asento3 - toisesta vaa'asta toiseen pystyyn
-        else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 2 * sqSize, (int) a.getY())
+        } else if (b.getX() > c.getX() && isTurnOk((int) a.getX() - 2 * sqSize, (int) a.getY())
                 && isTurnOk((int) b.getX() - 1 * sqSize, (int) b.getY() + 1 * sqSize)
                 && isTurnOk((int) d.getX(), (int) d.getY() + 2 * sqSize)) {
-            System.out.println("kolmas starttas");
             partLeft(a);
             partLeft(a);
             partLeft(b);
             partDown(b);
             partDown(d);
             partDown(d);
-        } //asento4 - toista pystystä alkuasentoon
-        else if (b.getY() > c.getY() && isTurnOk((int) a.getX(), (int) a.getY() - 2 * sqSize)
+        } else if (b.getY() > c.getY() && isTurnOk((int) a.getX(), (int) a.getY() - 2 * sqSize)
                 && isTurnOk((int) b.getX() - 1 * sqSize, (int) b.getY() - 1 * sqSize)
                 && isTurnOk((int) d.getX() - 2 * sqSize, (int) d.getY())) {
-            System.out.println("neljäs starttas");
             partUp(a);
             partUp(a);
             partLeft(b);

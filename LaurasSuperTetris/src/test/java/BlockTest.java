@@ -15,7 +15,7 @@ public class BlockTest {
     public BlockTest() {
         block = new Block();
     }
-    
+ /*   
     @Test
     public void blockExists() {
         assertTrue(block != null);

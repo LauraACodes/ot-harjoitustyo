@@ -33,16 +33,30 @@ public class Block {
     }
     //arpoo minkälainen blokki tehdään. Onko tällainen if-muotoilu sallittu?
     public String chooseBlock() {
-        int rand = (int) (Math.random()*7);
+        int rand = (int) (Math.random() * 7);
         String bName = "";
      
-        if (rand == 0) {bName = "square";}
-        if (rand == 1) {bName = "line";}
-        if (rand == 2) {bName = "ess";}
-        if (rand == 3) {bName = "enn";}
-        if (rand == 4) {bName = "dude";}
-        if (rand== 5) {bName = "jei";}
-        if (rand == 6) {bName = "ell";}
+        if (rand == 0) { 
+            bName = "square"; 
+        }
+        if (rand == 1) {
+            bName = "line";
+        }
+        if (rand == 2) {
+            bName = "ess";
+        }
+        if (rand == 3) {
+            bName = "enn";
+        }
+        if (rand == 4) {
+            bName = "dude";
+        }
+        if (rand == 5) {
+            bName = "jei";
+        }
+        if (rand == 6) {
+            bName = "ell";
+        }
         
         return bName;
     }
@@ -111,25 +125,25 @@ public class Block {
 
     public Color selectColor(String bName) {
         if (bName == "square") {
-            return Color.BLUE;
+            return Color.CORAL;
         } 
         if (bName == "line") {
-            return Color.CHOCOLATE;
+            return Color.HOTPINK;
         } 
         if (bName == "ess") {
-            return Color.FIREBRICK;
+            return Color.LIGHTGREEN;
         }         
         if (bName == "enn") {
-            return Color.LAVENDER;
+            return Color.MEDIUMSEAGREEN;
         }
         if (bName == "dude") {
-            return Color.SILVER;
+            return Color.GOLD;
         }
         if (bName == "jei") {
-            return Color.AQUA;
+            return Color.MEDIUMSLATEBLUE;
         }
         if (bName == "ell") {
-            return Color.GREENYELLOW;
+            return Color.LIGHTSKYBLUE;
         }
         return Color.BLACK;
     }
