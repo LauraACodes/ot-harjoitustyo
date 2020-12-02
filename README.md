@@ -7,7 +7,7 @@
 
 
 ### LauranSuperTetris
-[LaurasSuperTetris - Release]((https://github.com/LauraACodes/ot-harjoitustyo/releases/tag/LaurasSuperTetris_vk5)
+[LaurasSuperTetris - Release](https://github.com/LauraACodes/ot-harjoitustyo/releases/tag/LaurasSuperTetris_vk5)
 
 [Vaatimusmäärittely](https://github.com/LauraACodes/ot-harjoitustyo/tree/master/dokumentaatio/vaatimusmaarittely.md)
 
