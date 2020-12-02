@@ -31,7 +31,7 @@ public class Block {
         fillBlockWithColor(color);
 
     }
-    //arpoo minkälainen blokki tehdään. Onko tällainen if-muotoilu sallittu?
+    
     public String chooseBlock() {
         int rand = (int) (Math.random() * 7);
         String bName = "";
@@ -159,7 +159,8 @@ public class Block {
         return this.name;
     }
     
-    //Testiä varten
+    //Testiä varten   
+    
     public Rectangle getA() {
         return this.a;
     }
