@@ -12,5 +12,8 @@
 | 25.11.| 3 | Erilaisten palikoiden luonti |
 | 1.12.| 4 | Palikoiden kääntäminen |
 | 2.12.| 5 | Turnin refaktorointi, virheiden korjaus, testejä |
+| 7.12.| 8 | Ziljoona epäonnistunutta yritystä heittää Timer ja moveOnKeyPress -metodit pois ui:stä. Järki lähtee. || 2.12.| 5 | Turnin refaktorointi, virheiden korjaus, testejä |
+| 8.12.| 5 | Vihdoin onnistui yllå olevien metodien poisto. Pisteidenlasku |
+| 8.12.| 3 | Alkeelliset tetris ja game over -tekstit |
 
-**YHTEENSÄ 46 TUNTIA**
+**YHTEENSÄ 59 TUNTIA**

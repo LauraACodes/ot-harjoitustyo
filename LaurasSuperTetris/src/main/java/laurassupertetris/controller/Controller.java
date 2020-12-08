@@ -2,9 +2,16 @@ package laurassupertetris.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import laurassupertetris.ui.Tetris;
+
 
 public class Controller {
 
@@ -13,24 +20,28 @@ public class Controller {
     int move;
     int boardWidth; 
     int boardHeight; 
-    BorderPane layout;
-    Block block;
-    Block nextBlock;
+    BorderPane layout = Tetris.layout;
+    Block block = Tetris.block;
+    Block nextBlock = Tetris.nextBlock;
     Turns turns;
+    Text scoreText = Tetris.scoreText;
+    int score = Tetris.score;
+    Text lineText = Tetris.lineText;    
+    int lineCount = Tetris.lineCount;
+    Scene gameScene;
+    Boolean showTetris = false;
+    
     
     //public Controller(int[][] board, , int move, int boardWidth, int boardHeight, BorderPane layout, Block block, Block nextBlock) {
     
-    public Controller(int sqSize, int boardWidth, int boardHeight, BorderPane layout, Block block, Block nextBlock) {
+    public Controller(int sqSize, int boardWidth, int boardHeight, Scene gscene) {
         this.board = new int[12][24];
         this.sqSize = sqSize;
         this.move = 31;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
-        this.layout = layout;
-        this.block = block;
-        this.nextBlock = nextBlock;
+        this.gameScene =gscene;
         this.turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-        
         for (int[] row : board) {
             Arrays.fill(row, 0);
         }
@@ -79,12 +90,15 @@ public class Controller {
         bl.b.setY(bl.b.getY() + move);
         bl.c.setY(bl.c.getY() + move);
         bl.d.setY(bl.d.getY() + move);
+        score++;
+        scoreText.setText("SCORE: " + score);
+        lineText.setText("LINES: " + lineCount);
     }
     
     public boolean downOk(Block bl) {
         boolean downOk = false;
         // tämä if katsoo, estääkö joku blockin pudottamisen alaspäin, 
-        // ja jos estää, palikka asetetaan boardille ja palautetaan true
+        // ja jos estää, palikka asetetaan boardille ja palautetaan false
         if (bl.a.getY() == boardHeight - sqSize || bl.b.getY() == boardHeight - sqSize
                 || bl.c.getY() == boardHeight - sqSize || bl.d.getY() == boardHeight - sqSize
                 || fullA(bl) || fullB(bl) || fullC(bl) || fullD(bl)) {
@@ -162,7 +176,7 @@ public class Controller {
         }    
     }
 
-    public void removeRows(BorderPane pane) {
+    public void removeRows() {
         ArrayList<Node> parts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
         ArrayList<Node> newParts = new ArrayList<Node>();
@@ -179,14 +193,32 @@ public class Controller {
             }
             full = 0;
         }
-        //Tuhotaan se rivi;
+        Text tetrisText = new Text("T E T R I S");
+        tetrisText.setFill(Color.RED);
+        tetrisText.setStyle("-fx-font: 70 arimo;");
+        tetrisText.setY(250);
+        tetrisText.setX(10);
+        if (showTetris) {
+
+            Node jep = layout.getCenter();
+            layout.getChildren().remove(jep);
+            showTetris = false;
+        }
+
+        //Tuhotaan se rivi / rivit;
         if (lines.size() > 0) {
+            if (lines.size() == 4) {
+                layout.setCenter(tetrisText);   
+                showTetris = true;
+            }
             do {
+                lineCount++;
                 for (Node node : layout.getChildren()) {
+
                     if (node instanceof Rectangle) {
                         parts.add(node);
                     }
-                //Tähän tulisi pisteet rivin tyhjennyksestä
+               
                 }
                 for (Node node : parts) {
                     Rectangle n = (Rectangle) node;
@@ -223,6 +255,38 @@ public class Controller {
                 parts.clear();
             }   while (lines.size() > 0);
         }
+        /*Block next = nextBlock;
+        nextBlock = new Block();
+        block = next;
+        layout.getChildren().addAll(next.a, next.b, next.c, next.d);
+        moveOnKeyPress(next);*/
+    }
+
+    public void moveOnKeyPress(Block bl) {
+        gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case RIGHT:
+                        moveRight(bl);
+                        break;
+                    case DOWN:
+                        if (downOk(bl)) {
+                            removeRows();
+                        } else {
+                            moveDown(bl);
+
+                        }
+                        break;
+                    case LEFT:
+                        moveLeft(bl);
+                        break;
+                    case UP:
+                        moveTurn(bl);
+                        break;
+                }
+            }
+        });
     }
     
 }
