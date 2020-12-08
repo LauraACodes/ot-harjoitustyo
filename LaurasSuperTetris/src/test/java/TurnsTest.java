@@ -1,8 +1,11 @@
 
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import laurassupertetris.controller.Block;
 import laurassupertetris.controller.Controller;
 import laurassupertetris.controller.Turns;
+import laurassupertetris.ui.Gameboard;
+import laurassupertetris.ui.Tetris;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,13 +17,13 @@ public class TurnsTest {
     
     Controller controller;
     int[][] board;
-    Block block;
+    Block block = new Block();
+//    Block nextBlock = new Block();
     Turns turns;
     
     public TurnsTest() {
         board = new int[12][24];
-        block = new Block();
-        controller = new Controller(31, 372, 744, new BorderPane(), block, new Block());
+        controller = new Controller(31, 372, 744);
     }
     
     @Test

@@ -5,7 +5,12 @@ import java.util.Random;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import laurassupertetris.ui.Tetris;
-
+/**
+ * Luokka Block luo tetriksen palikat eli Blockit.
+ * Block koostuu neljästä Rectanglesta.
+ * Blockilla on väri ja nimi.
+ * 
+ */
 public class Block {
     public Rectangle a;
     public Rectangle b;
@@ -17,7 +22,10 @@ public class Block {
     public static int sqSize = Tetris.sqSize;
     public static int boardWidth = Tetris.boardWidth;
     public static int boardHeigth = Tetris.boardHeight;
-    
+    /**
+     * Konstruktori luo Blockille neljä osaa.
+     * Tåmän jälkeen konstruktori kutsuu eri metodeja joiden avulla mm. blockin tyyppi valikoituu.
+     */    
     public Block() {
         //luo palikan osat
         a = new Rectangle(sqSize - 1, sqSize - 1);
@@ -31,7 +39,11 @@ public class Block {
         fillBlockWithColor(color);
 
     }
-    
+    /**
+     * Metodi valitsee satunnaisesti minkäniminen eli muotoinen Blockista tulee.
+     * 
+     * @return satunnaisesti valittu nimi.
+     */    
     public String chooseBlock() {
         int rand = (int) (Math.random() * 7);
         String bName = "";
@@ -60,7 +72,12 @@ public class Block {
         
         return bName;
     }
-    //asettaa kunkin blockin osan paikoilleen koordinaatistoon
+
+    /**
+     * Metodi asettaa syötteenä annetun blockin nimen perusteella blockin neljä osaa pelilaudan koordinaatistoon.
+     * 
+     * @param bName luotavan blokin nimi joka blockin muodon eli osasten paikan
+     */
     public void positionBlock(String bName) {
         if (bName == "square") {
             a.setX(boardWidth / 2 - sqSize);
@@ -122,7 +139,14 @@ public class Block {
             d.setY(sqSize * 2);
         }
     }
-
+    /**
+     * Metodi valitsee blockin värin.
+     * Kaikki tietynmuotoiset blockit ovat tietyn värisiä.
+     * 
+     * @param bName blockin nimi
+     * 
+     * @return blocin värin Color.VÄRI -muodossa.
+     */
     public Color selectColor(String bName) {
         if (bName == "square") {
             return Color.CORAL;
@@ -147,14 +171,18 @@ public class Block {
         }
         return Color.BLACK;
     }
-    
+
+    /**
+     * Metodi värjää palikan kaikki neljä osaa parametrina saadulla värillä.
+     * @param color 
+     */
     public void fillBlockWithColor(Color color) {
         a.setFill(color);
         b.setFill(color);
         c.setFill(color);
         d.setFill(color);        
     }
-    
+  
     public String getName() {
         return this.name;
     }

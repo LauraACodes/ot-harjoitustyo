@@ -12,7 +12,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import laurassupertetris.ui.Tetris;
 
-
+/** 
+ * Controller luokka vastaa näppäimistön kuuntelusta sekä palikoiden siirtämisestä
+ * pelilaudalla.
+ * 
+ */
 public class Controller {
 
     int[][] board;
@@ -31,24 +35,56 @@ public class Controller {
     Scene gameScene;
     Boolean showTetris = false;
     
-    
-    //public Controller(int[][] board, , int move, int boardWidth, int boardHeight, BorderPane layout, Block block, Block nextBlock) {
-    
+    /**
+     * Luokan konstruktori lukitsee tarvittavat muuttujat, 
+     * luo Turns-olion hoitamaan blockien käännökset sekä alustaa pelilaudan.
+     * @param sqSize Blockin osan koko (neliön sivu)
+     * @param boardWidth  Pelilaudan leveys
+     * @param boardHeight Pelilaudan pituus
+     * @param gscene pelilaudan Scene
+     */        
     public Controller(int sqSize, int boardWidth, int boardHeight, Scene gscene) {
         this.board = new int[12][24];
         this.sqSize = sqSize;
         this.move = 31;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
-        this.gameScene =gscene;
+        this.gameScene = gscene;
         this.turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
+        
         for (int[] row : board) {
             Arrays.fill(row, 0);
         }
-        
-        
     }
-    
+    /**
+     * Konstruktori ilman Scene-oliota. 
+     * Tarvitaan vain luokan metodien yksikkötesteissä. 
+     * 
+     * @param sqSize
+     * @param boardWidth
+     * @param boardHeight 
+     */ 
+    public Controller(int sqSize, int boardWidth, int boardHeight) {
+        this.board = new int[12][24];
+        this.sqSize = sqSize;
+        this.move = 31;
+        this.boardWidth = boardWidth;
+        this.boardHeight = boardHeight;
+        this.turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
+        
+        for (int[] row : board) {
+            Arrays.fill(row, 0);
+        }
+          
+    }
+    /**
+     * Metodi liikuttaa koko palikkaa oikealle jos mahdollista.
+     * If-lause tarkistaa ensin, voiko kaikki blockin osat liikkua yhden muuvin 
+     * verran oikealle pelilaudalla. Jos voi, siirtometodia kutsutaan jokaisen 
+     * blockin osan kohdalla. 
+     * 
+     * @param block liikuteltava Blokki 
+     */
     public void moveRight(Block block) {
         //onko oikealla tilaa siirtyä huomioiden laudan leveys ja olemassa olevat palikat 
         if (block.a.getX() + move <= boardWidth - sqSize && block.b.getX() + move <= boardWidth - sqSize
@@ -66,7 +102,14 @@ public class Controller {
         }
         // ja jos ei ole tilaa, niin ei tee mitään
     }
-
+    /**
+     * Metodi liikuttaa koko palikkaa vasemmalle jos mahdollista.
+     * If-lause tarkistaa ensin, voiko kaikki blockin osat liikkua yhden muuvin 
+     * verran vasemmalle pelilaudalla. Jos voi, siirtometodia kutsutaan jokaisen 
+     * blockin osan kohdalla. 
+     * 
+     * @param block liikuteltava Blokki 
+     */
     public void moveLeft(Block block) {
         //onko vasemmalla tilaa siirtyä huomioiden laudan leveys ja olemassa olevat palikat 
         if (block.a.getX() - move >= 0 && block.b.getX() - move >= 0
@@ -84,21 +127,15 @@ public class Controller {
         }
         // ja jos ei ole tilaa, niin ei tee mitään        
     }
-
-    public void moveDown(Block bl) {
-        bl.a.setY(bl.a.getY() + move);
-        bl.b.setY(bl.b.getY() + move);
-        bl.c.setY(bl.c.getY() + move);
-        bl.d.setY(bl.d.getY() + move);
-        score++;
-        scoreText.setText("SCORE: " + score);
-        lineText.setText("LINES: " + lineCount);
-    }
-    
+    /**
+     * Metodi tarkastaa, estääkö jokin blockin pudottamisen alaspäin.
+     * Jos estää, blocki asetetaan pelilaudalle ja palautetaan false.
+     * @param bl liikuteltava Blokki
+     * @return palauttaa epäloogisesti false, jos blockin voi pudottaa ja true jos ei voi.  
+     */
     public boolean downOk(Block bl) {
         boolean downOk = false;
-        // tämä if katsoo, estääkö joku blockin pudottamisen alaspäin, 
-        // ja jos estää, palikka asetetaan boardille ja palautetaan false
+
         if (bl.a.getY() == boardHeight - sqSize || bl.b.getY() == boardHeight - sqSize
                 || bl.c.getY() == boardHeight - sqSize || bl.d.getY() == boardHeight - sqSize
                 || fullA(bl) || fullB(bl) || fullC(bl) || fullD(bl)) {
@@ -111,49 +148,100 @@ public class Controller {
         return downOk;
     }
     
-        
-    //seuraavissa liikutetaan yhtä osasta jos laudan rajat ei tule vastaan
+    /**
+     * Metodi liikuttaa koko palikkaa alas, lisää pisteitä ja päivittää pistelaskun.
+     * Metodin kutsumista edeltää tarkistus siitä, voiko osia liikuttaa. 
+     * 
+     * @param block liikuteltava Blokki 
+     */
+    public void moveDown(Block bl) {
+        bl.a.setY(bl.a.getY() + move);
+        bl.b.setY(bl.b.getY() + move);
+        bl.c.setY(bl.c.getY() + move);
+        bl.d.setY(bl.d.getY() + move);
+        score++;
+        scoreText.setText("SCORE: " + score);
+        lineText.setText("LINES: " + lineCount);
+    }
+    /**
+     * Metodi liikuttaa yhtä Blockin osaa alaspäin jos laudan rajat eivät tule vastaan.
+     * @param part liikuteltava Blockin osa. 
+     */        
     public void partDown(Rectangle part) {
         if (part.getY() + move < boardHeight) {
             part.setY(part.getY() + move);
         }
     }
-
+    /**
+     * Metodi liikuttaa yhtä Blockin osaa oikealle jos laudan rajat eivät tule vastaan.
+     * @param part liikuteltava Blockin osa. 
+     */ 
     public void partRight(Rectangle part) {
         if (part.getX() + move <= boardWidth - sqSize) {
             part.setX(part.getX() + move);
         }
     }
-
+    /**
+     * Metodi liikuttaa yhtä Blockin osaa vasemmalle jos laudan rajat eivät tule vastaan.
+     * @param part liikuteltava Blockin osa. 
+     */ 
     public void partLeft(Rectangle part) {
         if (part.getX() - move >= 0) {
             part.setX(part.getX() - move);
         }
     }
-
+    /**
+     * Metodi liikuttaa yhtä Blockin osaa ylöspäin jos laudan rajat eivät tule vastaan.
+     * @param part liikuteltava Blockin osa. 
+     */ 
     public void partUp(Rectangle part) {
         if (part.getY() - move >= 0) {
             part.setY(part.getY() - move);
         }
     }
-    
-    //seuraavat palauttaa true jos tarkasteltavan blockin osan alla on täyttä
+
+    /**
+     * Metodi palauttaa true, jos tarkasteltavan blockin A osan alla on täyttä.
+     * 
+     * @param block
+     * @return true, jos täyttä, false jos on tilaa.
+     */       
+
     public boolean fullA(Block block) {
         return (board[(int) block.a.getX() / sqSize][(int) block.a.getY() / sqSize + 1] == 1);
     }
-
+    /**
+     * Metodi palauttaa true, jos tarkasteltavan blockin B osan alla on täyttä.
+     * 
+     * @param block
+     * @return true, jos täyttä, false jos on tilaa.
+     */  
     public boolean fullB(Block block) {
         return (board[(int) block.b.getX() / sqSize][(int) block.b.getY() / sqSize + 1] == 1);
     }
-
+    /**
+     * Metodi palauttaa true, jos tarkasteltavan blockin C osan alla on täyttä.
+     * 
+     * @param block
+     * @return true, jos täyttä, false jos on tilaa.
+     */  
     public boolean fullC(Block block) {
         return (board[(int) block.c.getX() / sqSize][(int) block.c.getY() / sqSize + 1] == 1);
     }
-
+    /**
+     * Metodi palauttaa true, jos tarkasteltavan blockin D osan alla on täyttä.
+     * 
+     * @param block
+     * @return true, jos täyttä, false jos on tilaa.
+     */  
     public boolean fullD(Block block) {
         return (board[(int) block.d.getX() / sqSize][(int) block.d.getY() / sqSize + 1] == 1);
     }
-
+    /**
+     * Metodin tehtävänä on kutsua oikeaa Turns-luokan metodia blockin kääntämiseksi.
+     * Kutsuttava metodi valitaan parametrina saadun blockin nimen perusteella.
+     * @param block 
+     */
     public void moveTurn(Block block) {
         String name = block.getName();
         if (name.equals("line")) {
@@ -175,7 +263,12 @@ public class Controller {
             this.turns.turnEll(block);
         }    
     }
-
+    /**
+     * Metodia kutsutaan kun tarvitsee selvittää mitkä rivit ovat täysiä ja
+     * tehdä täysien rivien vaatimat toimenpiteet.
+     * Eli tyhjentää täydet rivit, suorittaa rivien lasku ja pudottaa 
+     * pelilaudalle jäljelle jääneet palikat alas jos tarvis.
+     */  
     public void removeRows() {
         ArrayList<Node> parts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -255,13 +348,11 @@ public class Controller {
                 parts.clear();
             }   while (lines.size() > 0);
         }
-        /*Block next = nextBlock;
-        nextBlock = new Block();
-        block = next;
-        layout.getChildren().addAll(next.a, next.b, next.c, next.d);
-        moveOnKeyPress(next);*/
     }
-
+    /**
+     * Metodi kuuntelee näppäimistöä ja ohjaa kunkin suunnan oikeaan metodiin.
+     * @param bl 
+     */
     public void moveOnKeyPress(Block bl) {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -275,7 +366,6 @@ public class Controller {
                             removeRows();
                         } else {
                             moveDown(bl);
-
                         }
                         break;
                     case LEFT:

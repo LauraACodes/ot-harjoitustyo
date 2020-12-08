@@ -6,6 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import laurassupertetris.controller.Block;
 import laurassupertetris.controller.Controller;
+/**
+ * Luokka TetrisTimer ohjaa eli tehdittaa blockien putoamista eli koko pelilautaa.
+ * 
+ */
 
 public class TetrisTimer extends AnimationTimer {
 
@@ -18,6 +22,12 @@ public class TetrisTimer extends AnimationTimer {
     Controller controller = Tetris.controller;
     BorderPane layout = Tetris.layout;
 
+    /**
+     * Timerin handle metodi vastaa palikoiden putoamisnopeudesta ja
+     * putoamistahdin kiihdyttämisestä.
+     * Varsinainen työ tehdään kun handle-metodi kutsuu handleTetris-metodia.
+     * @param now 
+     */
     @Override
     public void handle(long now) {
         if (now - lastUpdate >= startSpeed) {
@@ -27,7 +37,14 @@ public class TetrisTimer extends AnimationTimer {
 
         }
     }
-
+    /**
+     * Metodi tarkkailee pelilaudan täyttymistä.
+     * Peli päättyy, mikäli palikan osat ovat olleet pelilaudan ylimpänä (Y=0) kaksi kierrosta.
+     * Kun putoava palikka putoaa pohjalle tai edellisen kerroksen päälle, metodi kutsuu controlleria
+     * selvittämään, tuleeko pelilaudalta putsata rivejä. Jos pitää, controlleri hoitaa sen ja 
+     * tämä metori tuo pelilaudalle uuden palikan.
+     */
+    
     public void handleTetris() {
 
         if (block.a.getY() == 0 || block.b.getY() == 0 || block.c.getY() == 0 || block.d.getY() == 0) {
@@ -36,15 +53,7 @@ public class TetrisTimer extends AnimationTimer {
             timeOnTop = 0;
         }
         if (timeOnTop == 2) {
-            //Game Over
-            Text gameO = new Text("GAME OVER");
-            gameO.setFill(Color.RED);
-            gameO.setStyle("-fx-font: 70 arimo;");
-            gameO.setY(250);
-            gameO.setX(10);
-            layout.getChildren().add(gameO);
-            game = false;
-            game = false;
+            gameOver();
         }
         if (timeOnTop == 15) {
             System.exit(0);
@@ -64,6 +73,18 @@ public class TetrisTimer extends AnimationTimer {
                 controller.moveDown(block);
             }
         }
+    }
+    /**
+     * Metodi päättää pelin, eli tuo GAME OVER tekstin pelilaudalle.
+     */
+    public void gameOver() {
+        Text gameO = new Text("GAME OVER");
+        gameO.setFill(Color.RED);
+        gameO.setStyle("-fx-font: 70 arimo;");
+        gameO.setY(250);
+        gameO.setX(10);
+        layout.getChildren().add(gameO);
+        game = false;
     }
 
 }

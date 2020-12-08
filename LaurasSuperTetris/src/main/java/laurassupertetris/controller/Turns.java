@@ -2,7 +2,10 @@
 package laurassupertetris.controller;
 
 import javafx.scene.shape.Rectangle;
-
+/**
+ * Luokasta löytyy blockkien osien kääntämiseen (nuolinäppäin UP) tarvittavat metodit.
+ * Metodit ovat blokkikohtaisia.
+ */
 public class Turns {
     
     int sqSize;
@@ -21,9 +24,14 @@ public class Turns {
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.board = board;
-        
     }
-    
+    /**
+     * Metodi kääntää line-nimisen blockin osa kerrallaan.
+     * If-lauseiden ensimmäinen ehto tarkastaa missä asennossa block nyt on. 
+     * Muut if-lauseen osat tarkastavat vain muuttuvat ruudut.
+     * 
+     * @param block blokki, jota ollaan kääntämässä.
+     */
     public void turnLine(Block block) {
         Rectangle a = block.a;
         Rectangle b = block.b;
@@ -76,7 +84,13 @@ public class Turns {
             partDown(d);
         }
     }
-
+    /**
+     * Metodi kääntää Ess-nimisen blockin osa kerrallaan.
+     * If-lauseiden ensimmäinen ehto tarkastaa missä asennossa block nyt on. 
+     * Muut if-lauseen osat tarkastavat vain muuttuvat ruudut.
+     * 
+     * @param block blokki, jota ollaan kääntämässä.
+     */
     public void turnEss(Block block) {
         Rectangle a = block.a;
         Rectangle b = block.b;
@@ -121,7 +135,13 @@ public class Turns {
             partDown(d);
         }
     }
-    
+    /**
+     * Metodi kääntää lEnn-nimisen blockin osa kerrallaan.
+     * If-lauseiden ensimmäinen ehto tarkastaa missä asennossa block nyt on. 
+     * Muut if-lauseen osat tarkastavat vain muuttuvat ruudut.
+     * 
+     * @param block blokki, jota ollaan kääntämässä.
+     */    
     public void turnEnn(Block block) {
         Rectangle a = block.a;
         Rectangle b = block.b;
@@ -166,7 +186,13 @@ public class Turns {
             partLeft(d);
         }
     }
-    
+    /**
+     * Metodi kääntää Dude-nimisen blockin osa kerrallaan.
+     * If-lauseiden ensimmäinen ehto tarkastaa missä asennossa block nyt on. 
+     * Muut if-lauseen osat tarkastavat vain muuttuvat ruudut.
+     * 
+     * @param block blokki, jota ollaan kääntämässä.
+     */    
     public void turnDude(Block block) {
         Rectangle a = block.a;
         Rectangle b = block.b;
@@ -211,7 +237,13 @@ public class Turns {
             partLeft(d);
         }
     }
-    
+    /**
+     * Metodi kääntää Jei-nimisen blockin osa kerrallaan.
+     * If-lauseiden ensimmäinen ehto tarkastaa missä asennossa block nyt on. 
+     * Muut if-lauseen osat tarkastavat vain muuttuvat ruudut.
+     * 
+     * @param block blokki, jota ollaan kääntämässä.
+     */    
     public void turnJei(Block block) {
         Rectangle a = block.a;
         Rectangle b = block.b;
@@ -256,7 +288,13 @@ public class Turns {
             partDown(d);
         }
     }
-  
+    /**
+     * Metodi kääntää Ell-nimisen blockin osa kerrallaan.
+     * If-lauseiden ensimmäinen ehto tarkastaa missä asennossa block nyt on. 
+     * Muut if-lauseen osat tarkastavat vain muuttuvat ruudut.
+     * 
+     * @param block blokki, jota ollaan kääntämässä.
+     */  
     public void turnEll(Block block) {
         Rectangle a = block.a;
         Rectangle b = block.b;
@@ -301,7 +339,16 @@ public class Turns {
             partDown(d);
         }
     }
-    
+    /**
+     * Metodi katsoo, onko blockin osan kääntämisen jälkeen tulevat uudet kooridaatit ok.
+     * Ensimmäinen if tarkastaa, tuleeko laudan rajat vastaan.
+     * Toinen if tarkastaa, onko kyseisessä ruudussa jo aiemman palikan osa.
+     * 
+     * @param x blockin osan kääntämisen jälkeinen x-koordinaatti. 
+     * @param y blockin osan kääntämisen jälkeinen y-koordinaatti.
+     * 
+     * @return true, jos blockin osan tuleva koordinaattio on käypä, false jos ei.
+     */    
     public boolean isTurnOk(int x, int y) {
         boolean turnOk = true;
         //tuleeko X tai Y-koordinaatin rajat vastaan. ja sen jälkeen katsoo onko alla jotain.
@@ -314,20 +361,36 @@ public class Turns {
         
         return turnOk;
     }
+    /**
+     * Metodi liikuttaa syötteenä annettua Blockin osaa ALAS yhden muuvin verran.
+     * 
+     * @param part liikuteltava blockin osa.
+     */
 
-    //seuraavissa liikutetaan yhtä osasta jos laudan rajat ei tule vastaan
     public void partDown(Rectangle part) {
         part.setY(part.getY() + move);
     }
-
+    /**
+     * Metodi liikuttaa syötteenä annettua Blockin osaa OIKEALLE yhden muuvin verran.
+     * 
+     * @param part liikuteltava blockin osa.
+     */
     public void partRight(Rectangle part) {
         part.setX(part.getX() + move);
     }
-
+    /**
+     * Metodi liikuttaa syötteenä annettua Blockin osaa VASEMMALLE yhden muuvin verran.
+     * 
+     * @param part liikuteltava blockin osa.
+     */
     public void partLeft(Rectangle part) {
         part.setX(part.getX() - move);
     }
-
+    /**
+     * Metodi liikuttaa syötteenä annettua Blockin osaa YLÖS yhden muuvin verran.
+     * 
+     * @param part liikuteltava blockin osa.
+     */
     public void partUp(Rectangle part) {
         part.setY(part.getY() - move);
     }    

@@ -3,7 +3,9 @@ package laurassupertetris.ui;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -22,12 +24,16 @@ import static laurassupertetris.ui.Tetris.nextBlock;
 import static laurassupertetris.ui.Tetris.score;
 import static laurassupertetris.ui.Tetris.scoreText;
 
+/**
+ * Luokka Gameboard luo pelin pelilaudan.
+ * 
+ */
 public class Gameboard {
 
     public static int topRow = 0;
-    public static final int sqSize = 31;
-    public static int boardWidth = sqSize * 12;
-    public static int boardHeight = sqSize * 24;
+    public static final int SQSIZE = 31;
+    public static int boardWidth = SQSIZE  * 12;
+    public static int boardHeight = SQSIZE  * 24;
 
     // Asetteluun liittyvät
     public static Block block = Tetris.block;
@@ -39,15 +45,19 @@ public class Gameboard {
     // Controlleri & Game
     public static Controller controller = Tetris.controller;
     private static boolean game = true;
-
+    /** Luokan konstruktorin tehtävä on kutsua toista metodia luomaan 
+     * varsinaisen pelilaudan.
+     * 
+     */
     public Gameboard() {
-
         createGameScene();
-
     }
-
+    /** 
+     * Metodi luo pelilaudan: Viivan erottamaan pisteiden laskua sekä
+     * pistelaskussa tarvittavat sisällöt/nodet. 
+     * Luodut pelilaudan osat kootaan gameSceneksi.
+     */
     public void createGameScene() {
-        
         Line line = new Line(boardWidth, 0, boardWidth, boardHeight);
         line.setFill(Color.CHOCOLATE);
         
@@ -72,13 +82,13 @@ public class Gameboard {
    
     }
     
-    public Scene getGameScene(){
+    public Scene getGameScene() {
         /*Block startBlock = nextBlock;
         controller.moveOnKeyPress(startBlock);
         block = startBlock;
         nextBlock = new Block();*/
         return gameScene;
     }
-     
+    
 }
 

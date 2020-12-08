@@ -15,5 +15,6 @@
 | 7.12.| 8 | Ziljoona epäonnistunutta yritystä heittää Timer ja moveOnKeyPress -metodit pois ui:stä. Järki lähtee. || 2.12.| 5 | Turnin refaktorointi, virheiden korjaus, testejä |
 | 8.12.| 5 | Vihdoin onnistui yllå olevien metodien poisto. Pisteidenlasku |
 | 8.12.| 3 | Alkeelliset tetris ja game over -tekstit |
+| 8.12.| 2 | Javadockkien kirjoittelua ja käyttöönottoa |
 
-**YHTEENSÄ 59 TUNTIA**
+**YHTEENSÄ 63 TUNTIA**

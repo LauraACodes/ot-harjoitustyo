@@ -20,7 +20,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+/**
+ * Luokka vastaa käyttöliittymän näyttämisestä pelaajalle.
+ * Toistaiseksi valmiina on vain pelinäkymä. 
+ * Jatkossa tästä löytyy myös valinnat muiden pelin scenejen näyttämiseksi.
+ * 
+ */
 public class Tetris extends Application {
 
     // Laudan perusasiat
@@ -46,6 +51,14 @@ public class Tetris extends Application {
     public static Controller controller;
     public static boolean game = true;
 
+    /**
+     * Pelin käynnistävä metodi luo pelissä tarvittavat osat kutsumalla muiden 
+     * luokkien metodeita: pelilaudan, controllerin ja timerin sekä
+     * käynnistää pelin.
+     * @param stage
+     * @throws Exception 
+     */
+      
     @Override
     public void start(Stage stage) throws Exception {
 

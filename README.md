@@ -1,10 +1,10 @@
 ## Lauran README-filu eli OT:n harjoitustyö
 
-*Tälläkin viikolla **suuria onnistumisen tunteita** - sain erityyppiset palikat luotua ja kaikki palikkatyypit kääntymään! Jee!
-*Myös tehty ensimmäinen jar.filu ikinä. Jiihaa!
-*Loin myös uuden luokan "Turns", koska controller-luokka venyi liikaa. 
-*Checkstylen metodin pituus: **PROTESTOIN** viiden virheen rajaa - ei näitä voi mitenkään järkevästi jakaa! ;)
-
+*Tälläkin viikolla tapeltu käyttöliittymän eriyttämisen kanssa. Nyt on eriytetty niin paljon kuin osaa, toivottavasti riittää. **Saa mielellään kommentoida**
+*Luotu uusia luokkia TetrisTimer ja Gameboard tätä varten. Pakkauskuvaksia jne. en ole päivittänyt.
+*Edelleen Checkstylen valittaa ainoastaan liian pitkistä metodeista -> **JATKAN PROTESTOINTIA** viiden virheen rajaa - ei näitä voi mitenkään järkevästi jakaa! ;)
+*Lisätty lähes kaikki luokat ja metodit Javadocin piiriin. 
+*Viikon tehtävistä käyttöohje ja arkkitehtuurikuvaus puuttuvat.
 
 ### LauranSuperTetris
 [LaurasSuperTetris - Release](https://github.com/LauraACodes/ot-harjoitustyo/releases/tag/LaurasSuperTetris_vk5)
