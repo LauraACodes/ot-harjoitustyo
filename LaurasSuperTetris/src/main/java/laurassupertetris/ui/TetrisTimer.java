@@ -15,12 +15,8 @@ public class TetrisTimer extends AnimationTimer {
 
     private long lastUpdate;
     private long startSpeed = 150000000;
-    Block block = Tetris.block;
-    Block nextBlock = Tetris.nextBlock;
-    int timeOnTop = Tetris.timeOnTop;
-    boolean game = Tetris.game;
     Controller controller = Tetris.controller;
-    BorderPane layout = Tetris.layout;
+
 
     /**
      * Timerin handle metodi vastaa palikoiden putoamisnopeudesta ja
@@ -31,7 +27,7 @@ public class TetrisTimer extends AnimationTimer {
     @Override
     public void handle(long now) {
         if (now - lastUpdate >= startSpeed) {
-            handleTetris();
+            controller.handleTime();
             lastUpdate = now;
             startSpeed -= 5000;
 
@@ -44,7 +40,7 @@ public class TetrisTimer extends AnimationTimer {
      * selvittämään, tuleeko pelilaudalta putsata rivejä. Jos pitää, controlleri hoitaa sen ja 
      * tämä metori tuo pelilaudalle uuden palikan.
      */
-    
+    /* 
     public void handleTetris() {
 
         if (block.a.getY() == 0 || block.b.getY() == 0 || block.c.getY() == 0 || block.d.getY() == 0) {
@@ -77,14 +73,6 @@ public class TetrisTimer extends AnimationTimer {
     /**
      * Metodi päättää pelin, eli tuo GAME OVER tekstin pelilaudalle.
      */
-    public void gameOver() {
-        Text gameO = new Text("GAME OVER");
-        gameO.setFill(Color.RED);
-        gameO.setStyle("-fx-font: 70 arimo;");
-        gameO.setY(250);
-        gameO.setX(10);
-        layout.getChildren().add(gameO);
-        game = false;
-    }
+
 
 }

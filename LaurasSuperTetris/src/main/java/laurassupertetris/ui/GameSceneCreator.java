@@ -1,34 +1,19 @@
 package laurassupertetris.ui;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import laurassupertetris.controller.Block;
 import laurassupertetris.controller.Controller;
-import static laurassupertetris.ui.Tetris.block;
-import static laurassupertetris.ui.Tetris.boardHeight;
-import static laurassupertetris.ui.Tetris.boardWidth;
-import static laurassupertetris.ui.Tetris.controller;
-import static laurassupertetris.ui.Tetris.gameScene;
-import static laurassupertetris.ui.Tetris.layout;
-import static laurassupertetris.ui.Tetris.lineCount;
-import static laurassupertetris.ui.Tetris.lineText;
-import static laurassupertetris.ui.Tetris.nextBlock;
-import static laurassupertetris.ui.Tetris.score;
-import static laurassupertetris.ui.Tetris.scoreText;
+
 
 /**
  * Luokka Gameboard luo pelin pelilaudan.
  * 
  */
-public class Gameboard {
+public class GameSceneCreator {
 
     public static int topRow = 0;
     public static final int SQSIZE = 31;
@@ -36,10 +21,15 @@ public class Gameboard {
     public static int boardHeight = SQSIZE  * 24;
 
     // Asetteluun liittyvät
-    public static Block block = Tetris.block;
-    public static Block nextBlock = Tetris.nextBlock;
-    //public static Block startBlock;
-    public static BorderPane layout = Tetris.layout;
+    Block block = Controller.block;
+    Block nextBlock = Controller.nextBlock;
+    BorderPane layout = Controller.layout;
+    
+    Text scoreText = Controller.scoreText; 
+    Text lineText = Controller.lineText;    
+    int score = Controller.score; 
+    int lineCount = Controller.lineCount;   
+    
     public static Scene gameScene;
 
     // Controlleri & Game
@@ -49,7 +39,7 @@ public class Gameboard {
      * varsinaisen pelilaudan.
      * 
      */
-    public Gameboard() {
+    public GameSceneCreator() {
         createGameScene();
     }
     /** 
@@ -83,11 +73,12 @@ public class Gameboard {
     }
     
     public Scene getGameScene() {
-        /*Block startBlock = nextBlock;
-        controller.moveOnKeyPress(startBlock);
-        block = startBlock;
-        nextBlock = new Block();*/
         return gameScene;
+    }
+    
+    public void addPoints(int sco, int lineC) {
+        scoreText.setText("SCORE: " + sco);
+        lineText.setText("LINE: " + lineC);
     }
     
 }

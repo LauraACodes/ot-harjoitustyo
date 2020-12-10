@@ -28,28 +28,10 @@ import javafx.stage.Stage;
  */
 public class Tetris extends Application {
 
-    // Laudan perusasiat
-    public static int timeOnTop = 0;
-    public static final int sqSize = 31;
-    public static int boardWidth = sqSize * 12;
-    public static int boardHeight = sqSize * 24;
-    public static Gameboard gameboard;
-
-    // Asetteluun liittyvät
-    public static Block block = new Block();
-    public static Block nextBlock = new Block();
-    public static BorderPane layout = new BorderPane();
-    public static Scene gameScene;
-    
-    //Pisteidenlasku
-    public static Text scoreText;
-    public static int score = 0;
-    public static Text lineText;    
-    public static int lineCount = 0;
-
     // Controlleri & Game
     public static Controller controller;
-    public static boolean game = true;
+    public boolean game = false;
+
 
     /**
      * Pelin käynnistävä metodi luo pelissä tarvittavat osat kutsumalla muiden 
@@ -62,23 +44,25 @@ public class Tetris extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        gameboard = new Gameboard();
+    /*    gameboard = new Gameboard();
         gameScene = gameboard.getGameScene();
         
         controller = new Controller(sqSize, boardWidth, boardHeight, gameScene);
-        
+    /*    
         Block startBlock = nextBlock;
         controller.moveOnKeyPress(startBlock);
         block = startBlock;
         nextBlock = new Block();
-      
+    */  
+        controller = new Controller(stage);
+        stage.setScene(controller.getScene());
         stage.setTitle("LaurasSuperTetris");
-        stage.setScene(gameScene);
         stage.show();
 
-        AnimationTimer timer = new TetrisTimer();
-        timer.start();
+    /*    AnimationTimer timer = new TetrisTimer();
+        timer.start();*/
     }
+    
 
     public static void main(String[] args) {
         launch(Tetris.class);

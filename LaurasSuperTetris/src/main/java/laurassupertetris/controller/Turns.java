@@ -12,7 +12,7 @@ public class Turns {
     int move;
     int boardWidth; 
     int boardHeight; 
-    int[][] board;
+    int[][] board = Controller.board;;
     
     /*Tästä eteenpäin metodit kääntää kutakin palikkatyyppiä.
     Näiden iffeissä tsekataan vain ne mitä muuttuu, ei niitä ruutuja, joissa on jo jokin kyseisen palikan osa!
@@ -23,7 +23,7 @@ public class Turns {
         this.move = move;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
-        this.board = board;
+        //this.board = board;
     }
     /**
      * Metodi kääntää line-nimisen blockin osa kerrallaan.

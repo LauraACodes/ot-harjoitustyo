@@ -16,5 +16,7 @@
 | 8.12.| 5 | Vihdoin onnistui yllå olevien metodien poisto. Pisteidenlasku |
 | 8.12.| 3 | Alkeelliset tetris ja game over -tekstit |
 | 8.12.| 2 | Javadockkien kirjoittelua ja käyttöönottoa |
+| 9.12.| 3 | Suunnittelua miten koko rakenteen voisi laittaa uusiksi, että olisi järkevä |
+| 9.12.| 5 | Starttisivu ja rakenne täysin uusiksi |
 
-**YHTEENSÄ 63 TUNTIA**
+**YHTEENSÄ 71 TUNTIA**

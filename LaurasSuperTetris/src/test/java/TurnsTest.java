@@ -4,7 +4,7 @@ import javafx.scene.layout.BorderPane;
 import laurassupertetris.controller.Block;
 import laurassupertetris.controller.Controller;
 import laurassupertetris.controller.Turns;
-import laurassupertetris.ui.Gameboard;
+import laurassupertetris.ui.GameSceneCreator;
 import laurassupertetris.ui.Tetris;
 import org.junit.After;
 import org.junit.AfterClass;

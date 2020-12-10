@@ -19,9 +19,9 @@ public class Block {
     Color color;
     private String name;
 
-    public static int sqSize = Tetris.sqSize;
-    public static int boardWidth = Tetris.boardWidth;
-    public static int boardHeigth = Tetris.boardHeight;
+    public static int sqSize = 31;
+    public static int boardWidth = sqSize * 12;
+    public static int boardHeigth = sqSize * 24;
     /**
      * Konstruktori luo Blockille neljä osaa.
      * Tåmän jälkeen konstruktori kutsuu eri metodeja joiden avulla mm. blockin tyyppi valikoituu.
