@@ -53,8 +53,6 @@ public class Controller {
 
     Boolean showTetris = false;
 
-    public static String situation = "start";
-
     /**
      * Luokan konstruktori lukitsee tarvittavat muuttujat, luo Turns-olion
      * hoitamaan blockien käännökset sekä alustaa pelilaudan.
@@ -91,17 +89,10 @@ public class Controller {
     }
 
     public Scene getScene() {
-        if (situation.equals("start")) {
-            return startScene.getStartScene();
-            /* } else {
-            
-            return gameScene; */
-        }
         return startScene.getStartScene();
     }
 
     public void startGame() {
-
         gameScene = gameboard.getGameScene();
         Block startBlock = nextBlock;
         moveOnKeyPress(startBlock);
@@ -114,8 +105,6 @@ public class Controller {
 
         AnimationTimer timer = new TetrisTimer();
         timer.start();
-
-        System.out.println("starttaa pelin");
     }
 
     public void moveOnKeyPress(Block bl) {
@@ -144,7 +133,7 @@ public class Controller {
         });
     }
 
-    public void downMoves(Block bl) {
+    public void prepareNextScreen(Block bl) {
         if (moves.downOk(bl)) {
             removeRows();
             Block next = nextBlock;
@@ -196,7 +185,7 @@ public class Controller {
             System.exit(0);
         }
         if (game) {
-            downMoves(block);
+            prepareNextScreen(block);
         }
     }
 
@@ -294,74 +283,5 @@ public class Controller {
             } while (lines.size() > 0);
         }
     }
-    /*
-    
-    public Controller(int sqSize, int boardWidth, int boardHeight, Scene gscene) {
-        this.board = new int[12][24];
-        this.sqSize = sqSize;
-        this.move = 31;
-        this.boardWidth = boardWidth;
-        this.boardHeight = boardHeight;
-        this.gameScene = gscene;
-        this.turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-        
-        for (int[] row : board) {
-            Arrays.fill(row, 0);
-        }
-
-        StartSceneCreator startScene = new StartSceneCreator(this);
-    }
-    /**
-     * Konstruktori ilman Scene-oliota. 
-     * Tarvitaan vain luokan metodien yksikkötesteissä. 
-     * 
-     * @param sqSize
-     * @param boardWidth
-     * @param boardHeight 
-     */ /*
-    public Controller(int sqSize, int boardWidth, int boardHeight) {
-        this.board = new int[12][24];
-        this.sqSize = sqSize;
-        this.move = 31;
-        this.boardWidth = boardWidth;
-        this.boardHeight = boardHeight;
-        this.turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-        
-        for (int[] row : board) {
-            Arrays.fill(row, 0);
-        }
-        
-        StartSceneCreator startScene = new StartSceneCreator(this);
-          
-    }
-    
-     */
-    /**
-     * Metodi liikuttaa koko palikkaa oikealle jos mahdollista. If-lause
-     * tarkistaa ensin, voiko kaikki blockin osat liikkua yhden muuvin verran
-     * oikealle pelilaudalla. Jos voi, siirtometodia kutsutaan jokaisen blockin
-     * osan kohdalla.
-     *
-     * @param block liikuteltava Blokki
-     */
-
-    /**
-     * Metodin tehtävänä on kutsua oikeaa Turns-luokan metodia blockin
-     * kääntämiseksi. Kutsuttava metodi valitaan parametrina saadun blockin
-     * nimen perusteella.
-     *
-     * @param block
-     */
-
-    /**
-     * Metodia kutsutaan kun tarvitsee selvittää mitkä rivit ovat täysiä ja
-     * tehdä täysien rivien vaatimat toimenpiteet. Eli tyhjentää täydet rivit,
-     * suorittaa rivien lasku ja pudottaa pelilaudalle jäljelle jääneet palikat
-     * alas jos tarvis.
-     */
-    /**
-     * Metodi kuuntelee näppäimistöä ja ohjaa kunkin suunnan oikeaan metodiin.
-     *
-     * @param bl
-     */
+ 
 }
