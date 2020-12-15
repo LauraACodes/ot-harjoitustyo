@@ -6,6 +6,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -35,6 +36,7 @@ public class Controller {
     public static Text lineText;
     public static int score;
     public static int lineCount;
+    public static Button pauseButton;
 
     public static int timeOnTop;
     public static boolean game;
@@ -52,6 +54,7 @@ public class Controller {
     Stage stage;
 
     Boolean showTetris = false;
+    public static AnimationTimer timer;
 
     /**
      * Luokan konstruktori lukitsee tarvittavat muuttujat, luo Turns-olion
@@ -75,6 +78,7 @@ public class Controller {
         lineText = new Text();
         score = 0;
         lineCount = 0;
+        pauseButton = new Button("Pause");
 
         timeOnTop = 0;
 
@@ -85,7 +89,7 @@ public class Controller {
         turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
         moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
 
-        gameboard = new GameSceneCreator();
+
     }
 
     public Scene getScene() {
@@ -93,6 +97,8 @@ public class Controller {
     }
 
     public void startGame() {
+        
+        gameboard = new GameSceneCreator(startScene.getPlayerName());
         gameScene = gameboard.getGameScene();
         Block startBlock = nextBlock;
         moveOnKeyPress(startBlock);
@@ -103,7 +109,7 @@ public class Controller {
         stage.setScene(gameScene);
         stage.show();
 
-        AnimationTimer timer = new TetrisTimer();
+        timer = new TetrisTimer();
         timer.start();
     }
 
@@ -141,7 +147,6 @@ public class Controller {
             block = next;
             layout.getChildren().addAll(next.a, next.b, next.c, next.d);
             moveOnKeyPress(next);
-            System.out.println("jep");
         } else {
             moves.moveDown(bl);
             score++; 
@@ -179,7 +184,8 @@ public class Controller {
             timeOnTop = 0;
         }
         if (timeOnTop == 2) {
-            gameOver();
+            gameboard.gameOver();
+            game = false;
         }
         if (timeOnTop == 15) {
             System.exit(0);
@@ -192,15 +198,7 @@ public class Controller {
     /**
      * Metodi päättää pelin, eli tuo GAME OVER tekstin pelilaudalle.
      */
-    public void gameOver() {
-        Text gameO = new Text("GAME OVER");
-        gameO.setFill(Color.RED);
-        gameO.setStyle("-fx-font: 70 arimo;");
-        gameO.setY(250);
-        gameO.setX(10);
-        layout.getChildren().add(gameO);
-        game = false;
-    }
+
 
     public void removeRows() {
         ArrayList<Node> parts = new ArrayList<Node>();

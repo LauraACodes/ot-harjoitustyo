@@ -26,10 +26,11 @@ public class Tetris extends Application {
       
     @Override
     public void start(Stage stage) throws Exception {
-        
+        System.out.println("wittu");
         controller = new Controller(stage);
         stage.setScene(controller.getScene());
         stage.setTitle("LaurasSuperTetris");
+        stage.show();
 
     }
     

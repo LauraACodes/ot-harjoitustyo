@@ -18,5 +18,9 @@
 | 8.12.| 2 | Javadockkien kirjoittelua ja käyttöönottoa |
 | 9.12.| 3 | Suunnittelua miten koko rakenteen voisi laittaa uusiksi, että olisi järkevä |
 | 9.12.| 5 | Starttisivu ja rakenne täysin uusiksi |
+| 12.12.| 3 | Metodien pilkkominen palautten perusteella |
+| 13.12.| 2 | Selvittelyä miten tilastot saisi tietokantaan |
+| 14.12.| 5 | Starttisivun muotoilua, Pausen toteuttamisen selvittelyä |
+| 15.12.| 2 | Starttisivun muotoilun jatkoa |
 
-**YHTEENSÄ 71 TUNTIA**
+**YHTEENSÄ 83 TUNTIA**

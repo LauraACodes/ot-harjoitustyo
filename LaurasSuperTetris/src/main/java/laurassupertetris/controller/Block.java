@@ -186,16 +186,16 @@ public class Block {
             return Color.LIGHTGREEN;
         }         
         if (bName == "enn") {
-            return Color.MEDIUMSEAGREEN;
+            return Color.LIMEGREEN;
         }
         if (bName == "dude") {
             return Color.GOLD;
         }
         if (bName == "jei") {
-            return Color.MEDIUMSLATEBLUE;
+            return Color.DARKMAGENTA;
         }
         if (bName == "ell") {
-            return Color.LIGHTSKYBLUE;
+            return Color.DEEPSKYBLUE;
         }
         return Color.BLACK;
     }
