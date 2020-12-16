@@ -50,7 +50,7 @@ public class StartSceneCreator {
         startLayout.setAlignment(Pos.CENTER);
         startLayout.setBackground(new Background(new BackgroundFill(Color.STEELBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     
-        startScene = new Scene(startLayout, 522, 744, Color.AQUA);
+        startScene = new Scene(startLayout, 522, 744);
     }
     
      
@@ -80,7 +80,13 @@ public class StartSceneCreator {
         statsButton = new Button("TO STATS");
         statsButton.setPrefSize(150,40);
         statsButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
-       
+    
+        statsButton.setOnAction(start -> {
+            playerName = nameField.getText();
+            controller.toStats();
+        });              
+            
+        
         HBox buttonBox = new HBox(30);
         buttonBox.getChildren().addAll(startButton, statsButton);   
         buttonBox.setStyle("-fx-font: 20 LucidaConsole;");
@@ -107,12 +113,12 @@ public class StartSceneCreator {
         
         Rectangle rectangle = createRectangle(400, 70);
         rectangle.setFill(Color.CORAL);
-        rectangle.setStroke(Color.CORAL);
+        rectangle.setStroke(Color.CORAL);  
         
         Text headText = new Text("Laura's Super Tetris");
         headText.setStyle("-fx-font: 40 LucidaConsole;");
         headText.setFill(Color.WHITE);
-        //headText.setStyle("-fx-text-inner-color: red;");
+        
         ObservableList list = heading.getChildren();
         list.addAll(rectangle, headText);
         
@@ -138,7 +144,7 @@ public class StartSceneCreator {
         VBox headAndScores = new VBox(15);
         
         Text headText = new Text("Tetris Top 5:");
-        headText.setStyle("-fx-font: 20 LucidaConsole;");
+        headText.setStyle("-fx-font: 30 LucidaConsole;");
         headText.setFill(Color.BLACK);
         
         GridPane pane = new GridPane();

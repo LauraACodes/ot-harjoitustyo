@@ -22,5 +22,6 @@
 | 13.12.| 2 | Selvittelyä miten tilastot saisi tietokantaan |
 | 14.12.| 5 | Starttisivun muotoilua, Pausen toteuttamisen selvittelyä |
 | 15.12.| 2 | Starttisivun muotoilun jatkoa |
+| 15.12.| 4 | Muiden sivujen muotoilua, tietokannan selvittelyä |
 
-**YHTEENSÄ 83 TUNTIA**
+**YHTEENSÄ 87 TUNTIA**

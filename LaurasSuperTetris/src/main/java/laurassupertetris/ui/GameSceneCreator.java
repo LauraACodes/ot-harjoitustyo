@@ -1,16 +1,21 @@
 package laurassupertetris.ui;
 
 import javafx.animation.AnimationTimer;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import laurassupertetris.controller.Block;
 import laurassupertetris.controller.Controller;
@@ -36,7 +41,6 @@ public class GameSceneCreator {
     Text lineText = Controller.lineText;    
     int score = Controller.score; 
     int lineCount = Controller.lineCount;   
-    Button pauseButton = Controller.pauseButton;
     AnimationTimer timer = Controller.timer;
     
     public static Scene gameScene;
@@ -107,12 +111,56 @@ public class GameSceneCreator {
     }
     
     public void gameOver() {
+        StackPane gameOver = new StackPane();
+        Rectangle rectangle = new Rectangle();
+        rectangle.setWidth(400);
+        rectangle.setHeight(200);
+        rectangle.setArcWidth(20);
+        rectangle.setArcHeight(20);  
+        rectangle.setFill(Color.CRIMSON);
+        rectangle.setStroke(Color.WHITE);
+        
+
+        Button newGameButton = new Button("NEW GAME");
+        
+        newGameButton.setPrefSize(150,40);
+        newGameButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+               
+        newGameButton.setOnAction(start -> {
+            System.out.println("new game");
+        });
+        
+        Button toStatsButton = new Button("TO STATS");
+        toStatsButton.setPrefSize(150,40);
+        toStatsButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+        
+        toStatsButton.setOnAction(start -> {
+            controller.toStats();
+        });              
+        
+        HBox buttonBox = new HBox(30);
+        buttonBox.getChildren().addAll(toStatsButton, newGameButton);   
+        buttonBox.setStyle("-fx-font: 20 LucidaConsole;");
+        buttonBox.setAlignment(Pos.CENTER);
+        
+        VBox GO = new VBox(20);
         Text gameO = new Text("GAME OVER");
-        gameO.setFill(Color.RED);
-        gameO.setStyle("-fx-font: 70 arimo;");
+        gameO.setFill(Color.WHITE);
+        gameO.setStyle("-fx-font: 40 LucidaConsole;");
         gameO.setY(250);
         gameO.setX(10);
-        layout.getChildren().add(gameO);
+        int endScore = controller.getScore();
+        int lineScore = controller.getLineCount();
+        Text scoreText = new Text("Score: " + endScore + ", Lines: " + lineScore);
+        scoreText.setFill(Color.WHITE);
+        scoreText.setStyle("-fx-font: 20 LucidaConsole;"); 
+        GO.getChildren().addAll(gameO, scoreText, buttonBox);
+        GO.setAlignment(Pos.CENTER);
+        
+        ObservableList list = gameOver.getChildren();
+        list.addAll(rectangle, GO);
+        //gameOver.setAlignment(Pos.CENTER);
+        layout.setCenter(gameOver);
     }
 }
 

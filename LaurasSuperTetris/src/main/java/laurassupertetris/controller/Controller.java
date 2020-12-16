@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import laurassupertetris.ui.GameSceneCreator;
 import laurassupertetris.ui.StartSceneCreator;
+import laurassupertetris.ui.StatsScreenCreator;
 import laurassupertetris.ui.Tetris;
 import laurassupertetris.ui.TetrisTimer;
 
@@ -27,6 +28,7 @@ public class Controller {
 
     StartSceneCreator startScene;
     GameSceneCreator gameboard;
+    StatsScreenCreator statsPage;
 
     public static BorderPane layout;
     public static Block block;
@@ -36,7 +38,6 @@ public class Controller {
     public static Text lineText;
     public static int score;
     public static int lineCount;
-    public static Button pauseButton;
 
     public static int timeOnTop;
     public static boolean game;
@@ -51,6 +52,7 @@ public class Controller {
     Moves moves;
 
     Scene gameScene;
+    Scene statsScene;
     Stage stage;
 
     Boolean showTetris = false;
@@ -78,7 +80,6 @@ public class Controller {
         lineText = new Text();
         score = 0;
         lineCount = 0;
-        pauseButton = new Button("Pause");
 
         timeOnTop = 0;
 
@@ -113,6 +114,14 @@ public class Controller {
         timer.start();
     }
 
+    public void toStats() {
+        statsPage = new StatsScreenCreator(startScene.getPlayerName());
+        statsScene = statsPage.getStatsScene();
+        
+        stage.setScene(statsScene);
+        stage.show();
+    }
+    
     public void moveOnKeyPress(Block bl) {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -186,9 +195,6 @@ public class Controller {
         if (timeOnTop == 2) {
             gameboard.gameOver();
             game = false;
-        }
-        if (timeOnTop == 15) {
-            System.exit(0);
         }
         if (game) {
             prepareNextScreen(block);
@@ -281,5 +287,13 @@ public class Controller {
             } while (lines.size() > 0);
         }
     }
- 
+
+    public int getScore() {
+        return score;
+    }
+    
+    public int getLineCount() {
+        return lineCount;
+    }    
+    
 }
