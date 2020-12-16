@@ -1,5 +1,6 @@
 package laurassupertetris.ui;
 
+import Scores.TetrisDao;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -47,6 +48,7 @@ public class GameSceneCreator {
 
     // Controlleri & Game
     public static Controller controller = Tetris.controller;
+    public static TetrisDao dao = Controller.dao;
     private static boolean game = true;
     /** Luokan konstruktorin tehtävä on kutsua toista metodia luomaan 
      * varsinaisen pelilaudan.
@@ -107,10 +109,17 @@ public class GameSceneCreator {
     
     public void addPoints(int sco, int lineC) {
         scoreText.setText("SCORE: " + sco);
-        lineText.setText("LINE: " + lineC);
+        lineText.setText("LINES: " + lineC);
+    }
+    public void updateDB() {
+        dao.updatePlayerScores(controller.getPlayerName(), controller.getScore());
+        dao.updateGames(controller.getPlayerName(), controller.getScore());
     }
     
     public void gameOver() {
+        System.out.println("tuli gohon");
+        updateDB();
+        
         StackPane gameOver = new StackPane();
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(400);
@@ -127,7 +136,7 @@ public class GameSceneCreator {
         newGameButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
                
         newGameButton.setOnAction(start -> {
-            System.out.println("new game");
+            controller.startNewGame();
         });
         
         Button toStatsButton = new Button("TO STATS");

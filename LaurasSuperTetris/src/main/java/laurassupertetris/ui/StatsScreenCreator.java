@@ -1,6 +1,7 @@
 
 package laurassupertetris.ui;
 
+import Scores.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ public class StatsScreenCreator {
     
     public static Controller controller = Tetris.controller;
     public static String playerName;
+    public static int playerID;
     public static VBox statsLayout;
     public static Scene statsScene;
     
@@ -30,11 +32,11 @@ public class StatsScreenCreator {
     public static StackPane playedGamesBox;
     
     public static Button playButton;
-    
+    public static TetrisDao dao = Controller.dao;    
     
     public StatsScreenCreator(String playerName) {
         this.playerName = playerName;
-        
+        playerID = dao.getPlayerID(playerName);
         createStatsScreen();
 
     }
@@ -53,7 +55,7 @@ public class StatsScreenCreator {
         playButton.setBackground(new Background(new BackgroundFill(Color.DARKMAGENTA, CornerRadii.EMPTY, Insets.EMPTY)));
 
         playButton.setOnAction(start -> {
-            controller.startGame();
+            controller.startNewGame();
         });           
         
         statsLayout = new VBox(50);
@@ -71,7 +73,7 @@ public class StatsScreenCreator {
         rectangle.setFill(Color.GOLD);
         rectangle.setStroke(Color.GOLD);  
         
-        int playedGames = 30;        
+        int playedGames = dao.getPlayerNrOfGames(playerID);        
         Text playedGamesHead = new Text("Nr of played games: " + playedGames);
         playedGamesHead.setStyle("-fx-font: 20 LucidaConsole;");
         playedGamesHead.setFill(Color.BLACK);
@@ -89,16 +91,15 @@ public class StatsScreenCreator {
         rectangle.setStroke(Color.CORAL);  
         
         VBox topScore = new VBox(5);
-        int topScoreInt = 10000000;        
+        int topScoreInt = dao.getPlayerTopScore(playerID);        
         Text topScoreHead = new Text("Top score: " + topScoreInt);
         topScoreHead.setStyle("-fx-font: 20 LucidaConsole;");
         topScoreHead.setFill(Color.WHITE);
         
 
-        int topScoreRank = 1;
-        String topScoreDate = "15.12.2020";
+        int topScoreRank = dao.getRank(topScoreInt);
 
-        Text topScoreRes = new Text("(Ranking: " + topScoreRank + ". , " + topScoreDate + ")");
+        Text topScoreRes = new Text("(Ranking: " + topScoreRank + ")");
         topScoreRes.setStyle("-fx-font: 15 LucidaConsole;");
         topScoreRes.setFill(Color.WHITE);
         
@@ -118,16 +119,15 @@ public class StatsScreenCreator {
         rectangle.setStroke(Color.HOTPINK);  
         
         VBox latScore = new VBox(5);
-        int latScoreInt = 10;        
+        int latScoreInt = controller.getScore();        
         Text latScoreHead = new Text("Latest score: " + latScoreInt);
         latScoreHead.setStyle("-fx-font: 20 LucidaConsole;");
         latScoreHead.setFill(Color.WHITE);
         
 
-        int latScoreRank = 1;
-        String latScoreDate = "15.12.2020";
+        int latScoreRank = dao.getRank(latScoreInt);
 
-        Text latScoreRes = new Text("(Ranking: " + latScoreRank + ". , " + latScoreDate + ")");
+        Text latScoreRes = new Text("(Ranking: " + latScoreRank + ")");
         latScoreRes.setStyle("-fx-font: 15 LucidaConsole;");
         latScoreRes.setFill(Color.WHITE);
         

@@ -1,6 +1,7 @@
 
 package laurassupertetris.ui;
 
+import Scores.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,10 +37,10 @@ public class StartSceneCreator {
     public static TextField nameField;
     public static String playerName;
     public static GridPane rankList;
+    public static TetrisDao dao = Controller.dao;
     
     public StartSceneCreator(Controller controller) {
         this.controller = controller;
-        
         heading = createHeading();
         playerNameBox = createNameBox();
         rankBox = createRankPane();
@@ -74,6 +75,9 @@ public class StartSceneCreator {
                
         startButton.setOnAction(start -> {
             playerName = nameField.getText();
+            if (!dao.doesPlayerExist(playerName)) {
+                dao.insertPlayer(playerName);
+            }
             this.controller.startGame();  
         });
 
@@ -155,18 +159,19 @@ public class StartSceneCreator {
         Label ind5 = new Label("5.");
 
         pane.addColumn(0, ind1, ind2, ind3, ind4, ind5);
-        Label name1 = new Label("name1");
-        Label name2 = new Label("name2");
-        Label name3 = new Label("name3");
-        Label name4 = new Label("name4");
-        Label name5 = new Label("name5");
+        String[][] top5 = dao.getTop5();
+        Label name1 = new Label(top5[0][0]);
+        Label name2 = new Label(top5[0][1]);
+        Label name3 = new Label(top5[0][2]);
+        Label name4 = new Label(top5[0][3]);
+        Label name5 = new Label(top5[0][4]);
 
         pane.addColumn(1, name1, name2, name3, name4, name5);
-        Label sco1 = new Label("1000000000");
-        Label sco2 = new Label("100000000");
-        Label sco3 = new Label("10000000");
-        Label sco4 = new Label("1000000");
-        Label sco5 = new Label("100000");
+        Label sco1 = new Label(top5[1][0]);
+        Label sco2 = new Label(top5[1][1]);
+        Label sco3 = new Label(top5[1][2]);
+        Label sco4 = new Label(top5[1][3]);
+        Label sco5 = new Label(top5[1][4]);
 
         pane.addColumn(2, sco1, sco2, sco3, sco4, sco5);
         pane.setStyle("-fx-font: 18 LucidaConsole;");

@@ -4,9 +4,8 @@ package Scores;
 
 public class Player {
     int playerID;
-    String Name;
+    String name;
     int topScore;
     int nrOfGames;
-    int nrOfLines;
             
 }

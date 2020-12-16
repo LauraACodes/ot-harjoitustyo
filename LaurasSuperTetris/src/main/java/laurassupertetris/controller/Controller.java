@@ -1,5 +1,6 @@
 package laurassupertetris.controller;
 
+import Scores.TetrisDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.animation.AnimationTimer;
@@ -57,6 +58,8 @@ public class Controller {
 
     Boolean showTetris = false;
     public static AnimationTimer timer;
+    
+    public static TetrisDao dao;
 
     /**
      * Luokan konstruktori lukitsee tarvittavat muuttujat, luo Turns-olion
@@ -68,7 +71,15 @@ public class Controller {
      * @param gscene pelilaudan Scene
      */
     public Controller(Stage stage) {
+        try {
+            dao = new TetrisDao("tetrisDatabase.db");
+            System.out.println("ainakin controller daon kutsuminen futas");
+        } catch (Exception e) {
+            System.out.println("controllerissa dbn init ei onnistunut");
+        } 
+        
         board = new int[12][24];
+        
         startScene = new StartSceneCreator(this);
         this.stage = stage;
 
@@ -89,10 +100,33 @@ public class Controller {
 
         turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
         moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-
-
+        
+   
     }
+    public void gameinit() {
+        board = new int[12][24];
+        
+        startScene = new StartSceneCreator(this);
+        this.stage = stage;
 
+        layout = new BorderPane();
+        block = new Block();
+        nextBlock = new Block();
+
+        scoreText = new Text();
+        lineText = new Text();
+        score = 0;
+        lineCount = 0;
+
+        timeOnTop = 0;
+
+        for (int[] row : board) {
+            Arrays.fill(row, 0);
+        }
+
+        turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
+        moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);        
+    }
     public Scene getScene() {
         return startScene.getStartScene();
     }
@@ -113,7 +147,12 @@ public class Controller {
         timer = new TetrisTimer();
         timer.start();
     }
-
+    
+    public void startNewGame() {
+        gameinit();
+        startGame();
+        
+    }
     public void toStats() {
         statsPage = new StatsScreenCreator(startScene.getPlayerName());
         statsScene = statsPage.getStatsScene();
@@ -296,4 +335,7 @@ public class Controller {
         return lineCount;
     }    
     
+    public String getPlayerName() {
+        return startScene.getPlayerName();
+    }    
 }

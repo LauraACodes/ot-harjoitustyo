@@ -26,7 +26,7 @@ public class TetrisTimer extends AnimationTimer {
      */
     @Override
     public void handle(long now) {
-
+        
         if (now - lastUpdate >= startSpeed) {
             controller.handleTime();
             lastUpdate = now;
@@ -34,6 +34,5 @@ public class TetrisTimer extends AnimationTimer {
         }
     }
  
-
 
 }
