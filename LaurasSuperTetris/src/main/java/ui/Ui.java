@@ -1,7 +1,7 @@
 package ui;
 
 import javafx.application.Application;
-import Controls.Controller;
+import controls.Controller;
 import javafx.stage.Stage;
 /**
  * Luokka vastaa käyttöliittymän näyttämisestä pelaajalle.

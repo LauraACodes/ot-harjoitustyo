@@ -1,4 +1,4 @@
-package Controls;
+package controls;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.BorderPane;

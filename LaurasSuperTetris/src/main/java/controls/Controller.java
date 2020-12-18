@@ -1,6 +1,6 @@
-package Controls;
+package controls;
 
-import Controls.TetrisDao;
+import controls.TetrisDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.animation.AnimationTimer;
@@ -14,11 +14,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import SceneCreators.GameSceneCreator;
-import SceneCreators.StartSceneCreator;
-import SceneCreators.StatsScreenCreator;
+import scenecreators.GameSceneCreator;
+import scenecreators.StartSceneCreator;
+import scenecreators.StatsScreenCreator;
 import ui.Ui;
-import Controls.TetrisTimer;
+import controls.TetrisTimer;
+import scenecreators.ElementGenerator;
 import blocksandmoves.Block;
 import blocksandmoves.Moves;
 import blocksandmoves.Turns;
@@ -33,6 +34,7 @@ public class Controller {
     StartSceneCreator startScene;
     GameSceneCreator gameboard;
     StatsScreenCreator statsPage;
+    public static ElementGenerator eGenerator;
 
     public static BorderPane layout;
     public static Block block;
@@ -63,6 +65,7 @@ public class Controller {
     public static AnimationTimer timer;
     
     public static TetrisDao dao;
+   
 
     /**
      * Luokan konstruktori lukitsee tarvittavat muuttujat, luo Turns-olion
@@ -83,6 +86,7 @@ public class Controller {
     
     public void gameinit(Stage stage) {
         this.stage = stage;
+        eGenerator = new ElementGenerator();
         
         board = new int[12][24];   
         layout = new BorderPane();
@@ -206,8 +210,6 @@ public class Controller {
         }
     }
 
-
-
     public void removeRows() {
         ArrayList<Node> parts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -225,14 +227,9 @@ public class Controller {
             }
             full = 0;
         }
-        Text tetrisText = new Text("T E T R I S");
-        tetrisText.setFill(Color.RED);
-        tetrisText.setStyle("-fx-font: 70 arimo;");
-        tetrisText.setY(250);
-        tetrisText.setX(10);
+        Text tetrisText = eGenerator.createText("T E T R I S", Color.RED, 70, 250, 10);
 
         if (showTetris) {
-
             Node jep = layout.getCenter();
             layout.getChildren().remove(jep);
             showTetris = false;

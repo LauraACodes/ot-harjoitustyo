@@ -2,9 +2,9 @@
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import blocksandmoves.Block;
-import Controls.Controller;
+import controls.Controller;
 import blocksandmoves.Turns;
-import SceneCreators.GameSceneCreator;
+import scenecreators.GameSceneCreator;
 import ui.Ui;
 import org.junit.After;
 import org.junit.AfterClass;

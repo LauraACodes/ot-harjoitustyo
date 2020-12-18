@@ -23,6 +23,8 @@
 | 14.12.| 5 | Starttisivun muotoilua, Pausen toteuttamisen selvittelyä |
 | 15.12.| 2 | Starttisivun muotoilun jatkoa |
 | 15.12.| 4 | Muiden sivujen muotoilua, tietokannan selvittelyä |
-| 15.12.| 4 | Tietokannan rakennus ja scorejen päivitys tkn tiedoilla |
+| 16.12.| 4 | Tietokannan rakennus ja scorejen päivitys tkn tiedoilla |
+| 16.12.| 2 | Kaikenlaista pientä säätöä |
+| 18.12.| 8 | Paketit uusiksi, koodin siistiminen, checkstylet kuntoon |
 
 **YHTEENSÄ 91 TUNTIA**

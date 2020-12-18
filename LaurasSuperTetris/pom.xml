@@ -60,7 +60,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>laurassupertetris/ui/*</exclude>
+                        <exclude>ui/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -98,7 +98,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>laurassupertetris.ui.Main</mainClass>
+                                    <mainClass>ui.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

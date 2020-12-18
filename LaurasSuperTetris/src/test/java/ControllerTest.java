@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import blocksandmoves.Block;
-import Controls.Controller;
+import controls.Controller;
 
 public class ControllerTest {
     

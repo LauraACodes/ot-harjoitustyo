@@ -1,6 +1,6 @@
-package SceneCreators;
+package scenecreators;
 
-import Controls.TetrisDao;
+import controls.TetrisDao;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,7 +19,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import blocksandmoves.Block;
-import Controls.Controller;
+import controls.Controller;
 import ui.Ui;
 
 
@@ -38,6 +38,7 @@ public class GameSceneCreator {
     Block block = Controller.block;
     Block nextBlock = Controller.nextBlock;
     BorderPane layout = Controller.layout;
+    ElementGenerator eGenerator = Controller.eGenerator;
     
     Text scoreText = Controller.scoreText; 
     Text lineText = Controller.lineText;    
@@ -68,9 +69,9 @@ public class GameSceneCreator {
         line.setStroke(Color.WHITE);
         line.setStrokeWidth(5);
         
-        scoreText = createText("SCORE: " + score, Color.WHITE, 20, boardWidth + 10, 50);
-        lineText = createText("LINES: " + lineCount, Color.WHITE, 20, boardWidth + 10, 100);
-        Text nameText = createText(name, Color.WHITE, 20, boardWidth + 10, 150);
+        scoreText = eGenerator.createText("SCORE: " + score, Color.WHITE, 20, boardWidth + 10, 50);
+        lineText = eGenerator.createText("LINES: " + lineCount, Color.WHITE, 20, boardWidth + 10, 100);
+        Text nameText = eGenerator.createText(name, Color.WHITE, 20, boardWidth + 10, 150);
         
         layout.getChildren().addAll(line, scoreText, lineText, nameText);
 
@@ -100,58 +101,33 @@ public class GameSceneCreator {
         updateDB();
        
         StackPane gameOver = new StackPane();
-        Rectangle gORectangle = createGORec();
+        Rectangle gORectangle = eGenerator.createRectangle(400, 200, Color.CRIMSON, Color.WHITE);
 
-        Text gameO = createText("GAME OVER", Color.WHITE, 40, 10, 250);
+        Text gameO = eGenerator.createText("GAME OVER", Color.WHITE, 40, 10, 250);
         int endScore = controller.getScore();
         int lineScore = controller.getLineCount();
-        Text scoreText = createText("Score: " + endScore + ", Lines: " + lineScore, Color.WHITE, 20, 10, 250);
+        Text scoreText = eGenerator.createText("Score: " + endScore + ", Lines: " + lineScore, Color.WHITE, 20, 10, 250);
         HBox buttonBox = createGOButtonBox();
 
-        VBox GO = new VBox(20);
-        GO.getChildren().addAll(gameO, scoreText, buttonBox);
-        GO.setAlignment(Pos.CENTER);
+        VBox gO = new VBox(20);
+        gO.getChildren().addAll(gameO, scoreText, buttonBox);
+        gO.setAlignment(Pos.CENTER);
         
         ObservableList list = gameOver.getChildren();
-        list.addAll(gORectangle, GO);
+        list.addAll(gORectangle, gO);
 
         layout.setCenter(gameOver);
-    }
-    
-    public Text createText(String tText, Color fill, int fontSize, int x, int y) {
-        Text text = new Text(tText);
-        text.setFill(fill);
-        String ftext = "-fx-font: " + fontSize + " LucidaConsole;";
-        text.setStyle(ftext);
-        text.setX(x);
-        text.setY(y);
-        return text;
-    }    
-    
-    public Rectangle createGORec() {
-        Rectangle rectangle = new Rectangle();
-        rectangle.setWidth(400);
-        rectangle.setHeight(200);
-        rectangle.setArcWidth(20);
-        rectangle.setArcHeight(20);  
-        rectangle.setFill(Color.CRIMSON);
-        rectangle.setStroke(Color.WHITE);
-        return rectangle;
     }
     
     public HBox createGOButtonBox() {
         HBox buttonBox = new HBox(30);
         
-        Button newGameButton = new Button("NEW GAME");
-        newGameButton.setPrefSize(150,40);
-        newGameButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+        Button newGameButton = eGenerator.createButton("NEW GAME", 150, 40, Color.CORAL);
         newGameButton.setOnAction(start -> {
             controller.startNewGame();
         });
         
-        Button toStatsButton = new Button("TO STATS");
-        toStatsButton.setPrefSize(150,40);
-        toStatsButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
+        Button toStatsButton = eGenerator.createButton("TO STATS", 150, 40, Color.CORAL);
         toStatsButton.setOnAction(start -> {
             controller.toStats();
         });              

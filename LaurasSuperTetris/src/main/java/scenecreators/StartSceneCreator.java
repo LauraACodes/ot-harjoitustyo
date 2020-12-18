@@ -1,7 +1,7 @@
 
-package SceneCreators;
+package scenecreators;
 
-import Controls.TetrisDao;
+import controls.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import Controls.Controller;
+import controls.Controller;
 
 
 public class StartSceneCreator {
@@ -38,6 +38,7 @@ public class StartSceneCreator {
     public static String playerName;
     public static GridPane rankList;
     public static TetrisDao dao = Controller.dao;
+    ElementGenerator eGenerator = Controller.eGenerator;
     
     public StartSceneCreator(Controller controller) {
         this.controller = controller;
@@ -58,53 +59,20 @@ public class StartSceneCreator {
     public StackPane createNameBox() {
         StackPane playerNameB = new StackPane();
         
-        VBox testing = new VBox(20);
-        HBox hbox = new HBox(20);
-        Text player = new Text("Player:");
-        player.setFill(Color.BLACK);
-        nameField = new TextField();
-        nameField.setText("Anonymous");
+        Text player = eGenerator.createText("Player:", Color.BLACK, 20, 0, 0);
+        nameField = new TextField("Anonymous");
+        HBox namesHB = eGenerator.createHBox(20, 20);
+        namesHB.getChildren().addAll(player, nameField);
 
-        hbox.getChildren().addAll(player, nameField);
-        hbox.setStyle("-fx-font: 20 LucidaConsole;");
-        hbox.setAlignment(Pos.CENTER);
-        
-        startButton = new Button("START");
-        startButton.setPrefSize(150,40);
-        startButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
-               
-        startButton.setOnAction(start -> {
-            playerName = nameField.getText();
-            if (!dao.doesPlayerExist(playerName)) {
-                dao.insertPlayer(playerName);
-            }
-            this.controller.startGame();  
-        });
-
-        statsButton = new Button("TO STATS");
-        statsButton.setPrefSize(150,40);
-        statsButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
-    
-        statsButton.setOnAction(start -> {
-            playerName = nameField.getText();
-            controller.toStats();
-        });              
-            
-        
-        HBox buttonBox = new HBox(30);
+        HBox buttonBox = eGenerator.createHBox(30, 20);
+        createStartB();
+        createStatsB();
         buttonBox.getChildren().addAll(startButton, statsButton);   
-        buttonBox.setStyle("-fx-font: 20 LucidaConsole;");
-        buttonBox.setAlignment(Pos.CENTER);
-        
-        
-        VBox textAndButtons = new VBox(20);
-        textAndButtons.getChildren().addAll(hbox, buttonBox);
-        
-        textAndButtons.setAlignment(Pos.CENTER);
-        Rectangle rectangle = createRectangle(400, 160);  
-        
-        rectangle.setFill(Color.GOLD);
-        rectangle.setStroke(Color.GOLD);
+      
+        VBox textAndButtons = eGenerator.createVBox(20, 20, Color.TRANSPARENT);
+        textAndButtons.getChildren().addAll(namesHB, buttonBox);      
+
+        Rectangle rectangle = eGenerator.createRectangle(400, 160, Color.GOLD, Color.GOLD);  
         
         ObservableList list = playerNameB.getChildren();
         list.addAll(rectangle, textAndButtons);        
@@ -112,6 +80,25 @@ public class StartSceneCreator {
         return playerNameB;
     }
 
+    public void createStartB() {
+        startButton = eGenerator.createButton("START", 150, 40, Color.CORAL);    
+        startButton.setOnAction(start -> {
+            playerName = nameField.getText();
+            if (!dao.doesPlayerExist(playerName)) {
+                dao.insertPlayer(playerName);
+            }
+            this.controller.startGame();  
+        });
+    }
+    
+    public void createStatsB() {
+        statsButton = eGenerator.createButton("TO STATS", 150, 40, Color.CORAL); 
+        statsButton.setOnAction(start -> {
+            playerName = nameField.getText();
+            controller.toStats();
+        });  
+    }
+    
     public StackPane createHeading() {
         StackPane heading = new StackPane();
         
@@ -140,25 +127,35 @@ public class StartSceneCreator {
     
     public StackPane createRankPane() {
         StackPane ranks = new StackPane();
-
-        Rectangle rectangle = createRectangle(400, 240);
-        rectangle.setFill(Color.LIGHTGREEN);
-        rectangle.setStroke(Color.LIGHTGREEN);
-        
-        VBox headAndScores = new VBox(15);
-        
+        rankList = eGenerator.createGridP(18, 30, 5);
+        Rectangle rectangle = eGenerator.createRectangle(400, 240, Color.LIGHTGREEN, Color.LIGHTGREEN);
+              
         Text headText = new Text("Tetris Top 5:");
         headText.setStyle("-fx-font: 30 LucidaConsole;");
         headText.setFill(Color.BLACK);
         
-        GridPane pane = new GridPane();
+        addLabelsToRankPane();
+        addDaoInfoToRankPane();
+
+        VBox headAndScores = eGenerator.createVBox(15, 20, Color.TRANSPARENT);
+        headAndScores.getChildren().addAll(headText, rankList);
+        
+        ObservableList list = ranks.getChildren();
+        list.addAll(rectangle, headAndScores);        
+        return ranks;
+    }
+    
+    public void addLabelsToRankPane() {
         Label ind1 = new Label("1.");
         Label ind2 = new Label("2.");
         Label ind3 = new Label("3.");
         Label ind4 = new Label("4.");
         Label ind5 = new Label("5.");
 
-        pane.addColumn(0, ind1, ind2, ind3, ind4, ind5);
+        rankList.addColumn(0, ind1, ind2, ind3, ind4, ind5);        
+    }
+    
+    public void addDaoInfoToRankPane() {
         String[][] top5 = dao.getTop5();
         Label name1 = new Label(top5[0][0]);
         Label name2 = new Label(top5[0][1]);
@@ -166,26 +163,16 @@ public class StartSceneCreator {
         Label name4 = new Label(top5[0][3]);
         Label name5 = new Label(top5[0][4]);
 
-        pane.addColumn(1, name1, name2, name3, name4, name5);
+        rankList.addColumn(1, name1, name2, name3, name4, name5);
         Label sco1 = new Label(top5[1][0]);
         Label sco2 = new Label(top5[1][1]);
         Label sco3 = new Label(top5[1][2]);
         Label sco4 = new Label(top5[1][3]);
         Label sco5 = new Label(top5[1][4]);
 
-        pane.addColumn(2, sco1, sco2, sco3, sco4, sco5);
-        pane.setStyle("-fx-font: 18 LucidaConsole;");
-  
-        pane.setHgap(30);
-        pane.setVgap(5);
-        pane.setAlignment(Pos.CENTER);
-        headAndScores.getChildren().addAll(headText, pane);
-        headAndScores.setAlignment(Pos.CENTER);
-        
-        ObservableList list = ranks.getChildren();
-        list.addAll(rectangle, headAndScores);        
-        return ranks;
+        rankList.addColumn(2, sco1, sco2, sco3, sco4, sco5);        
     }
+    
     public Scene getStartScene() {
         return startScene;
     }

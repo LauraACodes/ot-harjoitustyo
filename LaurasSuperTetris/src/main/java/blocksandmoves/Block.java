@@ -103,69 +103,69 @@ public class Block {
     }
     
     public void positionSquare() {
-            a.setX(boardWidth / 2 - sqSize);
-            b.setX(boardWidth / 2);
-            c.setX(boardWidth / 2 - sqSize);
-            c.setY(sqSize);
-            d.setX(boardWidth / 2);
-            d.setY(sqSize);        
+        a.setX(boardWidth / 2 - sqSize);
+        b.setX(boardWidth / 2);
+        c.setX(boardWidth / 2 - sqSize);
+        c.setY(sqSize);
+        d.setX(boardWidth / 2);
+        d.setY(sqSize);        
     }
         
     public void positionLine() {
-            a.setX(boardWidth / 2 - sqSize);
-            b.setX(boardWidth / 2);
-            c.setX(boardWidth / 2 + sqSize);
-            d.setX(boardWidth / 2 + 2 * sqSize);       
+        a.setX(boardWidth / 2 - sqSize);
+        b.setX(boardWidth / 2);
+        c.setX(boardWidth / 2 + sqSize);
+        d.setX(boardWidth / 2 + 2 * sqSize);       
     }
         
     public void positionEss() {
-            a.setX(boardWidth / 2 - sqSize);
-            b.setX(boardWidth / 2 - sqSize);
-            b.setY(sqSize);
-            c.setX(boardWidth / 2);
-            c.setY(sqSize);
-            d.setX(boardWidth / 2);
-            d.setY(sqSize * 2);        
+        a.setX(boardWidth / 2 - sqSize);
+        b.setX(boardWidth / 2 - sqSize);
+        b.setY(sqSize);
+        c.setX(boardWidth / 2);
+        c.setY(sqSize);
+        d.setX(boardWidth / 2);
+        d.setY(sqSize * 2);        
     }
         
     public void positionEnn() {
-            a.setX(boardWidth / 2);
-            b.setX(boardWidth / 2 - sqSize);
-            b.setY(sqSize);
-            c.setX(boardWidth / 2);
-            c.setY(sqSize);
-            d.setX(boardWidth / 2 - sqSize);
-            d.setY(sqSize * 2);        
+        a.setX(boardWidth / 2);
+        b.setX(boardWidth / 2 - sqSize);
+        b.setY(sqSize);
+        c.setX(boardWidth / 2);
+        c.setY(sqSize);
+        d.setX(boardWidth / 2 - sqSize);
+        d.setY(sqSize * 2);        
     }
         
     public void positionDude() {
-            a.setX(boardWidth / 2 - sqSize);
-            b.setX(boardWidth / 2 - sqSize);
-            b.setY(sqSize);
-            c.setX(boardWidth / 2);
-            c.setY(sqSize);
-            d.setX(boardWidth / 2 - sqSize);
-            d.setY(sqSize * 2);        
+        a.setX(boardWidth / 2 - sqSize);
+        b.setX(boardWidth / 2 - sqSize);
+        b.setY(sqSize);
+        c.setX(boardWidth / 2);
+        c.setY(sqSize);
+        d.setX(boardWidth / 2 - sqSize);
+        d.setY(sqSize * 2);        
     }
         
     public void positionJei() {
-            a.setX(boardWidth / 2);
-            b.setX(boardWidth / 2);
-            b.setY(sqSize);
-            c.setX(boardWidth / 2 - sqSize);
-            c.setY(sqSize * 2);
-            d.setX(boardWidth / 2);
-            d.setY(sqSize * 2);        
-    }
-        
+        a.setX(boardWidth / 2);
+        b.setX(boardWidth / 2);
+        b.setY(sqSize);
+        c.setX(boardWidth / 2 - sqSize);
+        c.setY(sqSize * 2);
+        d.setX(boardWidth / 2);
+        d.setY(sqSize * 2);        
+    }        
+    
     public void positionEll() {
-            a.setX(boardWidth / 2 - sqSize);
-            b.setX(boardWidth / 2 - sqSize);
-            b.setY(sqSize);
-            c.setX(boardWidth / 2 - sqSize);
-            c.setY(sqSize * 2);
-            d.setX(boardWidth / 2);
-            d.setY(sqSize * 2);        
+        a.setX(boardWidth / 2 - sqSize);
+        b.setX(boardWidth / 2 - sqSize);
+        b.setY(sqSize);
+        c.setX(boardWidth / 2 - sqSize);
+        c.setY(sqSize * 2);
+        d.setX(boardWidth / 2);
+        d.setY(sqSize * 2);        
     }
     /**
      * Metodi valitsee blockin värin.

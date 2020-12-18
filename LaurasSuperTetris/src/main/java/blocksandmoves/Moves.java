@@ -1,14 +1,13 @@
 
 package blocksandmoves;
 
-import Controls.Controller;
+import controls.Controller;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import static Controls.Controller.lineCount;
-import static Controls.Controller.lineText;
-import static Controls.Controller.score;
-import static Controls.Controller.scoreText;
-
+import static controls.Controller.lineCount;
+import static controls.Controller.lineText;
+import static controls.Controller.score;
+import static controls.Controller.scoreText;
 
 public class Moves {
     
@@ -31,8 +30,6 @@ public class Moves {
         this.boardHeight = boardHeight;
        // this.board = board;
     }
-
-
     
     public void moveRight(Block block) {
         //onko oikealla tilaa siirtyä huomioiden laudan leveys ja olemassa olevat palikat 
@@ -113,7 +110,7 @@ public class Moves {
      * @param part liikuteltava Blockin osa. 
      */        
     public void partDown(Rectangle part) {
-        if (part.getY() + move < boardHeight) {
+        if (part.getY() + move <= boardHeight) {
             part.setY(part.getY() + move);
         }
     }

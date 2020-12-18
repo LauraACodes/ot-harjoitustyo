@@ -1,5 +1,5 @@
 
-package Controls;
+package controls;
 
 import java.io.File;
 import java.sql.*;
@@ -28,9 +28,7 @@ public class TetrisDao {
             stmt.execute(createPlayersTblSql());
             stmt.execute(createGamesTblSql());
             connection.close();
-            System.out.println("kaikki mahikset, että db onnistuttiin luomaan");
         } catch (SQLException e) {
-            System.out.println("Connection failed");
         }
     }
     
@@ -39,7 +37,6 @@ public class TetrisDao {
         try {
             conn = DriverManager.getConnection(dbName);
         } catch (SQLException e) {
-            System.out.println("db connection failed");
         }
         return conn;
     }
@@ -53,7 +50,6 @@ public class TetrisDao {
             pstmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
-            System.out.println("insert player failed");
         }
     }
     
@@ -77,9 +73,7 @@ public class TetrisDao {
             pstmt.setInt(3, playerID);
             pstmt.executeUpdate();
             conn.close();
-            System.out.println("playerupdate onnistui");
         } catch (SQLException e) {
-            System.out.println("playerupdate failed");
         }
     }
     
@@ -93,48 +87,46 @@ public class TetrisDao {
             pstmt.setInt(2, score);
             pstmt.executeUpdate();
             conn.close();
-            System.out.println("gameupdate onnistui");
         } catch (SQLException e) {
-            System.out.println("gamesupdate failed");
         }
     }    
     
     public int getRank(int score) {
         ArrayList<Integer> list = new ArrayList<>();
-        int rank = 0;
         
         String sql = "SELECT score FROM games";
         
         try (Connection conn = this.connect();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
-            
             while (rs.next()) {
                 list.add(rs.getInt("score"));
             }
-            
             conn.close();
         } catch (SQLException e) {
-            System.out.println("rank failed");
         }
         
         Collections.sort(list, Collections.reverseOrder());
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) == score) {
-                rank = i+1;
-            }
-        }
+
+        int rank = findRank(list, score);
         
         return rank;
     }
-
+    
+    public int findRank(ArrayList<Integer> list, int score) {
+        int rank = 0;
+        
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) == score) {
+                rank = i + 1;
+            }
+        } 
+        
+        return rank;
+    }
     
     public String[][] getTop5() {
-        String[][] top5 = new String[2][5];
-        for (int i=0; i<5; i++) {
-            top5[0][i] = " ";
-            top5[1][i] = " ";
-        }
+        String[][] top5 = createTable();
         
         String sql = "SELECT games.score AS score, players.name AS name FROM games JOIN players ON players.playerID=games.playerID ORDER BY score DESC LIMIT 5";    
         
@@ -150,9 +142,17 @@ public class TetrisDao {
             
             conn.close();
         } catch (SQLException e) {
-            System.out.println("gettin top5 scores failed");
         }
                
+        return top5;
+    }
+    
+    public String[][] createTable() {
+        String[][] top5 = new String[2][5];
+        for (int i = 0; i < 5; i++) {
+            top5[0][i] = " ";
+            top5[1][i] = " ";
+        }
         return top5;
     }
     
@@ -168,7 +168,6 @@ public class TetrisDao {
             id = rs.getInt(1);        
             conn.close();
         } catch (SQLException e) {
-            System.out.println("ei löydä playeridtä");
         }  
         
         return id;
@@ -186,7 +185,6 @@ public class TetrisDao {
             score = rs.getInt(1);        
             conn.close();
         } catch (SQLException e) {
-            System.out.println("ei löydä topScorea");
         }  
         
         return score;
@@ -204,14 +202,10 @@ public class TetrisDao {
             nrOfGames = rs.getInt(1);        
             conn.close();
         } catch (SQLException e) {
-            System.out.println("ei löydä nrOfGamesia");
         }  
         
         return nrOfGames;
     }
-
-
- 
     
     public boolean doesPlayerExist(String name) {
         boolean exist = false;
@@ -229,7 +223,6 @@ public class TetrisDao {
             }
             conn.close();
         } catch (SQLException e) {
-            System.out.println("tietokantahaussa onglelma");
         }
         
         return exist;

@@ -1,7 +1,7 @@
 
-package SceneCreators;
+package scenecreators;
 
-import Controls.TetrisDao;
+import controls.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import Controls.Controller;
+import controls.Controller;
 import ui.Ui;
 
 public class StatsScreenCreator {
@@ -34,12 +34,12 @@ public class StatsScreenCreator {
     
     public static Button playButton;
     public static TetrisDao dao = Controller.dao;    
+    ElementGenerator eGenerator = Controller.eGenerator;
     
     public StatsScreenCreator(String playerName) {
         this.playerName = playerName;
         playerID = dao.getPlayerID(playerName);
         createStatsScreen();
-
     }
     
     public void createStatsScreen() {
@@ -51,33 +51,24 @@ public class StatsScreenCreator {
         scoreBox = new VBox(10);
         scoreBox.getChildren().addAll(latestScoreBox, topScoreBox, playedGamesBox);
         
-        playButton = new Button("NEW GAME");
-        playButton.setPrefSize(150,40);
-        playButton.setBackground(new Background(new BackgroundFill(Color.DARKMAGENTA, CornerRadii.EMPTY, Insets.EMPTY)));
-
+        playButton = eGenerator.createButton("NEW GAME", 150, 40, Color.DARKMAGENTA);
         playButton.setOnAction(start -> {
             controller.startNewGame();
         });           
         
-        statsLayout = new VBox(50);
+        statsLayout = eGenerator.createVBox(50, 20, Color.STEELBLUE);
         statsLayout.getChildren().addAll(playerNameBox, scoreBox, playButton);
-        statsLayout.setAlignment(Pos.CENTER);
-        statsLayout.setBackground(new Background(new BackgroundFill(Color.STEELBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     
-        statsScene = new Scene(statsLayout, 522,744);
+        statsScene = new Scene(statsLayout, 522, 744);
     }
 
     public StackPane createPlayedGamesBox() {
         StackPane playedGamesB = new StackPane();
         
-        Rectangle rectangle = createRectangle(400, 70);
-        rectangle.setFill(Color.GOLD);
-        rectangle.setStroke(Color.GOLD);  
+        Rectangle rectangle = eGenerator.createRectangle(400, 70, Color.GOLD, Color.GOLD);
         
         int playedGames = dao.getPlayerNrOfGames(playerID);        
-        Text playedGamesHead = new Text("Nr of played games: " + playedGames);
-        playedGamesHead.setStyle("-fx-font: 20 LucidaConsole;");
-        playedGamesHead.setFill(Color.BLACK);
+        Text playedGamesHead = eGenerator.createText("Nr of played games: " + playedGames, Color.BLACK, 20, 0, 0);
         
         playedGamesB.getChildren().addAll(rectangle, playedGamesHead);
         
@@ -87,25 +78,16 @@ public class StatsScreenCreator {
     public StackPane createTopScoreBox() {
         StackPane topScoreB = new StackPane();
         
-        Rectangle rectangle = createRectangle(400, 70);
-        rectangle.setFill(Color.CORAL);
-        rectangle.setStroke(Color.CORAL);  
+        Rectangle rectangle = eGenerator.createRectangle(400, 70, Color.CORAL, Color.CORAL);
         
-        VBox topScore = new VBox(5);
         int topScoreInt = dao.getPlayerTopScore(playerID);        
-        Text topScoreHead = new Text("Top score: " + topScoreInt);
-        topScoreHead.setStyle("-fx-font: 20 LucidaConsole;");
-        topScoreHead.setFill(Color.WHITE);
-        
-
+        Text topScoreHead = eGenerator.createText("Top score: " + topScoreInt, Color.WHITE, 20, 0, 0);
+      
         int topScoreRank = dao.getRank(topScoreInt);
+        Text topScoreRes = eGenerator.createText("(Ranking: " + topScoreRank + ")", Color.WHITE, 15, 0, 0);
 
-        Text topScoreRes = new Text("(Ranking: " + topScoreRank + ")");
-        topScoreRes.setStyle("-fx-font: 15 LucidaConsole;");
-        topScoreRes.setFill(Color.WHITE);
-        
+        VBox topScore = eGenerator.createVBox(5, 20, Color.TRANSPARENT);
         topScore.getChildren().addAll(topScoreHead, topScoreRes);
-        topScore.setAlignment(Pos.CENTER);
         
         topScoreB.getChildren().addAll(rectangle, topScore);
         
@@ -115,56 +97,32 @@ public class StatsScreenCreator {
     public StackPane createLatestScoreBox() {
         StackPane latestScoreB = new StackPane();
         
-        Rectangle rectangle = createRectangle(400, 70);
-        rectangle.setFill(Color.HOTPINK);
-        rectangle.setStroke(Color.HOTPINK);  
+        Rectangle rectangle = eGenerator.createRectangle(400, 70, Color.HOTPINK, Color.HOTPINK);
         
-        VBox latScore = new VBox(5);
+        VBox latScore = eGenerator.createVBox(5, 20, Color.TRANSPARENT);  
         int latScoreInt = controller.getScore();        
-        Text latScoreHead = new Text("Latest score: " + latScoreInt);
-        latScoreHead.setStyle("-fx-font: 20 LucidaConsole;");
-        latScoreHead.setFill(Color.WHITE);
-        
-
+        Text latScoreHead = eGenerator.createText("Latest score: " + latScoreInt, Color.WHITE, 20, 0, 0);
         int latScoreRank = dao.getRank(latScoreInt);
-
-        Text latScoreRes = new Text("(Ranking: " + latScoreRank + ")");
-        latScoreRes.setStyle("-fx-font: 15 LucidaConsole;");
-        latScoreRes.setFill(Color.WHITE);
-        
+        Text latScoreRes = eGenerator.createText("(Ranking: " + latScoreRank + ")", Color.WHITE, 15, 0, 0);   
         latScore.getChildren().addAll(latScoreHead, latScoreRes);
-        latScore.setAlignment(Pos.CENTER);
         
         latestScoreB.getChildren().addAll(rectangle, latScore);
         
         return latestScoreB;
     }    
+    
     public StackPane createNameBox() {
         StackPane nameBox = new StackPane();
         
-        Rectangle rectangle = createRectangle(400, 70);
-        rectangle.setFill(Color.LIMEGREEN);
-        rectangle.setStroke(Color.LIMEGREEN);
-
-        
-        Text nameText = new Text("Player: " + playerName);
-        nameText.setStyle("-fx-font: 30 LucidaConsole;");
-        nameText.setFill(Color.WHITE);
+        Rectangle rectangle = eGenerator.createRectangle(400, 70, Color.LIMEGREEN, Color.LIMEGREEN);     
+        Text nameText = eGenerator.createText("Player: " + playerName, Color.WHITE, 30, 0, 0);
         
         ObservableList list = nameBox.getChildren();
         list.addAll(rectangle, nameText);
         
         return nameBox;
     }
-    
-    public Rectangle createRectangle(double width, double height) {
-        Rectangle rectangle = new Rectangle();
-        rectangle.setWidth(width);
-        rectangle.setHeight(height);
-        rectangle.setArcWidth(20);
-        rectangle.setArcHeight(20);  
-        return rectangle;
-    }    
+   
     public Scene getStatsScene() {
         return statsScene;
     }
