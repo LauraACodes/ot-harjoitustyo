@@ -1,6 +1,6 @@
-package laurassupertetris.controller;
+package Controls;
 
-import Scores.TetrisDao;
+import Controls.TetrisDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.animation.AnimationTimer;
@@ -14,11 +14,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import laurassupertetris.ui.GameSceneCreator;
-import laurassupertetris.ui.StartSceneCreator;
-import laurassupertetris.ui.StatsScreenCreator;
-import laurassupertetris.ui.Tetris;
-import laurassupertetris.ui.TetrisTimer;
+import SceneCreators.GameSceneCreator;
+import SceneCreators.StartSceneCreator;
+import SceneCreators.StatsScreenCreator;
+import ui.Ui;
+import Controls.TetrisTimer;
+import blocksandmoves.Block;
+import blocksandmoves.Moves;
+import blocksandmoves.Turns;
 
 /**
  * Controller luokka vastaa näppäimistön kuuntelusta sekä palikoiden
@@ -73,42 +76,15 @@ public class Controller {
     public Controller(Stage stage) {
         try {
             dao = new TetrisDao("tetrisDatabase.db");
-            System.out.println("ainakin controller daon kutsuminen futas");
         } catch (Exception e) {
-            System.out.println("controllerissa dbn init ei onnistunut");
         } 
-        
-        board = new int[12][24];
-        
-        startScene = new StartSceneCreator(this);
-        this.stage = stage;
-
-        layout = new BorderPane();
-        block = new Block();
-        nextBlock = new Block();
-
-        scoreText = new Text();
-        lineText = new Text();
-        score = 0;
-        lineCount = 0;
-
-        timeOnTop = 0;
-
-        for (int[] row : board) {
-            Arrays.fill(row, 0);
-        }
-
-        turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-        moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-        
-   
+        gameinit(stage);  
     }
-    public void gameinit() {
-        board = new int[12][24];
-        
-        startScene = new StartSceneCreator(this);
+    
+    public void gameinit(Stage stage) {
         this.stage = stage;
-
+        
+        board = new int[12][24];   
         layout = new BorderPane();
         block = new Block();
         nextBlock = new Block();
@@ -127,7 +103,9 @@ public class Controller {
         turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
         moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);        
     }
+    
     public Scene getScene() {
+        startScene = new StartSceneCreator(this);
         return startScene.getStartScene();
     }
 
@@ -147,20 +125,7 @@ public class Controller {
         timer = new TetrisTimer();
         timer.start();
     }
-    
-    public void startNewGame() {
-        gameinit();
-        startGame();
-        
-    }
-    public void toStats() {
-        statsPage = new StatsScreenCreator(startScene.getPlayerName());
-        statsScene = statsPage.getStatsScene();
-        
-        stage.setScene(statsScene);
-        stage.show();
-    }
-    
+       
     public void moveOnKeyPress(Block bl) {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -232,6 +197,7 @@ public class Controller {
             timeOnTop = 0;
         }
         if (timeOnTop == 2) {
+            timer.stop();
             gameboard.gameOver();
             game = false;
         }
@@ -240,9 +206,6 @@ public class Controller {
         }
     }
 
-    /**
-     * Metodi päättää pelin, eli tuo GAME OVER tekstin pelilaudalle.
-     */
 
 
     public void removeRows() {
@@ -326,7 +289,20 @@ public class Controller {
             } while (lines.size() > 0);
         }
     }
-
+      
+    public void toStats() {
+        statsPage = new StatsScreenCreator(startScene.getPlayerName());
+        statsScene = statsPage.getStatsScene();
+        
+        stage.setScene(statsScene);
+        stage.show();
+    }
+    
+    public void startNewGame() {
+        gameinit(this.stage);
+        startGame();  
+    }
+    
     public int getScore() {
         return score;
     }

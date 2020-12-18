@@ -1,11 +1,11 @@
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import laurassupertetris.controller.Block;
-import laurassupertetris.controller.Controller;
-import laurassupertetris.controller.Turns;
-import laurassupertetris.ui.GameSceneCreator;
-import laurassupertetris.ui.Tetris;
+import blocksandmoves.Block;
+import Controls.Controller;
+import blocksandmoves.Turns;
+import SceneCreators.GameSceneCreator;
+import ui.Ui;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

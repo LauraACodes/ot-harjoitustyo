@@ -1,7 +1,7 @@
 
-package laurassupertetris.ui;
+package SceneCreators;
 
-import Scores.TetrisDao;
+import Controls.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import laurassupertetris.controller.Controller;
+import Controls.Controller;
 
 
 public class StartSceneCreator {

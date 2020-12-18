@@ -1,7 +1,7 @@
-package laurassupertetris.ui;
+package ui;
 
 import javafx.application.Application;
-import laurassupertetris.controller.Controller;
+import Controls.Controller;
 import javafx.stage.Stage;
 /**
  * Luokka vastaa käyttöliittymän näyttämisestä pelaajalle.
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  * Jatkossa tästä löytyy myös valinnat muiden pelin scenejen näyttämiseksi.
  * 
  */
-public class Tetris extends Application {
+public class Ui extends Application {
 
     // Controlleri & Game
     public static Controller controller;
@@ -35,6 +35,6 @@ public class Tetris extends Application {
     }
     
     public static void main(String[] args) {
-        launch(Tetris.class);
+        launch(Ui.class);
     }
 }

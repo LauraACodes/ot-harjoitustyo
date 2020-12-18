@@ -1,11 +1,11 @@
-package laurassupertetris.ui;
+package Controls;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import laurassupertetris.controller.Block;
-import laurassupertetris.controller.Controller;
+import blocksandmoves.Block;
+import ui.Ui;
 /**
  * Luokka TetrisTimer ohjaa eli tehdittaa blockien putoamista eli koko pelilautaa.
  * 
@@ -16,7 +16,7 @@ public class TetrisTimer extends AnimationTimer {
     private long lastUpdate;
     private long startSpeed = 150000000;
 
-    Controller controller = Tetris.controller;
+    Controller controller = Ui.controller;
 
     /**
      * Timerin handle metodi vastaa palikoiden putoamisnopeudesta ja

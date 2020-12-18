@@ -1,7 +1,7 @@
 
-package laurassupertetris.ui;
+package SceneCreators;
 
-import Scores.TetrisDao;
+import Controls.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,11 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import laurassupertetris.controller.Controller;
+import Controls.Controller;
+import ui.Ui;
 
 public class StatsScreenCreator {
     
-    public static Controller controller = Tetris.controller;
+    public static Controller controller = Ui.controller;
     public static String playerName;
     public static int playerID;
     public static VBox statsLayout;

@@ -1,10 +1,10 @@
 
-package laurassupertetris.controller;
+package blocksandmoves;
 
 import java.util.Random;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import laurassupertetris.ui.Tetris;
+import ui.Ui;
 /**
  * Luokka Block luo tetriksen palikat eli Blockit.
  * Block koostuu neljästä Rectanglesta.

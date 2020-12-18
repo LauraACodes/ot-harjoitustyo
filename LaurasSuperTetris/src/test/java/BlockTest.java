@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import laurassupertetris.controller.Block;
+import blocksandmoves.Block;
 
 public class BlockTest {
     

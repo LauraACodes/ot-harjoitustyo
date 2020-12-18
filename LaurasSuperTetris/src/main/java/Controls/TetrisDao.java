@@ -1,5 +1,5 @@
 
-package Scores;
+package Controls;
 
 import java.io.File;
 import java.sql.*;

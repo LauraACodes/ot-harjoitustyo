@@ -1,6 +1,7 @@
 
-package laurassupertetris.controller;
+package blocksandmoves;
 
+import Controls.Controller;
 import javafx.scene.shape.Rectangle;
 /**
  * Luokasta löytyy blockkien osien kääntämiseen (nuolinäppäin UP) tarvittavat metodit.

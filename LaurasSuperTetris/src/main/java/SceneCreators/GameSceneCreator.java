@@ -1,6 +1,6 @@
-package laurassupertetris.ui;
+package SceneCreators;
 
-import Scores.TetrisDao;
+import Controls.TetrisDao;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -18,8 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import laurassupertetris.controller.Block;
-import laurassupertetris.controller.Controller;
+import blocksandmoves.Block;
+import Controls.Controller;
+import ui.Ui;
 
 
 /**
@@ -47,7 +48,7 @@ public class GameSceneCreator {
     public static Scene gameScene;
 
     // Controlleri & Game
-    public static Controller controller = Tetris.controller;
+    public static Controller controller = Ui.controller;
     public static TetrisDao dao = Controller.dao;
     private static boolean game = true;
     /** Luokan konstruktorin tehtävä on kutsua toista metodia luomaan 
@@ -67,34 +68,12 @@ public class GameSceneCreator {
         line.setStroke(Color.WHITE);
         line.setStrokeWidth(5);
         
-        scoreText = new Text("SCORE: " + score);
-        scoreText.setStyle("-fx-font: 20 LucidaConsole;");
-        scoreText.setY(50);
-        scoreText.setX(boardWidth + 10);
-        scoreText.setFill(Color.WHITE);
-       
-        lineText = new Text("LINES: " + lineCount);
-        lineText.setStyle("-fx-font: 20 LucidaConsole;");
-        lineText.setY(100);
-        lineText.setX(boardWidth + 10);
-        lineText.setFill(Color.WHITE);
-        
-        Text nameText = new Text(name);
-        nameText.setStyle("-fx-font: 20 LucidaConsole;");
-        nameText.setY(150);
-        nameText.setX(boardWidth + 10);
-        nameText.setFill(Color.WHITE);   
-        /*
-        StackPane buttonPlace = new StackPane();
-        buttonPlace.getChildren().add(pauseButton);
-        
-        pauseButton.setOnAction(start -> {
-            System.out.println("pause");
-        });**/
+        scoreText = createText("SCORE: " + score, Color.WHITE, 20, boardWidth + 10, 50);
+        lineText = createText("LINES: " + lineCount, Color.WHITE, 20, boardWidth + 10, 100);
+        Text nameText = createText(name, Color.WHITE, 20, boardWidth + 10, 150);
         
         layout.getChildren().addAll(line, scoreText, lineText, nameText);
-      //  layout.setRight(buttonPlace);
-        // tehdään ensimmäinen palikka, laitetaan se layoutiin ja sceneen.
+
         Block startBlock = nextBlock;
 
         layout.getChildren().addAll(startBlock.a, startBlock.b, startBlock.c, startBlock.d);
@@ -111,16 +90,45 @@ public class GameSceneCreator {
         scoreText.setText("SCORE: " + sco);
         lineText.setText("LINES: " + lineC);
     }
+    
     public void updateDB() {
         dao.updatePlayerScores(controller.getPlayerName(), controller.getScore());
         dao.updateGames(controller.getPlayerName(), controller.getScore());
     }
     
     public void gameOver() {
-        System.out.println("tuli gohon");
         updateDB();
-        
+       
         StackPane gameOver = new StackPane();
+        Rectangle gORectangle = createGORec();
+
+        Text gameO = createText("GAME OVER", Color.WHITE, 40, 10, 250);
+        int endScore = controller.getScore();
+        int lineScore = controller.getLineCount();
+        Text scoreText = createText("Score: " + endScore + ", Lines: " + lineScore, Color.WHITE, 20, 10, 250);
+        HBox buttonBox = createGOButtonBox();
+
+        VBox GO = new VBox(20);
+        GO.getChildren().addAll(gameO, scoreText, buttonBox);
+        GO.setAlignment(Pos.CENTER);
+        
+        ObservableList list = gameOver.getChildren();
+        list.addAll(gORectangle, GO);
+
+        layout.setCenter(gameOver);
+    }
+    
+    public Text createText(String tText, Color fill, int fontSize, int x, int y) {
+        Text text = new Text(tText);
+        text.setFill(fill);
+        String ftext = "-fx-font: " + fontSize + " LucidaConsole;";
+        text.setStyle(ftext);
+        text.setX(x);
+        text.setY(y);
+        return text;
+    }    
+    
+    public Rectangle createGORec() {
         Rectangle rectangle = new Rectangle();
         rectangle.setWidth(400);
         rectangle.setHeight(200);
@@ -128,13 +136,15 @@ public class GameSceneCreator {
         rectangle.setArcHeight(20);  
         rectangle.setFill(Color.CRIMSON);
         rectangle.setStroke(Color.WHITE);
+        return rectangle;
+    }
+    
+    public HBox createGOButtonBox() {
+        HBox buttonBox = new HBox(30);
         
-
         Button newGameButton = new Button("NEW GAME");
-        
         newGameButton.setPrefSize(150,40);
         newGameButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
-               
         newGameButton.setOnAction(start -> {
             controller.startNewGame();
         });
@@ -142,34 +152,17 @@ public class GameSceneCreator {
         Button toStatsButton = new Button("TO STATS");
         toStatsButton.setPrefSize(150,40);
         toStatsButton.setBackground(new Background(new BackgroundFill(Color.CORAL, CornerRadii.EMPTY, Insets.EMPTY)));
-        
         toStatsButton.setOnAction(start -> {
             controller.toStats();
         });              
         
-        HBox buttonBox = new HBox(30);
         buttonBox.getChildren().addAll(toStatsButton, newGameButton);   
         buttonBox.setStyle("-fx-font: 20 LucidaConsole;");
         buttonBox.setAlignment(Pos.CENTER);
         
-        VBox GO = new VBox(20);
-        Text gameO = new Text("GAME OVER");
-        gameO.setFill(Color.WHITE);
-        gameO.setStyle("-fx-font: 40 LucidaConsole;");
-        gameO.setY(250);
-        gameO.setX(10);
-        int endScore = controller.getScore();
-        int lineScore = controller.getLineCount();
-        Text scoreText = new Text("Score: " + endScore + ", Lines: " + lineScore);
-        scoreText.setFill(Color.WHITE);
-        scoreText.setStyle("-fx-font: 20 LucidaConsole;"); 
-        GO.getChildren().addAll(gameO, scoreText, buttonBox);
-        GO.setAlignment(Pos.CENTER);
-        
-        ObservableList list = gameOver.getChildren();
-        list.addAll(rectangle, GO);
-        //gameOver.setAlignment(Pos.CENTER);
-        layout.setCenter(gameOver);
+        return buttonBox;
     }
+    
+
 }
 

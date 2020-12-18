@@ -1,12 +1,13 @@
 
-package laurassupertetris.controller;
+package blocksandmoves;
 
+import Controls.Controller;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import static laurassupertetris.controller.Controller.lineCount;
-import static laurassupertetris.controller.Controller.lineText;
-import static laurassupertetris.controller.Controller.score;
-import static laurassupertetris.controller.Controller.scoreText;
+import static Controls.Controller.lineCount;
+import static Controls.Controller.lineText;
+import static Controls.Controller.score;
+import static Controls.Controller.scoreText;
 
 
 public class Moves {
