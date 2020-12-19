@@ -1,11 +1,11 @@
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import blocksandmoves.Block;
-import controls.Controller;
-import blocksandmoves.Turns;
-import scenecreators.GameSceneCreator;
-import ui.Ui;
+import tetris.blocksandmoves.Block;
+import tetris.controls.Controller;
+import tetris.blocksandmoves.Turns;
+import tetris.scenecreators.GameSceneCreator;
+import tetris.ui.Ui;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

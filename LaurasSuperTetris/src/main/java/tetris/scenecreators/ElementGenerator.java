@@ -1,7 +1,7 @@
 
-package scenecreators;
+package tetris.scenecreators;
 
-import static scenecreators.GameSceneCreator.controller;
+import static tetris.scenecreators.GameSceneCreator.controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

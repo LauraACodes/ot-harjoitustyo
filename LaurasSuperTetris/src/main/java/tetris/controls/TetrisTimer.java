@@ -1,11 +1,11 @@
-package controls;
+package tetris.controls;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import blocksandmoves.Block;
-import ui.Ui;
+import tetris.blocksandmoves.Block;
+import tetris.ui.Ui;
 /**
  * Luokka TetrisTimer ohjaa eli tehdittaa blockien putoamista eli koko pelilautaa.
  * 

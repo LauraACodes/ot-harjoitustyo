@@ -1,5 +1,5 @@
 
-package controls;
+package tetris.controls;
 
 import java.io.File;
 import java.sql.*;

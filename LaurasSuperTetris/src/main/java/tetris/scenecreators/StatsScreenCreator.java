@@ -1,7 +1,7 @@
 
-package scenecreators;
+package tetris.scenecreators;
 
-import controls.TetrisDao;
+import tetris.controls.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,8 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import controls.Controller;
-import ui.Ui;
+import tetris.controls.Controller;
+import tetris.ui.Ui;
 
 public class StatsScreenCreator {
     
@@ -34,7 +34,7 @@ public class StatsScreenCreator {
     
     public static Button playButton;
     public static TetrisDao dao = Controller.dao;    
-    ElementGenerator eGenerator = Controller.eGenerator;
+    ElementGenerator eGenerator = new ElementGenerator();
     
     public StatsScreenCreator(String playerName) {
         this.playerName = playerName;

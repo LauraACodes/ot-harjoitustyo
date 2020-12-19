@@ -1,6 +1,6 @@
-package scenecreators;
+package tetris.scenecreators;
 
-import controls.TetrisDao;
+import tetris.controls.TetrisDao;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -18,9 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import blocksandmoves.Block;
-import controls.Controller;
-import ui.Ui;
+import tetris.blocksandmoves.Block;
+import tetris.controls.Controller;
+import tetris.ui.Ui;
 
 
 /**
@@ -38,7 +38,7 @@ public class GameSceneCreator {
     Block block = Controller.block;
     Block nextBlock = Controller.nextBlock;
     BorderPane layout = Controller.layout;
-    ElementGenerator eGenerator = Controller.eGenerator;
+    ElementGenerator eGenerator = new ElementGenerator();
     
     Text scoreText = Controller.scoreText; 
     Text lineText = Controller.lineText;    

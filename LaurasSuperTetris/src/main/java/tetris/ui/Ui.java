@@ -1,7 +1,7 @@
-package ui;
+package tetris.ui;
 
 import javafx.application.Application;
-import controls.Controller;
+import tetris.controls.Controller;
 import javafx.stage.Stage;
 /**
  * Luokka vastaa käyttöliittymän näyttämisestä pelaajalle.

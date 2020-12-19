@@ -1,7 +1,7 @@
 
-package scenecreators;
+package tetris.scenecreators;
 
-import controls.TetrisDao;
+import tetris.controls.TetrisDao;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import controls.Controller;
+import tetris.controls.Controller;
 
 
 public class StartSceneCreator {
@@ -38,7 +38,7 @@ public class StartSceneCreator {
     public static String playerName;
     public static GridPane rankList;
     public static TetrisDao dao = Controller.dao;
-    ElementGenerator eGenerator = Controller.eGenerator;
+    ElementGenerator eGenerator = new ElementGenerator();
     
     public StartSceneCreator(Controller controller) {
         this.controller = controller;

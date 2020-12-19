@@ -1,13 +1,13 @@
 
-package blocksandmoves;
+package tetris.blocksandmoves;
 
-import controls.Controller;
+import tetris.controls.Controller;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import static controls.Controller.lineCount;
-import static controls.Controller.lineText;
-import static controls.Controller.score;
-import static controls.Controller.scoreText;
+import static tetris.controls.Controller.lineCount;
+import static tetris.controls.Controller.lineText;
+import static tetris.controls.Controller.score;
+import static tetris.controls.Controller.scoreText;
 
 public class Moves {
     

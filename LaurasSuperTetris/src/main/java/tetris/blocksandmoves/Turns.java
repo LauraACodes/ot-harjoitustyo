@@ -1,7 +1,7 @@
 
-package blocksandmoves;
+package tetris.blocksandmoves;
 
-import controls.Controller;
+import tetris.controls.Controller;
 import javafx.scene.shape.Rectangle;
 /**
  * Luokasta löytyy blockkien osien kääntämiseen (nuolinäppäin UP) tarvittavat metodit.

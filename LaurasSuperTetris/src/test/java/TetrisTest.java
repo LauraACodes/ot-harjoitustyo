@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import blocksandmoves.Block;
+import tetris.blocksandmoves.Block;
 
 public class TetrisTest {
     

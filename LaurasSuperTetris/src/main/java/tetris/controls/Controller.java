@@ -1,6 +1,6 @@
-package controls;
+package tetris.controls;
 
-import controls.TetrisDao;
+import tetris.controls.TetrisDao;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.animation.AnimationTimer;
@@ -14,15 +14,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import scenecreators.GameSceneCreator;
-import scenecreators.StartSceneCreator;
-import scenecreators.StatsScreenCreator;
-import ui.Ui;
-import controls.TetrisTimer;
-import scenecreators.ElementGenerator;
-import blocksandmoves.Block;
-import blocksandmoves.Moves;
-import blocksandmoves.Turns;
+import tetris.scenecreators.GameSceneCreator;
+import tetris.scenecreators.StartSceneCreator;
+import tetris.scenecreators.StatsScreenCreator;
+import tetris.ui.Ui;
+import tetris.controls.TetrisTimer;
+import tetris.scenecreators.ElementGenerator;
+import tetris.blocksandmoves.Block;
+import tetris.blocksandmoves.Moves;
+import tetris.blocksandmoves.Turns;
 
 /**
  * Controller luokka vastaa näppäimistön kuuntelusta sekä palikoiden
@@ -137,19 +137,22 @@ public class Controller {
                 switch (event.getCode()) {
                     case RIGHT:
                         moves.moveRight(bl);
+                        removeRows();
                         break;
                     case DOWN:
                         if (moves.downOk(bl)) {
-                            removeRows();
                         } else {
                             moves.moveDown(bl);
                         }
+                        removeRows();
                         break;
                     case LEFT:
                         moves.moveLeft(bl);
+                        removeRows();
                         break;
                     case UP:
                         moveTurn(bl);
+                        removeRows();
                         break;
                 }
             }
