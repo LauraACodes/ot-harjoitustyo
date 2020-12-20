@@ -13,24 +13,26 @@ Sovelluksen käyttöliittymässä on kolme sivua: Pelaajan valinta, varsinainen 
 
 ## Perusversion toiminnallisuus
 * Kolme sceneä - startti, peli, loppu.
-* Pelaaja luo itselle uuden pelinimen.
-* Pelaaja valitseen tallennetuista pelaajanimistä omansa.
-* **TEHTY** - Peli alkaa tyhjältä pelilaudalta.
-* **TEHTY** - Erilaiset palikat (ainakin 6 perusmallia) tippuvat ylhäältä tasaiseen tahtiin.
-* **TEHTY** - Tippuvia palikoita pystyy siirtämään vaakatasossa nuolinäppäimillä.
-* **TEHTY** - Tippuvia palikoita pysty pyörittämään nuolinäppäimillä.
-* **TEHTY** - Tippuva palikka "kiinnittyy" pohjalle ja jos rivi on täysi, rivi katoaa.
-* **TEHTY** - Palikan pudotessa pistelaskuun lisätään palikasta saatu pistemäärä.
-* **TEHTY** - Jos pitkällä palikalla saa pois neljä riviä, ruutuun ilmestyy teksti "Tetris"
-* **TEHTY** - Vauhti kiihtyy pikkuhiljaa pelin edetessä.
-* **TEHTY** - Kun palikat täyttävät koko ruudun eikä uusia palikoita enää mahdu, peli loppuu.
-* Pelin loppuessa sovellus tallentaa kertyneen pistemäärän tilastotauluun, tarkistaa mille sijalle kertynyt pistemäärä riittää.
-* Sovellus näyttää pelaajan pistemäärän sekä sijoituksen ranking-listalla.
+* Pelaaja luo itselle pelinimen. 
+* Jos pelaaja ei anna pelinimeä, pelaa hän "Anonymous":ksena ja tulos tallentuu tietokantaan "Anonymous" nimimerkin alle.
+* Peli alkaa tyhjältä pelilaudalta.
+* Erilaiset palikat (7 perusmallia) tippuvat ylhäältä tasaiseen tahtiin.
+* Tippuvia palikoita pystyy siirtämään vaakatasossa nuolinäppäimillä.
+* Tippuvia palikoita pysty pyörittämään ylös-nuolinäppäimellä.
+* Tippuva palikka "kiinnittyy" pohjalle ja jos rivi on täysi, rivi katoaa.
+* Palikan pudotessa pistelaskuun lisätään palikasta saatu pistemäärä.
+* Jos pitkällä palikalla saa pois neljä riviä, ruutuun ilmestyy teksti "Tetris"
+* Vauhti kiihtyy pikkuhiljaa pelin edetessä.
+* Kun palikat täyttävät koko ruudun eikä uusia palikoita enää mahdu, peli loppuu.
+* Pelin loppuessa sovellus tallentaa kertyneen pistemäärän tietokantaan sekä tarkistaa ja kertoo mille sijalle kertynyt pistemäärä riittää.
+* Starttisivulta tai pelin päättysessä nappia painamalla pelaaja pääsee siirtymään statistiikkasivulle.
+* Statistiikkasivulla näytetään pelaajan uusin tulos ja sijoitus, parast tulos ja sijoitus sekä pelattujen pelien määrä. 
 
 ## Jatkokehitysideoita
 * Palikkatyyppejä voisi olla muutakin kuin peruspalikat.
-* Tilastotietoa voisi kerätä eri pelaajien kaikkien pistemäärien summasta, pelattujen pelien määrästä.
+* Tilastotietoa voisi kerätä laajemminkin, esim. kaikkien tuhottuen rivien summa.
 * Peliin voisi tuoda äänet, taustamusiikkia, eri ääniä kun rivi katoaa tai tetris tulee.
+* Pelaajan tunnus voisi vaatia kirjautumisen salasanoineen. 
 
 
 

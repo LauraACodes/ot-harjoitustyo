@@ -1,10 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-
-
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,44 +12,42 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tetris.blocksandmoves.Block;
-import tetris.controls.Controller;
+import tetris.blocksandmoves.Moves;
 
-public class ControllerTest {
-    /*Stage stage = new Stage();
+/**
+ *
+ * @author andlaura
+ */
+public class MovesTest {
+    
+    Moves moves;
     int[][] board;
     Block block;
-    Controller controller;
     
-    public ControllerTest() {
+    public MovesTest() {
     }
-/*    
+   
     @Before
     public void setUp() {
         board = new int[12][24];
         block = new Block();
-        controller = new Controller(stage);
-    }    
+        moves = new Moves(31, 31, 31 * 12, 31 * 24);
+        moves.setBoard(board);
+    }
     
     @Test
     public void downOkReturnFalseWhenBoardIsEmpty() {
-        assertEquals(false, controller.downOk(block));
+        assertEquals(false, moves.downOk(block));
     }   
     
     @Test
     public void downOkReturnTrueWhenBlockCantMove() {
         Rectangle a = block.getA();
         a.setY(713);
-        assertEquals(true, controller.downOk(block));
-    }       
-    /*
-    @Test
-    public void moveDownMovesSquareADown() {
-        controller.moveDown(block);
-        assertEquals(31, (int) block.getA().getY());
-    }
-    
-    //Nämä 2 seuraavaa voisi varmaan tehdä kätevämminkin..
-    @Test
+        assertEquals(true, moves.downOk(block));
+    }        
+
+        @Test
     public void moveRightMovesBlockRight() {
         Rectangle a = block.getA();
         int aX = (int) a.getX();
@@ -60,7 +58,7 @@ public class ControllerTest {
         Rectangle d = block.getD();
         int dX = (int) d.getX();
         
-        controller.moveRight(block);
+        moves.moveRight(block);
         aX += 31;
         bX += 31;
         cX += 31;
@@ -93,7 +91,7 @@ public class ControllerTest {
         Rectangle d = block.getD();
         int dX = (int) d.getX();
         
-        controller.moveLeft(block);
+        moves.moveLeft(block);
         aX -= 31;
         bX -= 31;
         cX -= 31;
@@ -114,6 +112,4 @@ public class ControllerTest {
         }
         assertTrue(isSame);
     }
-    
-*/
 }

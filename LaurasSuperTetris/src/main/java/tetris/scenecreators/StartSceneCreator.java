@@ -81,7 +81,7 @@ public class StartSceneCreator {
     }
 
     public void createStartB() {
-        startButton = eGenerator.createButton("START", 150, 40, Color.CORAL);    
+        startButton = eGenerator.createButton("START", 150, 40, Color.LIGHTSKYBLUE);    
         startButton.setOnAction(start -> {
             playerName = nameField.getText();
             if (!dao.doesPlayerExist(playerName)) {
@@ -92,7 +92,7 @@ public class StartSceneCreator {
     }
     
     public void createStatsB() {
-        statsButton = eGenerator.createButton("TO STATS", 150, 40, Color.CORAL); 
+        statsButton = eGenerator.createButton("TO STATS", 150, 40, Color.LIGHTSKYBLUE); 
         statsButton.setOnAction(start -> {
             playerName = nameField.getText();
             controller.toStats();
@@ -130,7 +130,7 @@ public class StartSceneCreator {
         rankList = eGenerator.createGridP(18, 30, 5);
         Rectangle rectangle = eGenerator.createRectangle(400, 240, Color.LIGHTGREEN, Color.LIGHTGREEN);
               
-        Text headText = new Text("Tetris Top 5:");
+        Text headText = new Text("TETRIS TOP 5:");
         headText.setStyle("-fx-font: 30 LucidaConsole;");
         headText.setFill(Color.BLACK);
         

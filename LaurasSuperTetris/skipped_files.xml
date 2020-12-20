@@ -5,5 +5,9 @@
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress files="laurassupertetris.ui.Tetris.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tetris.scenecreators.ElementGenerator.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tetris.scenecreators.GameSceneCreator.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tetris.scenecreators.StartSceneCreator.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tetris.scenecreators.StatsScreenCreator.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
+    

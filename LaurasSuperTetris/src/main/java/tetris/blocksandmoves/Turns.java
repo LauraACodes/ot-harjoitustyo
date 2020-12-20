@@ -19,12 +19,11 @@ public class Turns {
     Näiden iffeissä tsekataan vain ne mitä muuttuu, ei niitä ruutuja, joissa on jo jokin kyseisen palikan osa!
     Jokaisen iffin ensimmäinen ehto kertoo missä asennossa palikka on ja katsoo loput ehdot sen mukaan,
     miten mikäkin palikan osan pitäisi liikkua.*/
-    public Turns(int sqS, int move, int boardWidth, int boardHeight, int[][] board) {
+    public Turns(int sqS, int move, int boardWidth, int boardHeight) {
         this.sqSize = sqS;
         this.move = move;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
-        //this.board = board;
     }
     /**
      * Metodi kääntää line-nimisen blockin osa kerrallaan.
@@ -78,10 +77,10 @@ public class Turns {
     
     public boolean lineTurnIf2(Rectangle a, Rectangle b, Rectangle c, Rectangle d) {
         boolean isIf = false;
-        
+
         if (a.getY() < b.getY() && isTurnOk((int) a.getX() + 2 * sqSize, (int) a.getY() + 2 * sqSize)
-                && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() + 1 * sqSize)
-                && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
+            && isTurnOk((int) b.getX() + 1 * sqSize, (int) b.getY() + 1 * sqSize)
+            && isTurnOk((int) d.getX() - 1 * sqSize, (int) d.getY() - 1 * sqSize)) {
             isIf = true;
         }
         
@@ -126,8 +125,8 @@ public class Turns {
         boolean isIf = false;
         
         if (a.getY() > b.getY() && isTurnOk((int) a.getX() - 1 * sqSize, (int) a.getY() - 1 * sqSize)
-                && isTurnOk((int) c.getX() + 1 * sqSize, (int) c.getY() + 1 * sqSize)
-                && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY() + 2 * sqSize)) {
+            && isTurnOk((int) c.getX() + 1 * sqSize, (int) c.getY() + 1 * sqSize)
+            && isTurnOk((int) d.getX() + 2 * sqSize, (int) d.getY() + 2 * sqSize)) {
             isIf = true;
         }
         
@@ -749,4 +748,8 @@ public class Turns {
     public void partUp(Rectangle part) {
         part.setY(part.getY() - move);
     }    
+    
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
 }

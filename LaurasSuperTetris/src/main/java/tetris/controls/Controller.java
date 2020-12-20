@@ -104,8 +104,8 @@ public class Controller {
             Arrays.fill(row, 0);
         }
 
-        turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);
-        moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight, this.board);        
+        turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight);
+        moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight);        
     }
     
     public Scene getScene() {

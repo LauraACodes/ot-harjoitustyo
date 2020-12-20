@@ -1,6 +1,7 @@
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import tetris.blocksandmoves.Block;
 import tetris.controls.Controller;
 import tetris.blocksandmoves.Turns;
@@ -12,40 +13,56 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tetris.blocksandmoves.Moves;
 
 public class TurnsTest {
     
-    Controller controller;
-    int[][] board;
-    Block block = new Block();
-//    Block nextBlock = new Block();
     Turns turns;
+    Moves moves;
+    int[][] board;
+    Block block;
+//    Block nextBlock = new Block();
     
     public TurnsTest() {
-        board = new int[12][24];
-        controller = new Controller(31, 372, 744);
     }
+    
+    @Before
+    public void setUp() {
+        board = new int[12][24];
+        block = new Block();
+        turns = new Turns(31, 31, 31 * 12, 31 * 24);
+        turns.setBoard(board);
+        /*moves = new Moves(31, 31, 31 * 12, 31 * 24);
+        moves.moveDown(block);
+        moves.moveDown(block);
+        moves.moveDown(block);*/
+    }    
     
     @Test
     public void afterFirstTurnAXIsRight() {
         String name = block.getName();
-        controller.moveTurn(block);
         int aX;
         
         if (name.equals("square")) {
             aX = 155;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
             aX = 155;
         } else if (name.equals("ess")) {
+            turns.turnEss(block);
             aX = 155+62;
         } else if (name.equals("enn")) {
+            turns.turnEnn(block);
             aX = 186+31;
         } else if (name.equals("dude")) {
+            turns.turnDude(block);
             aX = 155+31+31;
         } else if (name.equals("jei")) {
+            turns.turnJei(block);
             aX = 186+31;
         } else if (name.equals("ell")) {
-            aX = 155+31;
+            turns.turnEll(block);
+            aX = 155;
         } else {
             aX = 0;
         }
@@ -54,23 +71,28 @@ public class TurnsTest {
     @Test
     public void afterFirstTurnAYIsRight() {
         String name = block.getName();
-        controller.moveTurn(block);
         int aY;
         
         if (name.equals("square")) {
             aY = 0;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
             aY = 0;
         } else if (name.equals("ess")) {
+            turns.turnEss(block);
             aY = 0;
         } else if (name.equals("enn")) {
-            aY = 0+31;
+            turns.turnEnn(block);
+            aY = 0 + 31;
         } else if (name.equals("dude")) {
+            turns.turnDude(block);            
             aY = 0;
         } else if (name.equals("jei")) {
-            aY = 0+31;
+            turns.turnJei(block);            
+            aY = 0 + 31;
         } else if (name.equals("ell")) {
-            aY = 0+31;
+            turns.turnEll(block);
+            aY = 0 + 31;
         } else {
             aY = 0;
         }
@@ -80,22 +102,27 @@ public class TurnsTest {
     @Test
     public void afterFirstTurnBXIsRight() {
         String name = block.getName();
-        controller.moveTurn(block);
         int bX;
         
         if (name.equals("square")) {
             bX = 186;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
             bX = 186;
         } else if (name.equals("ess")) {
+            turns.turnEss(block);
             bX = 155+31;
         } else if (name.equals("enn")) {
+            turns.turnEll(block);
             bX = 155+31;
         } else if (name.equals("dude")) {
+            turns.turnDude(block);
             bX = 155+31;
         } else if (name.equals("jei")) {
+            turns.turnJei(block);
             bX = 186;
         } else if (name.equals("ell")) {
+            turns.turnEll(block);
             bX = 155;
         } else {
             bX = 0;
@@ -105,22 +132,27 @@ public class TurnsTest {
     @Test
     public void afterFirstTurnBYIsRight() {
         String name = block.getName();
-        controller.moveTurn(block);
         int bY;
         
         if (name.equals("square")) {
             bY = 0;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
             bY = 0;
         } else if (name.equals("ess")) {
-            bY = 31-31;
+            turns.turnEss(block);
+            bY = 31 - 31;
         } else if (name.equals("enn")) {
-            bY = 31-31;
+            turns.turnEnn(block);
+            bY = 31 - 31;
         } else if (name.equals("dude")) {
-            bY = 31-31;
+            turns.turnDude(block);
+            bY = 31 - 31;
         } else if (name.equals("jei")) {
+            turns.turnJei(block);
             bY = 31;
         } else if (name.equals("ell")) {
+            turns.turnEll(block);
             bY = 31;
         } else {
             bY = 0;
@@ -131,23 +163,33 @@ public class TurnsTest {
     @Test
     public void afterSecondTurnAXIsRight() {
         String name = block.getName();
-        controller.moveTurn(block);
-        controller.moveTurn(block);
         int aX;
         
         if (name.equals("square")) {
             aX = 155;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
+            turns.turnLine(block);            
             aX = 155;
         } else if (name.equals("ess")) {
+            turns.turnEss(block);
+            turns.turnEss(block);
             aX = 155+62;
         } else if (name.equals("enn")) {
+            turns.turnEnn(block);
+            turns.turnEnn(block);
             aX = 186+31-31;
         } else if (name.equals("dude")) {
+            turns.turnDude(block);
+            turns.turnDude(block);            
             aX = 155+62;
         } else if (name.equals("jei")) {
+            turns.turnJei(block);
+            turns.turnJei(block);
             aX = 186+31-31;
         } else if (name.equals("ell")) {
+            turns.turnEll(block);
+            turns.turnEll(block);
             aX = 155+31-31;
         } else {
             aX = 0;
@@ -157,25 +199,35 @@ public class TurnsTest {
     
     @Test
     public void afterSecondTurnAYIsRight() {
-        String name = block.getName();
-        controller.moveTurn(block);
-        controller.moveTurn(block);        
+        String name = block.getName();      
         int aY;
         
         if (name.equals("square")) {
             aY = 0;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
+            turns.turnLine(block);  
             aY = 0;
         } else if (name.equals("ess")) {
-            aY = 0+62;
+            turns.turnEss(block);
+            turns.turnEss(block);  
+            aY = 0 + 62;
         } else if (name.equals("enn")) {
-            aY = 0+31+31;
+            turns.turnEnn(block);
+            turns.turnEnn(block);  
+            aY = 0 + 31 + 31;
         } else if (name.equals("dude")) {
-            aY = 0+62;
+            turns.turnDude(block);
+            turns.turnDude(block);  
+            aY = 0 + 62;
         } else if (name.equals("jei")) {
-            aY = 0+31+31;
+            turns.turnJei(block);
+            turns.turnJei(block);  
+            aY = 0 + 31 + 31;
         } else if (name.equals("ell")) {
-            aY = 0+31+31;
+            turns.turnEll(block);
+            turns.turnEll(block);  
+            aY = 0 + 31 + 31;
         } else {
             aY = 0;
         }
@@ -184,25 +236,40 @@ public class TurnsTest {
 
     @Test
     public void afterThirdTurnAXIsRight() {
-        String name = block.getName();
-        controller.moveTurn(block);
-        controller.moveTurn(block);
-        controller.moveTurn(block);        
+        String name = block.getName();      
         int aX;
         
         if (name.equals("square")) {
             aX = 155;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
+            turns.turnLine(block);  
+            turns.turnLine(block);              
             aX = 155;
         } else if (name.equals("ess")) {
+            turns.turnEss(block);
+            turns.turnEss(block);  
+            turns.turnEss(block);              
             aX = 155+62-62;
         } else if (name.equals("enn")) {
+            turns.turnEnn(block);
+            turns.turnEnn(block);  
+            turns.turnEnn(block);              
             aX = 186+31-31-31;
         } else if (name.equals("dude")) {
+            turns.turnDude(block);
+            turns.turnDude(block);  
+            turns.turnDude(block);              
             aX = 155+62-62;
         } else if (name.equals("jei")) {
+            turns.turnJei(block);
+            turns.turnJei(block);  
+            turns.turnJei(block);              
             aX = 186+31-31-31;
         } else if (name.equals("ell")) {
+            turns.turnEll(block);
+            turns.turnEll(block);  
+            turns.turnEll(block);              
             aX = 155+31-31-31;
         } else {
             aX = 0;
@@ -213,25 +280,40 @@ public class TurnsTest {
     @Test
     public void afterThirdTurnAYIsRight() {
         String name = block.getName();
-        controller.moveTurn(block);
-        controller.moveTurn(block);        
-        controller.moveTurn(block);
         int aY;
         
         if (name.equals("square")) {
             aY = 0;
         } else if (name.equals("line")) {
+            turns.turnLine(block);
+            turns.turnLine(block);  
+            turns.turnLine(block);  
             aY = 0;
         } else if (name.equals("ess")) {
-            aY = 0+62;
+            turns.turnEss(block);
+            turns.turnEss(block);  
+            turns.turnEss(block);  
+            aY = 0 + 62;
         } else if (name.equals("enn")) {
-            aY = 0+31+31-31;
+            turns.turnEnn(block);
+            turns.turnEnn(block);  
+            turns.turnEnn(block);  
+            aY = 0 + 31 + 31 - 31;
         } else if (name.equals("dude")) {
-            aY = 0+62;
+            turns.turnDude(block);
+            turns.turnDude(block);  
+            turns.turnDude(block);  
+            aY = 0 + 62 + 93;
         } else if (name.equals("jei")) {
-            aY = 0+31+31-31;
+            turns.turnJei(block);
+            turns.turnJei(block);  
+            turns.turnJei(block);   
+            aY = 0 + 31 + 31 - 31;
         } else if (name.equals("ell")) {
-            aY = 0+31+31-31;
+            turns.turnEll(block);
+            turns.turnEll(block);  
+            turns.turnEll(block);  
+            aY = 0 + 31 + 31 - 31;
         } else {
             aY = 0;
         }

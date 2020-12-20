@@ -186,16 +186,16 @@ public class Block {
             return Color.LIGHTGREEN;
         }         
         if (bName == "enn") {
-            return Color.LIMEGREEN;
+            return Color.MEDIUMSEAGREEN;
         }
         if (bName == "dude") {
             return Color.GOLD;
         }
         if (bName == "jei") {
-            return Color.DARKMAGENTA;
+            return Color.MEDIUMSLATEBLUE;
         }
         if (bName == "ell") {
-            return Color.DEEPSKYBLUE;
+            return Color.LIGHTSKYBLUE;
         }
         return Color.BLACK;
     }
@@ -216,6 +216,10 @@ public class Block {
     }
     
     //Testiä varten   
+
+    public void setName(String name) {
+        this.name = name;
+    }    
     
     public Rectangle getA() {
         return this.a;

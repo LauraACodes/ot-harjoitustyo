@@ -217,7 +217,6 @@ public class TetrisDao {
             pstmt.setString(1, name);
             ResultSet rs = pstmt.executeQuery();
             int findings = rs.getInt(1);
-            System.out.println("löysi;" + findings);
             if (findings > 0) {
                 exist = true;
             }
@@ -245,5 +244,19 @@ public class TetrisDao {
                 + " score integer DEFAULT 0\n"
                 + ");";
         return sql;
+    }
+    
+    //Testausta varten
+    public void emptyTables(String defName) {
+        
+        String sql1 = "DELETE FROM Games";
+        String sql2 = "DELETE FROM Players";
+        try (Connection conn = this.connect();
+                Statement stmt = conn.createStatement()) {
+            stmt.execute(sql1);
+            stmt.execute(sql2);
+            conn.close();
+        } catch (SQLException e) {
+        }
     }
 }

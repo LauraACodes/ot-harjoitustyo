@@ -23,12 +23,11 @@ public class Moves {
     int lineCount = Controller.lineCount;      
     
 
-    public Moves(int sqS, int move, int boardWidth, int boardHeight, int[][] board) {
+    public Moves(int sqS, int move, int boardWidth, int boardHeight) {
         this.sqSize = sqS;
         this.move = move;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
-       // this.board = board;
     }
     
     public void moveRight(Block block) {
@@ -178,5 +177,10 @@ public class Moves {
      */  
     public boolean fullD(Block block) {
         return (board[(int) block.d.getX() / sqSize][(int) block.d.getY() / sqSize + 1] == 1);
-    }    
+    }
+
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
+    
 }

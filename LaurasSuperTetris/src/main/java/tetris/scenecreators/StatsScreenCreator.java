@@ -51,7 +51,7 @@ public class StatsScreenCreator {
         scoreBox = new VBox(10);
         scoreBox.getChildren().addAll(latestScoreBox, topScoreBox, playedGamesBox);
         
-        playButton = eGenerator.createButton("NEW GAME", 150, 40, Color.DARKMAGENTA);
+        playButton = eGenerator.createButton("NEW GAME", 150, 40, Color.LIGHTSKYBLUE);
         playButton.setOnAction(start -> {
             controller.startNewGame();
         });           

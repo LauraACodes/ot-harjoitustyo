@@ -14,7 +14,7 @@ import tetris.ui.Ui;
 public class TetrisTimer extends AnimationTimer {
 
     private long lastUpdate;
-    private long startSpeed = 150000000;
+    private long startSpeed = 250000000;
 
     Controller controller = Ui.controller;
 
