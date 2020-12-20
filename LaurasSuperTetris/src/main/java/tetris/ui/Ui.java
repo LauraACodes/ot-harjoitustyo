@@ -5,8 +5,6 @@ import tetris.controls.Controller;
 import javafx.stage.Stage;
 /**
  * Luokka vastaa käyttöliittymän näyttämisestä pelaajalle.
- * Toistaiseksi valmiina on vain pelinäkymä. 
- * Jatkossa tästä löytyy myös valinnat muiden pelin scenejen näyttämiseksi.
  * 
  */
 public class Ui extends Application {
@@ -17,9 +15,9 @@ public class Ui extends Application {
 
 
     /**
-     * Pelin käynnistävä metodi luo pelissä tarvittavat osat kutsumalla muiden 
-     * luokkien metodeita: pelilaudan, controllerin ja timerin sekä
-     * käynnistää pelin.
+     * Pelin käynnistävä metodi luo controllerin kokoamana ja hallinnoimaan 
+     * pelissä tarvittavia osia. Controllerin luotuaan metodi hakee ensimmäisen
+     * Scenen ja näyttää sen pelaajalle.
      * @param stage
      * @throws Exception 
      */

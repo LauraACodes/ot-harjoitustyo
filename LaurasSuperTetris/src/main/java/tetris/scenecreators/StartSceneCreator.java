@@ -23,6 +23,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tetris.controls.Controller;
 
+/**
+ * Luokka luo aloitusScenen.
+ * @author andlaura
+ */
 
 public class StartSceneCreator {
     
@@ -40,6 +44,11 @@ public class StartSceneCreator {
     public static TetrisDao dao = Controller.dao;
     ElementGenerator eGenerator = new ElementGenerator();
     
+    /**
+     * Konstruktori luo apumetodien avulla aloitussivulla tarvittavat osat 
+     * ja asettaa ne Sceneen.
+     * @param controller 
+     */
     public StartSceneCreator(Controller controller) {
         this.controller = controller;
         heading = createHeading();
@@ -55,7 +64,11 @@ public class StartSceneCreator {
         startScene = new Scene(startLayout, 522, 744);
     }
     
-     
+    /**
+     * metodi luo aloitussivun keskellä olevan boksin nappeineen, johon
+     * pelaaja kirjoittaa nimensä ja josta pääsee mm. aloittamaan pelin.
+     * @return 
+     */ 
     public StackPane createNameBox() {
         StackPane playerNameB = new StackPane();
         
@@ -79,7 +92,9 @@ public class StartSceneCreator {
         
         return playerNameB;
     }
-
+    /**
+     * Apumetodi, luo starttinappulan ja sen toiminnot.
+     */
     public void createStartB() {
         startButton = eGenerator.createButton("START", 150, 40, Color.LIGHTSKYBLUE);    
         startButton.setOnAction(start -> {
@@ -90,7 +105,9 @@ public class StartSceneCreator {
             this.controller.startGame();  
         });
     }
-    
+    /**
+     * Apumetodi, luo statistiikkasivulle johtavan nappulan.
+     */
     public void createStatsB() {
         statsButton = eGenerator.createButton("TO STATS", 150, 40, Color.LIGHTSKYBLUE); 
         statsButton.setOnAction(start -> {
@@ -98,16 +115,16 @@ public class StartSceneCreator {
             controller.toStats();
         });  
     }
-    
+    /**
+     * Luo aloitussivun otsikkolaatikon.
+     * @return 
+     */
     public StackPane createHeading() {
         StackPane heading = new StackPane();
         
-        Rectangle rectangle = createRectangle(400, 70);
-        rectangle.setFill(Color.CORAL);
-        rectangle.setStroke(Color.CORAL);  
+        Rectangle rectangle = eGenerator.createRectangle(400, 70, Color.CORAL, Color.CORAL); 
         
-        Text headText = new Text("Laura's Super Tetris");
-        headText.setStyle("-fx-font: 40 LucidaConsole;");
+        Text headText = eGenerator.createText("Laura's Super Tetris", Color.TRANSPARENT, 40, 0, 0);
         headText.setFill(Color.WHITE);
         
         ObservableList list = heading.getChildren();
@@ -115,16 +132,10 @@ public class StartSceneCreator {
         
         return heading;
     }
-    
-    public Rectangle createRectangle(double width, double height) {
-        Rectangle rectangle = new Rectangle();
-        rectangle.setWidth(width);
-        rectangle.setHeight(height);
-        rectangle.setArcWidth(20);
-        rectangle.setArcHeight(20);  
-        return rectangle;
-    }
-    
+    /**
+     * Luo aloitussivun huipputulokset näyttävän StarckPanen. 
+     * @return 
+     */
     public StackPane createRankPane() {
         StackPane ranks = new StackPane();
         rankList = eGenerator.createGridP(18, 30, 5);
@@ -145,6 +156,9 @@ public class StartSceneCreator {
         return ranks;
     }
     
+    /**
+     * CreateRankPanen apumetodi.
+     */
     public void addLabelsToRankPane() {
         Label ind1 = new Label("1.");
         Label ind2 = new Label("2.");
@@ -154,7 +168,10 @@ public class StartSceneCreator {
 
         rankList.addColumn(0, ind1, ind2, ind3, ind4, ind5);        
     }
-    
+    /**
+     * CreateRankPanen apumetodi.
+     * hakee huipputulokset tietokannasta.
+     */    
     public void addDaoInfoToRankPane() {
         String[][] top5 = dao.getTop5();
         Label name1 = new Label(top5[0][0]);

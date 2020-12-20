@@ -1,12 +1,12 @@
 # Käyttöohje
 
-Lataa tiedosto laurassupertetris.jar
+Lataa tiedosto [laurassupertetris.jar](https://github.com/LauraACodes/ot-harjoitustyo/releases/tag/tetrisFinal) 
 
 ## Ohjelman käynnistäminen
 
 Ohjelma käynnistyy komennolla:
 
-java jar laurassupertetris.jar
+java -jar laurassupertetris.jar
 
 ## Pelinimen kirjoitus ja pelin aloittaminen
 

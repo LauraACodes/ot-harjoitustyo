@@ -1,5 +1,3 @@
-
-
 import java.io.File;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -117,6 +115,7 @@ public class TetrisDaoTest {
         String wantedScore = Integer.toString(300000);
         assertEquals(wantedScore, topScore);
     }
+    
     @Test
     public void returnsRightTopOnePlayer() {
         dao.insertPlayer("Pelsepuubi");

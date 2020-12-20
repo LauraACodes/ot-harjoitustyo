@@ -24,7 +24,7 @@ import tetris.ui.Ui;
 
 
 /**
- * Luokka Gameboard luo pelin pelilaudan.
+ * Luokka Gameboard luo pelin pelinäkymän.
  * 
  */
 public class GameSceneCreator {
@@ -34,7 +34,6 @@ public class GameSceneCreator {
     public static int boardWidth = SQSIZE  * 12;
     public static int boardHeight = SQSIZE  * 24;
 
-    // Asetteluun liittyvät
     Block block = Controller.block;
     Block nextBlock = Controller.nextBlock;
     BorderPane layout = Controller.layout;
@@ -48,7 +47,6 @@ public class GameSceneCreator {
     
     public static Scene gameScene;
 
-    // Controlleri & Game
     public static Controller controller = Ui.controller;
     public static TetrisDao dao = Controller.dao;
     private static boolean game = true;
@@ -86,17 +84,18 @@ public class GameSceneCreator {
     public Scene getGameScene() {
         return gameScene;
     }
-    
+    /**
+     * Metodin avulla päivitetään pelilaudan pisteet.
+     * @param sco
+     * @param lineC 
+     */
     public void addPoints(int sco, int lineC) {
         scoreText.setText("SCORE: " + sco);
         lineText.setText("LINES: " + lineC);
     }
-    
-    public void updateDB() {
-        dao.updatePlayerScores(controller.getPlayerName(), controller.getScore());
-        dao.updateGames(controller.getPlayerName(), controller.getScore());
-    }
-    
+    /**
+     * Metodi vastaa pelilaudan päivitämisestä pelin päätyttyä.
+     */
     public void gameOver() {
         updateDB();
        
@@ -118,7 +117,17 @@ public class GameSceneCreator {
 
         layout.setCenter(gameOver);
     }
-    
+    /**
+     * Peliin päätyttyä metodi päivittää pelin tulokset tkn tauluihin.
+     */
+    public void updateDB() {
+        dao.updatePlayerScores(controller.getPlayerName(), controller.getScore());
+        dao.updateGames(controller.getPlayerName(), controller.getScore());
+    }
+    /**
+     * GameOver-metodin apumetodi - luo tarvittavat napit ja niiden boksin.
+     * @return 
+     */    
     public HBox createGOButtonBox() {
         HBox buttonBox = new HBox(30);
         

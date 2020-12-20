@@ -7,17 +7,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Luokassa luodaan pelin käyttämä tietokanta sekä käytetään tietokantaa.
+ * @author andlaura
+ */
 public class TetrisDao {
     
     private String dbName;
     private String defName;
-
+    /**
+     * Luokan konstruktorissa määritellään tietokannan nimi annetun
+     * parametrin mukaan. Tämän jälkene kutsutaan toista metodia luomaan tk.
+     * @param defName
+     * @throws SQLException 
+     */
     public TetrisDao(String defName) throws SQLException {
         this.defName = defName;
         this.dbName = "jdbc:sqlite:" + defName;
         initDb();
     }
-    
+    /**
+     * Metodi tarkastaa onko nimetty tietokanta jo olemassa ja jos ei ole, luo tietokannan.
+     */    
     public void initDb() {
         if (new File(defName).exists()) {
             return;
@@ -31,7 +42,10 @@ public class TetrisDao {
         } catch (SQLException e) {
         }
     }
-    
+    /**
+     * Luokka palvelee muita metodeita vastaamalla yhteyden luomisesta tk:hon. 
+     * @return 
+     */
     public Connection connect() {
         Connection conn = null;
         try {
@@ -40,7 +54,10 @@ public class TetrisDao {
         }
         return conn;
     }
-    
+    /**
+     * Metodi vie parametrinä annetun nimen tietokantaan.
+     * @param name 
+     */
     public void insertPlayer(String name) {
         String sql = "INSERT INTO players(name) VALUES(?)";
         
@@ -52,7 +69,12 @@ public class TetrisDao {
         } catch (SQLException e) {
         }
     }
-    
+    /**
+     * Pelin loputtua metodi päivittää Player-tauluun valitut tulokset: mm.
+     * kasvattaa pelattujen pelien määrää, päivittää tarvittaessa topScoren.
+     * @param name pelaajan nimi
+     * @param score uusin pelitulos
+     */
     public void updatePlayerScores(String name, int score) {
         int playerID = getPlayerID(name);
         int topScore = getPlayerTopScore(playerID);
@@ -76,7 +98,11 @@ public class TetrisDao {
         } catch (SQLException e) {
         }
     }
-    
+    /**
+     * Pelin loputtua metodi lisää Games-tauluun uusimman tuloksen.
+     * @param name pelaajan nimi
+     * @param score uusin pelitulos
+     */
     public void updateGames(String name, int score) {
         int playerID = getPlayerID(name);
         String sql = "INSERT INTO games(playerID, score) VALUES(?, ?)";
@@ -90,7 +116,11 @@ public class TetrisDao {
         } catch (SQLException e) {
         }
     }    
-    
+    /**
+     * Metodi etsii games-taulusta parametrina annetun tuloksen sijoitusta.
+     * @param score tulos, jonka sijoutusta etsitään
+     * @return annetun tuloksen sijoitus
+     */
     public int getRank(int score) {
         ArrayList<Integer> list = new ArrayList<>();
         
@@ -112,7 +142,13 @@ public class TetrisDao {
         
         return rank;
     }
-    
+    /**
+     * GetRank-metodin apumetodi. Etsii annetulta listalta annetun tuloksen 
+     * sijoituksen.
+     * @param list
+     * @param score
+     * @return 
+     */
     public int findRank(ArrayList<Integer> list, int score) {
         int rank = 0;
         
@@ -124,7 +160,11 @@ public class TetrisDao {
         
         return rank;
     }
-    
+    /**
+    * Metodi palauttaa taulukon, jossa on kaikista pelatuista peleistä top5 
+    * tulokset ja pelanneiden nimet
+    * @return 
+    */
     public String[][] getTop5() {
         String[][] top5 = createTable();
         
@@ -147,6 +187,10 @@ public class TetrisDao {
         return top5;
     }
     
+    /**
+     * getTop5 metodin apumetodi, alustaa tyhjän taulukon.
+     * @return 
+     */
     public String[][] createTable() {
         String[][] top5 = new String[2][5];
         for (int i = 0; i < 5; i++) {
@@ -155,7 +199,11 @@ public class TetrisDao {
         }
         return top5;
     }
-    
+    /**
+     * Etsii player-taulusta pelaajan idn annetun nimen perusteella.
+     * @param name
+     * @return pelaajan id
+     */
     public int getPlayerID(String name) {
         int id = 0;
         
@@ -172,7 +220,11 @@ public class TetrisDao {
         
         return id;
     }
-
+    /**
+     * Etsii player-taulusta pelaajan parhaimman tuloksen.
+     * @param id
+     * @return paras tulos
+     */
     public int getPlayerTopScore(int id) {
         int score = 0;
         
@@ -189,7 +241,11 @@ public class TetrisDao {
         
         return score;
     }
-
+    /**
+     * Etsi player-taulusta pelaajan pelaamien pelien lukumäärän.
+     * @param id
+     * @return pelattujen pelien lkm
+     */
     public int getPlayerNrOfGames(int id) {
         int nrOfGames = 0;
         
@@ -206,7 +262,11 @@ public class TetrisDao {
         
         return nrOfGames;
     }
-    
+    /**
+     * Metodi tarkastaa onko player-tietokannassa jo parametrinä annettua pelaajaa.
+     * @param name
+     * @return true jos pelaaja löytyy
+     */
     public boolean doesPlayerExist(String name) {
         boolean exist = false;
         
@@ -226,7 +286,10 @@ public class TetrisDao {
         
         return exist;
     }
-    
+    /**
+     * Apumetodi player-taulun luomista varten tarvittavasta sql-stringistä-
+     * @return 
+     */
     public String createPlayersTblSql() {
         String sql = "CREATE TABLE IF NOT EXISTS Players (\n"
                 + " playerID integer PRIMARY KEY,\n"
@@ -236,7 +299,10 @@ public class TetrisDao {
                 + ");";
         return sql;
     }
-
+    /**
+     * Apumetodi games-taulun luomista varten tarvittavasta sql-stringistä-
+     * @return 
+     */
     public String createGamesTblSql() {
         String sql = "CREATE TABLE IF NOT EXISTS Games (\n"
                 + " gameID integer PRIMARY KEY,\n"

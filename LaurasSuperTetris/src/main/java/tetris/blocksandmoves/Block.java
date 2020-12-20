@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import tetris.ui.Ui;
+
 /**
  * Luokka Block luo tetriksen palikat eli Blockit.
  * Block koostuu neljästä Rectanglesta.
@@ -12,6 +13,7 @@ import tetris.ui.Ui;
  * 
  */
 public class Block {
+    
     public Rectangle a;
     public Rectangle b;
     public Rectangle c;
@@ -22,6 +24,7 @@ public class Block {
     public static int sqSize = 31;
     public static int boardWidth = sqSize * 12;
     public static int boardHeigth = sqSize * 24;
+    
     /**
      * Konstruktori luo Blockille neljä osaa.
      * Tåmän jälkeen konstruktori kutsuu eri metodeja joiden avulla mm. blockin tyyppi valikoituu.
@@ -39,6 +42,24 @@ public class Block {
         fillBlockWithColor(color);
 
     }
+    
+    /**
+     * Tämä konstruktori luo tietynlaisen palikan Turns-luokan testauksia varten.
+     * @param bName kertoo minkälainen palikka konstruktorin tulee luoda.
+     */
+    public Block(String bName) {
+        
+        a = new Rectangle(sqSize - 1, sqSize - 1);
+        b = new Rectangle(sqSize - 1, sqSize - 1);
+        c = new Rectangle(sqSize - 1, sqSize - 1);
+        d = new Rectangle(sqSize - 1, sqSize - 1);        
+        
+        name = bName;
+        positionBlock(name);
+        color = selectColor(name);
+        fillBlockWithColor(color);
+    }
+    
     /**
      * Metodi valitsee satunnaisesti minkäniminen eli muotoinen Blockista tulee.
      * 
@@ -74,7 +95,7 @@ public class Block {
     }
 
     /**
-     * Metodi asettaa syötteenä annetun blockin nimen perusteella blockin neljä osaa pelilaudan koordinaatistoon.
+     * Metodi kutsuu syötteenä annetun blockin nimen perusteella muita metodeita asettamaan blockin neljä osaa pelilaudan koordinaatistoon.
      * 
      * @param bName luotavan blokin nimi joka blockin muodon eli osasten paikan
      */
@@ -167,6 +188,7 @@ public class Block {
         d.setX(boardWidth / 2);
         d.setY(sqSize * 2);        
     }
+    
     /**
      * Metodi valitsee blockin värin.
      * Kaikki tietynmuotoiset blockit ovat tietyn värisiä.
@@ -216,7 +238,6 @@ public class Block {
     }
     
     //Testiä varten   
-
     public void setName(String name) {
         this.name = name;
     }    

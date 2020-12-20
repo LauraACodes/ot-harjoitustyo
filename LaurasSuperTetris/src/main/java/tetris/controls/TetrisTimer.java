@@ -20,8 +20,8 @@ public class TetrisTimer extends AnimationTimer {
 
     /**
      * Timerin handle metodi vastaa palikoiden putoamisnopeudesta ja
-     * putoamistahdin kiihdyttämisestä.
-     * Varsinainen työ tehdään kun handle-metodi kutsuu handleTetris-metodia.
+     * putoamistahdin kiihdyttämisestä. Varsinainen työ tehdään kun 
+     * handle-metodi kutsuu controllerin handleTime-metodia.
      * @param now 
      */
     @Override

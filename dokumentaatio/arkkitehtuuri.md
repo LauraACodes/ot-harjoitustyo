@@ -52,15 +52,15 @@ Pelin aloitus
 
 Palikan liikuttaminen
 
-![move rights eq](https://github.com/LauraACodes/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/MoveBlockRightSec.png)
+![move rights eq](https://github.com/LauraACodes/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/MobeBlockRightSec.png)
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
 
 Käyttöliittymän osalta nyt ui-luokassa rakennetaan vain controller ja kutsutaan sitä kerran, jolloin controller luo ensimmäisen näkymän.
 Tämän jälkeen kaikki muiden scenejen näyttö stagelle hoidetaan controller-luokassa. 
-Mielestäni tyylikkäämpää olisi ollut tehdä tämä (controllerin avulla luotujen) scenejen näyttö uissa. 
+Mielestäni parempi tapa olisi ollut tehdä tämä (controllerin avulla luotujen) scenejen näyttö uissa ja lisäksi muutenkin vielä pohtia, josko controller -luokkaa olisi voinut jakaa useampiin. Yritin, mutta jokin aina kosahti. Eniten tämä kostautui testaamisessa. 
+
 
 Nyt kun kirjoitti sekvenssikaavioita uusiksi huomasi pari pienempää hölmöyttä: esim. playerName haetaan nyt StartScenestä getterillä, sen olisi voinut luoda muuttujaksi, johon kaikki sitä tarvitsevat luokat pääsisi käsiksi. 
 
 Turns-luokka jäi varsin pitkäksi (Yli 700 riviä). Silti koin, ettei luokan pilkkominen palvelisi asiaa, sillä kovin montaa toimintoa luokassa ei ole, ne vain tehdään 7 palikkatyypille kaikki erikseen.
-![taglespic](https://github.com/LauraACodes/ot-harjoitustyo/blob/master/dokumentaatio/kuvat/DBTables.png)

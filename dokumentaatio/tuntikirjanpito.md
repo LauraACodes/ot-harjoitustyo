@@ -26,5 +26,7 @@
 | 16.12.| 4 | Tietokannan rakennus ja scorejen päivitys tkn tiedoilla |
 | 16.12.| 2 | Kaikenlaista pientä säätöä |
 | 18.12.| 8 | Paketit uusiksi, koodin siistiminen, checkstylet kuntoon |
+| 19.12.| 10 | Dokumentointia, mm. arkkitehtuuri kuvien päivityksineen |
+| 20.12.| 12 | Testejä, javadocceja, viimeistelyä hyvissä ajoin|
 
-**YHTEENSÄ 91 TUNTIA**
+**YHTEENSÄ 124 TUNTIA**

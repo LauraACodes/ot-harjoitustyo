@@ -18,6 +18,11 @@ import javafx.scene.text.Text;
 import tetris.controls.Controller;
 import tetris.ui.Ui;
 
+/**
+ * Luokka vastaa statistiikkasivun luomisesta.
+ * @author andlaura
+ */ 
+
 public class StatsScreenCreator {
     
     public static Controller controller = Ui.controller;
@@ -36,12 +41,20 @@ public class StatsScreenCreator {
     public static TetrisDao dao = Controller.dao;    
     ElementGenerator eGenerator = new ElementGenerator();
     
+    /**
+     * Luokan konstruktori luo statistiikkaScenen parametrinä saadun 
+     * pelaajan tiedoilla.
+     * @param playerName 
+     */
     public StatsScreenCreator(String playerName) {
         this.playerName = playerName;
         playerID = dao.getPlayerID(playerName);
         createStatsScreen();
     }
     
+    /**
+     * Metodi vasta statistiikkasivun kokoamisesta.
+     */
     public void createStatsScreen() {
         playerNameBox = createNameBox();     
         latestScoreBox = createLatestScoreBox();
@@ -61,7 +74,11 @@ public class StatsScreenCreator {
     
         statsScene = new Scene(statsLayout, 522, 744);
     }
-
+    /**
+     * Statistiikkasivun kokoajan apumetodi. 
+     * Hakee tarvittavia tietoja tietokannasta.
+     * @return 
+     */
     public StackPane createPlayedGamesBox() {
         StackPane playedGamesB = new StackPane();
         
@@ -74,7 +91,11 @@ public class StatsScreenCreator {
         
         return playedGamesB;
     }    
-
+    /**
+     * Statistiikkasivun kokoajan apumetodi. 
+     * Hakee tarvittavia tietoja tietokannasta.
+     * @return 
+     */
     public StackPane createTopScoreBox() {
         StackPane topScoreB = new StackPane();
         
@@ -93,7 +114,11 @@ public class StatsScreenCreator {
         
         return topScoreB;
     }
-
+    /**
+     * Statistiikkasivun kokoajan apumetodi. 
+     * Hakee tarvittavia tietoja tietokannasta.
+     * @return 
+     */
     public StackPane createLatestScoreBox() {
         StackPane latestScoreB = new StackPane();
         
@@ -110,7 +135,11 @@ public class StatsScreenCreator {
         
         return latestScoreB;
     }    
-    
+    /**
+     * Statistiikkasivun kokoajan apumetodi. 
+     * Luo pelaajan nimen sisältävän blokin.
+     * @return 
+     */    
     public StackPane createNameBox() {
         StackPane nameBox = new StackPane();
         

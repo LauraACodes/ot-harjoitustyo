@@ -25,9 +25,9 @@ import tetris.blocksandmoves.Moves;
 import tetris.blocksandmoves.Turns;
 
 /**
- * Controller luokka vastaa näppäimistön kuuntelusta sekä palikoiden
- * siirtämisestä pelilaudalla.
- *
+ * Controller luokka on koko ohjelman "sielu". Luokka vastaa oikean 
+ * Scenen pyytämisestä ja näyttämisestä, näppäimistön kuuntelusta ja 
+ * pelilaudan päivittämisestä .
  */
 public class Controller {
 
@@ -65,16 +65,10 @@ public class Controller {
     public static AnimationTimer timer;
     
     public static TetrisDao dao;
-   
-
     /**
-     * Luokan konstruktori lukitsee tarvittavat muuttujat, luo Turns-olion
-     * hoitamaan blockien käännökset sekä alustaa pelilaudan.
-     *
-     * @param sqSize Blockin osan koko (neliön sivu)
-     * @param boardWidth Pelilaudan leveys
-     * @param boardHeight Pelilaudan pituus
-     * @param gscene pelilaudan Scene
+     * Konstruktori alustaa pelissä tarvittavan tietokannan sekä kutsuu 
+     * toista metodia hoitamaan muut käynnistyksessä tarvittavat osat.
+     * @param stage 
      */
     public Controller(Stage stage) {
         try {
@@ -83,7 +77,12 @@ public class Controller {
         } 
         gameinit(stage);  
     }
-    
+    /**
+     * Metodi alusta controlleriluokan tarvitsemat muuttujat ja luokat. 
+     * Metodia kutsutaan niin aloitusnäkymää rakennettaessa kuin uuden 
+     * pelin aloittamisessa loppuneen pelin jälkeen.
+     * @param stage 
+     */
     public void gameinit(Stage stage) {
         this.stage = stage;
         eGenerator = new ElementGenerator();
@@ -107,12 +106,20 @@ public class Controller {
         turns = new Turns(this.sqSize, this.move, this.boardWidth, this.boardHeight);
         moves = new Moves(this.sqSize, this.move, this.boardWidth, this.boardHeight);        
     }
-    
+
+    /**
+     * Metodi kutsuu startSceneCreatoria rakentamaan aloitusnäkymän ja 
+     * @return palauttaa aloitusnäkymän.
+     */    
     public Scene getScene() {
         startScene = new StartSceneCreator(this);
         return startScene.getStartScene();
     }
-
+    /** 
+     * Metodin avulla varsinainen peli aloitetaan. Metodi kutsuu GameSceneCreaatoria
+     * luomaan pelilaudan. Tämän jälkeen metodi aloittaa näppäimistön kuuntelun,
+     * päivittää stagen ja kutsuu timerin käynnistävää luokkaa.
+     */
     public void startGame() {
         
         gameboard = new GameSceneCreator(startScene.getPlayerName());
@@ -129,7 +136,11 @@ public class Controller {
         timer = new TetrisTimer();
         timer.start();
     }
-       
+    /**
+     * Metodi kuuntelee näppäimistöä ja kutsuu moves- ja turn-luokkien 
+     * metodeita blockin siirtämiseen tai kääntämiseen.
+     * @param bl 
+     */
     public void moveOnKeyPress(Block bl) {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -141,10 +152,10 @@ public class Controller {
                         break;
                     case DOWN:
                         if (moves.downOk(bl)) {
+                            removeRows();
                         } else {
                             moves.moveDown(bl);
                         }
-                        removeRows();
                         break;
                     case LEFT:
                         moves.moveLeft(bl);
@@ -158,22 +169,11 @@ public class Controller {
             }
         });
     }
-
-    public void prepareNextScreen(Block bl) {
-        if (moves.downOk(bl)) {
-            removeRows();
-            Block next = nextBlock;
-            nextBlock = new Block();
-            block = next;
-            layout.getChildren().addAll(next.a, next.b, next.c, next.d);
-            moveOnKeyPress(next);
-        } else {
-            moves.moveDown(bl);
-            score++; 
-            gameboard.addPoints(score, lineCount);
-        }
-    }
-
+    /**
+     * metodi vastaa oikean moves luokan metodin kutsumisesta kääntämään 
+     * palikkaa pelilaudalla.
+     * @param block 
+     */
     public void moveTurn(Block block) {
         String name = block.getName();
         if (name.equals("line")) {
@@ -195,7 +195,11 @@ public class Controller {
             this.turns.turnEll(block);
         }
     }
-
+    /**
+     * Timerin käskyläisenä tämä metodi katsoo jatkuuko peli vai ei ja toimii
+     * sen mukaisesti: Lopettaa pelin ja kutsuu pelilaudan gameOver metodia tai 
+     * kutsuu toista metodia päivittämään pelilaudan.
+     */
     public void handleTime() {
 
         if (block.a.getY() == 0 || block.b.getY() == 0 || block.c.getY() == 0 || block.d.getY() == 0) {
@@ -213,6 +217,29 @@ public class Controller {
         }
     }
 
+    /**
+     * Metodi nimensä mukaisesti päivittää pelilaudan, eli pudottaa palikkaa 
+     * pykälän ja päivittää pisteet tai pyytää muita metodeita tuhoamaan täydet
+     * rivit laudalta.
+     * @param bl 
+     */
+    public void prepareNextScreen(Block bl) {
+        if (moves.downOk(bl)) {
+            removeRows();
+            Block next = nextBlock;
+            nextBlock = new Block();
+            block = next;
+            layout.getChildren().addAll(next.a, next.b, next.c, next.d);
+            moveOnKeyPress(next);
+        } else {
+            moves.moveDown(bl);
+            score++; 
+            gameboard.addPoints(score, lineCount);
+        }
+    }
+    /**
+     * Metodi vastaa rivien poistamisesta ja pelilaudan kokoamisesta uudelleen.
+     */
     public void removeRows() {
         ArrayList<Node> parts = new ArrayList<Node>();
         ArrayList<Integer> lines = new ArrayList<Integer>();
@@ -289,7 +316,10 @@ public class Controller {
             } while (lines.size() > 0);
         }
     }
-      
+    /**
+     * Metodi kutsuu StatsScreenCreatoria rakentamaan statistiikkasivun ja kun 
+     * se on tehty, asettaa statistiikkasivun stagelle näkyviin.
+     */  
     public void toStats() {
         statsPage = new StatsScreenCreator(startScene.getPlayerName());
         statsScene = statsPage.getStatsScene();
@@ -298,6 +328,10 @@ public class Controller {
         stage.show();
     }
     
+    /**
+     * Metodi alustaa uuden pelin ja starttaa sen. Käytetään kun edellinen peli 
+     * on päättynyt.
+     */
     public void startNewGame() {
         gameinit(this.stage);
         startGame();  
